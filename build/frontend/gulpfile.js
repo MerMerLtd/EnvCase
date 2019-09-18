@@ -7,7 +7,7 @@ var open = require('gulp-open');
 
 var Paths = {
   HERE: './',
-  DIST: 'dist/',
+  DIST: './assets/css/',
   CSS: './assets/css/',
   SCSS_TOOLKIT_SOURCES: './assets/scss/material-kit.scss',
   SCSS: './assets/scss/**/**'

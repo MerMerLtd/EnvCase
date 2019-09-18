@@ -536,6 +536,7 @@ function onLoad() {
     };
     websocket.onmessage = function (evt) {
         onMessage(evt)
+        console.log(evt)//--
     };
     websocket.onerror = function (evt) {
         onError(evt)
@@ -557,28 +558,24 @@ function onMessage(evt) {
     // There are two types of messages:
     // 1. a chat participant message itself
     // 2. a message with a number of connected chat participants
-    
-    var message = evt.data;
-    // if (message.startsWith("log:")) {
-    //     message = message.slice("log:".length);
-    //     log.innerHTML = '<li class = "message">' + 
-    //        message + "</li>" + log.innerHTML;
-    //  }else if (message.startsWith("connected:")) {
-    //     message = message.slice("connected:".length);
-    //     connected.innerHTML = message;
-    //  }
-    console.log(evt);
-    switch (message) {
+    var data = JSON.parse(evt.data);
+    console.log(data);
+    switch (data.type) {
         case 'chat':
             feedback.innerHTML = '';
             output.innerHTML += '<p><strong>' + data.handle + ': </strong>' + data.message + '</p>';
             break;
         case 'typing':
             feedback.innerHTML = '<p><em>' + data.handle + ' is typing a message...</em></p>';
+            break;
+        case 'display':
+            display(data)
+            break;
         default:
-            feedback.innerHTML = '<p><em>' + message + '</em></p>';;
+            break;
+            // feedback.innerHTML = '<p><em>' + data.handle + '</em></p>';
     }
-    
+
 }
 
 function onError(evt) {
@@ -605,3 +602,17 @@ message.addEventListener('keypress', function () {
     };
     websocket.send(JSON.stringify(msg));
 })
+
+
+const display = ({ page }) => {
+    switch(page) {
+        case '1':
+            break;
+        case '2':
+            break;
+        case '3':
+            break;
+        default:
+    }
+    console.log(page);
+};
