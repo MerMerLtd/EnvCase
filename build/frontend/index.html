@@ -24,15 +24,117 @@
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"
     />
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js"></script> -->
+    <style>
+      #mario-chat {
+        width: 400px;
+        margin: 30px 100px;
+        border: 1px solid #ddd;
+        box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.05);
+        border-radius: 2px;
+        float: right;
+      }
+
+      #chat-window {
+        height: 400px;
+        overflow: auto;
+        background: #f9f9f9;
+      }
+
+      #output p {
+        padding: 14px 0px;
+        margin: 0 20px;
+        border-bottom: 1px solid #e9e9e9;
+        color: #555;
+      }
+
+      #feedback p {
+        color: #aaa;
+        padding: 14px 0px;
+        margin: 0 20px;
+      }
+
+      #output strong {
+        color: #575ed8;
+      }
+
+      label {
+        box-sizing: border-box;
+        display: block;
+        padding: 10px 20px;
+      }
+
+      input {
+        padding: 10px 20px;
+        box-sizing: border-box;
+        background: #eee;
+        border: 0;
+        display: block;
+        width: 100%;
+        background: #fff;
+        border-bottom: 1px solid #eee;
+        font-family: Nunito;
+        font-size: 16px;
+      }
+
+      button {
+        background: #575ed8;
+        color: #fff;
+        font-size: 18px;
+        border: 0;
+        padding: 12px 0;
+        width: 100%;
+        border-radius: 0 0 2px 2px;
+      }
+      #status {
+        padding: 5px;
+        color: #fff;
+        background: #ccc;
+      }
+
+      #status.fail {
+        background: #c00;
+      }
+
+      #status.success {
+        background: #0c0;
+      }
+
+      #status.offline {
+        background: #c00;
+      }
+
+      #status.online {
+        background: #0c0;
+      }
+      
+    </style>
   </head>
   <body>
-    <div id="heatmapArea">hi</div>
+    <div class="map-container" style="position: relative; float: left;">
+      <div
+        class="map"
+        style="height: 789px; width: 600px; position: absolute; background-image: url(./assets/img/map-of-north-taiwan-m.png);background-position: center; background-repeat: no-repeat;background-size: contain;"
+      ></div>
+      <div
+        style="width: 600px; height:789px; position:absolute; top: 0px; left: 0%;"
+        class="heatmap"
+      ></div>
+    </div>
+    <div id="mario-chat">
+      <p id="status">Not connected</p>
+      <p>Users connected: <span id="connected">0 </span></p>
+      <ul id="log"></ul>
+      <h2>Mario Chat</h2>
+      <div id="chat-window">
+        <div id="output"></div>
+        <div id="feedback"></div>
+      </div>
+      <input id="handle" type="text" placeholder="Handle" />
+      <input id="message" type="text" placeholder="Message" />
+      <button id="send">Send</button>
+    </div>
   </body>
-  <!-- <script type="text/javascript" src="heatmap.js"></script>-->
-
-  <!--   Customs JS Files   -->
-  <script src="./assets/js/customs/controller.js" type="text/javascript"></script>
-
   <!--   Core JS Files   -->
   <script src="./assets/js/core/jquery.min.js" type="text/javascript"></script>
   <script src="./assets/js/core/popper.min.js" type="text/javascript"></script>
@@ -40,5 +142,19 @@
     src="./assets/js/core/bootstrap-material-design.min.js"
     type="text/javascript"
   ></script>
+  <script
+    type="text/javascript"
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAay0beQV9Udc-JPfAUOfks3I8otgTEZug"
+  ></script>
+
+  <!--   Plugins JS Files   -->
   <script src="./assets/js/plugins/moment.min.js"></script>
+  <script src="./assets/js/plugins/heatmap.js"></script>
+  <script src="./assets/js/plugins/gmaps-heatmap.js"></script>
+
+  <!--   Customs JS Files   -->
+  <script
+    src="./assets/js/customs/controller.js"
+    type="text/javascript"
+  ></script>
 </html>
