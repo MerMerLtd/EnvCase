@@ -8,6 +8,7 @@ class WSChannel extends Bot {
   constructor() {
     super();
     this.name = 'WSChannel';
+    this.connections = [];
   }
 
   init({ database, logger, i18n }) {
@@ -41,6 +42,7 @@ class WSChannel extends Bot {
     .then((wss) => {
       wss.on('connection', (ws, req) => {
         console.log(req.headers);
+        this.connections.push(ws);
         let ip = req.headers['x-forwarded-for'] ?
           req.headers['x-forwarded-for'].split(/\s*,\s*/)[0] :
           req.headers['host'] ?
@@ -49,13 +51,15 @@ class WSChannel extends Bot {
 
         console.log('HI', ip);
         ws.on('message', (message) => {
+          this.connections.map((conn) => {
+            conn.send(message)
+          });
           console.log('received: %s', message);
         });
         ws.on('close', () => {
           console.log('disconnected');
         });
 
-        ws.send('something');
       });
     });
   }
