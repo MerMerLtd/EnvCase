@@ -23,7 +23,9 @@ gulp.task('compile-scss', function () {
 });
 
 gulp.task('watch', function () {
-  // gulp.watch(Paths.SCSS, ['compile-scss']);
+  // gulp.watch(Paths.SCSS, ['compile-scss']); 
+  // To solve for gulp >4 when you are using gulp.task('default',['task'], function(){});
+  // replace ['task'] with gulp.series('task') or gulp.parallel('task')
   gulp.watch(Paths.SCSS, gulp.series('compile-scss'));
 });
 
