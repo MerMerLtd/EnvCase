@@ -10,6 +10,7 @@ function onMessage(evt) {
     // 2. a message with a number of connected chat participants
     var data = JSON.parse(evt.data);
     console.log(data);
+    if(data.from === "main") playSlide();
 }
 
 function onClose(evt) {

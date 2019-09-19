@@ -14,6 +14,10 @@
       href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons"
     />
     <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"
     />
@@ -25,9 +29,6 @@
       href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"
     />
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js"></script> -->
-    <style>
-      
-    </style>
   </head>
   <body>
     <p id="status">Not connected</p>
@@ -91,14 +92,30 @@
           </div>
         </div>
 
-        <ul class="slide-nav">
-          <li id="prev-slide"><i>«</i></li>
-          <li id="next-slide"><i>»</i></li>
-        </ul>
+        <!-- <ul class="slide-nav">
+          <li id="prev-slide">
+            <i class="material-icons">
+              keyboard_arrow_left
+            </i>
+          </li>
+          <li id="next-slide">
+            <i
+              ><i class="material-icons">
+                keyboard_arrow_right
+              </i></i
+            >
+          </li>
+        </ul> -->
         <!-- end .slide-nav -->
       </div>
       <!-- end .slideshow -->
+      <div class="slide-play">
+        <i class="material-icons">
+          play_arrow
+        </i>
+      </div>
     </div>
+
     <!-- end .slide-wrap -->
   </body>
   <!--   Core JS Files   -->
@@ -119,13 +136,12 @@
   <script src="./assets/js/plugins/gmaps-heatmap.js"></script>
 
   <!--   Customs JS Files   -->
+  <script
+  src="./assets/js/customs/websocket.js"
+  type="text/javascript"
+  ></script>
   <script src="./assets/js/customs/router.js" type="text/javascript"></script>
   <script src="./assets/js/customs/slider.js" type="text/javascript"></script>
-  <script
-    src="./assets/js/customs/websocket.js"
-    type="text/javascript"
-  ></script>
-
   <script
     src="./assets/js/customs/monitor_main.js"
     type="text/javascript"
