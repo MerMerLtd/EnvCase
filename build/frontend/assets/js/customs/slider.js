@@ -105,20 +105,21 @@ if (slideshow != null) { //make sure we don't run this script if the slideshow i
     const playSlide = () => {
         if(isPlay){
             clearInterval(intervalID);
-            websocket.send(JSON.stringify({
-                from: "main",
-                playStatus: "pause",
-            }));
+            // websocket.send(JSON.stringify({
+            //     from: "main",
+            //     playStatus: "pause",
+            // }));
         }else{
             intervalID =  setInterval(function () {
                 nextSlide();
             }, 1000);
-            websocket.send(JSON.stringify({
-                from: "main",
-                playStatus: "play",
-            }));
+            // websocket.send(JSON.stringify({
+            //     from: "main",
+            //     playStatus: "play",
+            // }));
         }
         isPlay = !isPlay;
+        websocket.send(JSON.stringify({playSlide: true}));
     }
 
     if(slideplay) slideplay.addEventListener('click', playSlide, false)
