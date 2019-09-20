@@ -1,13 +1,9 @@
-let pin;
 const renderPin = (parentEl, posX, posY) => {
-    let num = document.querySelectorAll(".pin").length ? document.querySelectorAll(".pin").length : 0;
-    const markup = `<div class="pin" id="pin${num}"></div>`;
+    const markup = `<div class="pin"></div>`;
     parentEl.insertAdjacentHTML("afterbegin", markup);
-    pin = document.querySelector(`#pin${num}`);
-    console.log(pin);
+    pin = document.querySelector(`.pin`);
     pin.style.left = `${posX}px`;
     pin.style.top = `${posY}px`;
-    console.log(`${posX}px`);
 }
 
 function getClickPosition(e, parentEl) {
