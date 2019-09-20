@@ -10,7 +10,11 @@ function onMessage(evt) {
     // 2. a message with a number of connected chat participants
     var data = JSON.parse(evt.data);
     console.log(data);
-   console.log(playSlide);
+    switch (data.event) {
+        case 'playSlide':
+            playSlide();
+    }
+
 }
 
 function onClose(evt) {
@@ -18,4 +22,3 @@ function onClose(evt) {
     state.innerHTML = "Not connected";
     connected.innerHTML = "0";
 }
-

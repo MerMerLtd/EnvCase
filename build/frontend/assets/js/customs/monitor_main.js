@@ -1,3 +1,4 @@
+
 function onOpen(evt) {
     state.className = "success";
     state.innerHTML = "Connected to server";
@@ -19,17 +20,25 @@ function onClose(evt) {
     connected.innerHTML = "0";
 }
 
+const slideplayer = document.querySelector('.slide-player');
+slideplayer.addEventListener('click', () => {
+    playSlide();
+    websocket.send(JSON.stringify({from:'main', event: 'playSlide'}));
+}, false);
 
 
-const display = ({ page }) => {
-    switch(page) {
-        case '1':
-            break;
-        case '2':
-            break;
-        case '3':
-            break;
-        default:
-    }
-    console.log(page);
-};
+
+// const display = ({
+//     page
+// }) => {
+//     switch (page) {
+//         case '1':
+//             break;
+//         case '2':
+//             break;
+//         case '3':
+//             break;
+//         default:
+//     }
+//     console.log(page);
+// };

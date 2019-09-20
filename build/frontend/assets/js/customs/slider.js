@@ -1,5 +1,5 @@
 const slideshow = document.querySelector('.slide-wrap');
-const slideplay = document.querySelector('.slide-play');
+
 
 if (slideshow != null) { //make sure we don't run this script if the slideshow is not present
 
@@ -102,26 +102,18 @@ if (slideshow != null) { //make sure we don't run this script if the slideshow i
     // optional autoplay function  
     let isPlay = false;
     let intervalID;
-    const playSlide = () => {
-        if(isPlay){
+
+    function playSlide() {
+        if (isPlay) {
             clearInterval(intervalID);
-            // websocket.send(JSON.stringify({
-            //     from: "main",
-            //     playStatus: "pause",
-            // }));
-        }else{
-            intervalID =  setInterval(function () {
+        } else {
+            intervalID = setInterval(function () {
                 nextSlide();
             }, 1000);
-            // websocket.send(JSON.stringify({
-            //     from: "main",
-            //     playStatus: "play",
-            // }));
         }
         isPlay = !isPlay;
-        websocket.send(JSON.stringify({playSlide: true}));
     }
 
-    if(slideplay) slideplay.addEventListener('click', playSlide, false)
+
 
 } //end slideshow

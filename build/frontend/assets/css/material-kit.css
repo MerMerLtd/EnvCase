@@ -15608,7 +15608,7 @@ button {
   height: 100vh; }
   .slide-sub {
     width: 100vw; }
-  .slide-play {
+  .slide-player {
     position: absolute;
     bottom: 5%;
     left: 2%;

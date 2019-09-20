@@ -38,6 +38,3 @@ function onError(evt) {
     state.innerHTML = "Communication error";
 }
 
-
-
-
