@@ -1,5 +1,5 @@
+// https://cheewebdevelopment.com/boilerplate-vanilla-javascript-content-slider/
 const slideshow = document.querySelector('.slide-wrap');
-
 
 if (slideshow != null) { //make sure we don't run this script if the slideshow is not present
 
@@ -25,18 +25,18 @@ if (slideshow != null) { //make sure we don't run this script if the slideshow i
 
     function nextSlide(e) {
         moveToSlide(currentSlide + 1);
-        let code = e.keyCode;
-        if (code == 39) {
-            moveToSlide(currentSlide + 1);
-        }
+        // let code = e.keyCode;
+        // if (code == 39) {
+        //     moveToSlide(currentSlide + 1);
+        // }
     };
 
     function prevSlide(e) {
         moveToSlide(currentSlide + -1);
-        let code = e.keyCode;
-        if (code == 37) {
-            moveToSlide(currentSlide + -1);
-        }
+        // let code = e.keyCode;
+        // if (code == 37) {
+        //     moveToSlide(currentSlide + -1);
+        // }
     };
 
     const slideHandlers = {
@@ -113,7 +113,5 @@ if (slideshow != null) { //make sure we don't run this script if the slideshow i
         }
         isPlay = !isPlay;
     }
-
-
 
 } //end slideshow

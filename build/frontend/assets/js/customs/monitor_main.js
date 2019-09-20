@@ -21,11 +21,13 @@ function onClose(evt) {
 }
 
 const slideplayer = document.querySelector('.slide-player');
+const body = document.querySelector('body');
 slideplayer.addEventListener('click', () => {
     playSlide();
     websocket.send(JSON.stringify({from:'main', event: 'playSlide'}));
 }, false);
 
+window.addEventListener('click', (e) => getClickPosition(e, body), false);
 
 
 // const display = ({
