@@ -1,6 +1,8 @@
 const webpack = require('webpack');
 const fs = require('fs');
 const path = require('path');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 function getExternals()
 {
@@ -20,10 +22,27 @@ const frontend = {
     chunkFilename: '[id].js'
   },
   module: {
+    rules: [
+      {
+        test: /\.(scss|sass)$/,
+        use: [
+          {
+            loader: 'style-loader'
+          },
+          {
+            loader: 'css-loader'
+          }
+        ]
+      }
+    ]
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoEmitOnErrorsPlugin()
+    new webpack.NoEmitOnErrorsPlugin(),
+    new MiniCssExtractPlugin({
+      filename: './bundle.min.css',
+      allChunks: true
+    })
   ]
 };
 

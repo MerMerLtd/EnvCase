@@ -1,1 +1,1 @@
-console.log(123);
+const scssStyle = require('./style/main.scss');
