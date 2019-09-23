@@ -63,7 +63,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "c47db0909b1048ca7ee0";
+/******/ 	var hotCurrentHash = "d434d3fff5265b7cf8b9";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -798,7 +798,9 @@
 /* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const scss_style = __webpack_require__(1);
+const scssStyle = __webpack_require__(1);
+const sassStyle = __webpack_require__(6);
+
 
 /***/ }),
 /* 1 */
@@ -859,7 +861,7 @@ exports = module.exports = __webpack_require__(3)(false);
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Pacifico);", ""]);
 
 // Module
-exports.push([module.i, "//Add variables here:\n\nh1 {\n  font-family: Roboto, sans-serif;\n  text-align: center;\n}\n\n.banner {\n  font-family: 'Pacifico', cursive;\n  height: 400px;\n}\n\n.container {\n  text-align: center;\n  font-family: 'Pacifico', cursive;\n}", ""]);
+exports.push([module.i, "h1 {\n  font-family: Roboto, sans-serif;\n  text-align: center; }\n\n.banner {\n  font-family: 'Pacifico', cursive;\n  height: 400px; }\n\n.container {\n  text-align: center;\n  font-family: 'Pacifico', cursive; }\n", ""]);
 
 
 
@@ -1451,6 +1453,66 @@ module.exports = function (css) {
 	// send back the fixed css
 	return fixedCss;
 };
+
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(7);
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(4)(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(true) {
+	module.hot.accept(7, function() {
+		var newContent = __webpack_require__(7);
+
+		if(typeof newContent === 'string') newContent = [[module.i, newContent, '']];
+
+		var locals = (function(a, b) {
+			var key, idx = 0;
+
+			for(key in a) {
+				if(!b || a[key] !== b[key]) return false;
+				idx++;
+			}
+
+			for(key in b) idx--;
+
+			return idx === 0;
+		}(content.locals, newContent.locals));
+
+		if(!locals) throw new Error('Aborting CSS HMR due to changed css-modules locals.');
+
+		update(newContent);
+	});
+
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(3)(false);
+// Module
+exports.push([module.i, "body {\n  font: 100% Helvetica, sans-serif;\n  color: #333; }\n", ""]);
+
 
 
 /***/ })
