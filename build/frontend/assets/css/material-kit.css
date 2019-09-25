@@ -15526,6 +15526,8 @@ button {
   border-radius: 0 0 2px 2px; }
 
 #status {
+  z-index: 30;
+  position: absolute;
   padding: 5px;
   color: #fff;
   background: #ccc; }
@@ -15543,6 +15545,9 @@ button {
   background: #0c0; }
 
 /* contain the main slider */
+.main-page .slide-wrap[data-index='1'] .slide-player {
+  display: none; }
+
 .slide-wrap {
   position: relative;
   transition: 300ms;
@@ -15627,17 +15632,24 @@ button {
   border: 4px solid #fff;
   width: 20px;
   height: 20px;
-  transform: rotate(-45deg); }
+  transform: rotate(-45deg);
+  margin-top: -10px;
+  margin-left: -10px; }
   .pin::after {
     position: absolute;
     content: '';
-    width: 10px;
-    height: 10px;
+    width: 6px;
+    height: 6px;
     border-radius: 50%;
     top: 50%;
     left: 50%;
-    margin-left: -5px;
-    margin-top: -5px;
+    margin-left: -3px;
+    margin-top: -3px;
     background-color: #fff; }
+
+.positioning {
+  position: absolute;
+  height: 100vh;
+  width: 100vw; }
 
 /*# sourceMappingURL=material-kit.css.map */

@@ -29,35 +29,80 @@
       href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"
     />
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js"></script> -->
+    <!-- image file -->
+    <!-- https://smashballoon.com/instagram-feed/standalone/docs/host-on-google-drive/ -->
+
+    <script>
+      let htmlAssets = {
+        sub_1:
+          "https://drive.google.com/uc?export=view&id=11oSJrUlmlyz_sD02NGcZWdvojnCxB8mv",
+        sub_7:
+          "https://drive.google.com/uc?export=view&id=1I3rtvfiNwUZGDqTm5bXhqKBW2qJb5QJS",
+        sub_8:
+          "https://drive.google.com/uc?export=view&id=16M-Kfd-5yrWb51sAsePjpjxucImrc1j9",
+        sub_9:
+          "https://drive.google.com/uc?export=view&id=1D7mQl1K98Lt3NjLDrYAMszDQ-Aoh-S5b",
+        sub_10:
+          "https://drive.google.com/uc?export=view&id=1_dlJFF3ZXVrP9kvmJ9j2fVs-PdezPUlx"
+      };
+    </script>
   </head>
 
   <body>
     <div class="positioning"></div>
     <p id="status">Not connected</p>
+
     <!-- <div class="positioning"></div> -->
-    <div class="main-page">
-      <div class="slide-wrap" data-length="2" data-index="1">
-        <div class="slideshow">
-          <div class="slide-entry">
-            <div class="slide-content">
-              <img
-                src="./assets/img/main-1.jpg"
-                alt="slide-1"
-                class="slide"
-                id="main-1"
-              />
-            </div>
+    <div class="slide-wrap">
+      <div class="slideshow">
+        <div class="slide-entry">
+          <div class="slide-content">
+            <img
+              src="https://drive.google.com/uc?export=view&id=11oSJrUlmlyz_sD02NGcZWdvojnCxB8mv"
+              alt="slide-1"
+              class="slide"
+            />
           </div>
         </div>
-        <!-- end .slideshow -->
-        <div class="slide-player">
-          <i class="material-icons">
-            play_arrow
-          </i>
+        <!-- <div class="slide-entry">
+          <div class="slide-content">
+            <img
+            src="https://drive.google.com/uc?export=view&id=1I3rtvfiNwUZGDqTm5bXhqKBW2qJb5QJS"
+            alt="slide-2" class="slide" />
+          </div>
         </div>
+        <div class="slide-entry">
+          <div class="slide-content">
+            <img
+              src="https://drive.google.com/uc?export=view&id=16M-Kfd-5yrWb51sAsePjpjxucImrc1j9"
+              alt="slide-3"
+              class="slide"
+            />
+          </div>
+        </div>
+        <div class="slide-entry">
+          <div class="slide-content">
+            <img
+              src="https://drive.google.com/uc?export=view&id=1D7mQl1K98Lt3NjLDrYAMszDQ-Aoh-S5b"
+              alt="slide-4"
+              class="slide"
+            />
+          </div>
+        </div>
+        <div class="slide-entry">
+          <div class="slide-content">
+            <img
+              src="https://drive.google.com/uc?export=view&id=1_dlJFF3ZXVrP9kvmJ9j2fVs-PdezPUlx"
+              alt="slide-5"
+              class="slide"
+            />
+          </div>
+        </div> -->
       </div>
-      <!-- end .slide-wrap -->
+      <!-- end .slideshow -->
     </div>
+
+    <!-- end .slide-wrap -->
   </body>
   <!--   Core JS Files   -->
   <script src="./assets/js/core/jquery.min.js" type="text/javascript"></script>
@@ -85,7 +130,7 @@
   <script src="./assets/js/customs/router.js" type="text/javascript"></script>
   <script src="./assets/js/customs/slider.js" type="text/javascript"></script>
   <script
-    src="./assets/js/customs/monitor_main.js"
+    src="./assets/js/customs/montior_sub.js"
     type="text/javascript"
   ></script>
 </html>

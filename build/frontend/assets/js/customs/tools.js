@@ -1,4 +1,6 @@
 const renderPin = (parentEl, posX, posY) => {
+    let pin = document.querySelector(`.pin`);
+    pin ? pin.remove(): null;
     const markup = `<div class="pin"></div>`;
     parentEl.insertAdjacentHTML("afterbegin", markup);
     pin = document.querySelector(`.pin`);

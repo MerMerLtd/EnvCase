@@ -28,6 +28,8 @@ button {
 }
 
 #status {
+    z-index: 30;
+    position: absolute;
     padding: 5px;
     color: #fff;
     background: #ccc;
@@ -50,8 +52,11 @@ button {
 }
 
 /* contain the main slider */
-
+.main-page .slide-wrap[data-index='1'] .slide-player {
+    display: none;
+}
 .slide-wrap {
+
     position: relative;
     transition: 300ms;
     float: left;
@@ -152,7 +157,7 @@ button {
 }
 
 // https://codepen.io/katia-trifonova/pen/zwZgdx
-.pin{
+.pin {
     position: absolute;
     z-index: 1000;
     border-radius: 50% 50% 50% 0;
@@ -160,17 +165,25 @@ button {
     width: 20px;
     height: 20px;
     transform: rotate(-45deg);
+    margin-top: -10px; //++
+    margin-left: -10px; //++
 
     &::after {
         position: absolute;
         content: '';
-        width: 10px;
-        height: 10px;
+        width: 6px; //10px; //--
+        height: 6px; //10px; //--
         border-radius: 50%;
         top: 50%;
         left: 50%;
-        margin-left: -5px;
-        margin-top: -5px;
+        margin-left: -3px; //-5px;//--
+        margin-top: -3px; //-5px;//--
         background-color: #fff;
     }
+}
+
+.positioning {
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
 }

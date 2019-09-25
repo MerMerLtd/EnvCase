@@ -4,6 +4,12 @@ function onOpen(evt) {
     // 告訴server 我是副螢幕
 }
 
+function onClose(evt) {
+    state.className = "fail";
+    state.innerHTML = "Not connected";
+    // connected.innerHTML = "0";
+}
+
 function onMessage(evt) {
     // There are two types of messages:
     // 1. a chat participant message itself
@@ -13,12 +19,17 @@ function onMessage(evt) {
     switch (data.event) {
         case 'playSlide':
             playSlide();
+            break;
+        case 'changePage':
+            display(data.currentPage, 'sub');
+            break;
+        case 'changeImage':
+            const imgContainer = document.querySelector('.slide-wrap img');
+            if (htmlAssets[`sub_${parseInt(data.index)+1}`])
+                imgContainer.src = htmlAssets[`sub_${parseInt(data.index)+1}`];
+            break;
+        default:
+
     }
 
-}
-
-function onClose(evt) {
-    state.className = "fail";
-    state.innerHTML = "Not connected";
-    connected.innerHTML = "0";
 }

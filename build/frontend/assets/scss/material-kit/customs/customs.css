@@ -1,0 +1,191 @@
+label {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  display: block;
+  padding: 10px 20px;
+}
+
+input {
+  padding: 10px 20px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  background: #eee;
+  border: 0;
+  display: block;
+  width: 100%;
+  background: #fff;
+  border-bottom: 1px solid #eee;
+  font-family: Nunito;
+  font-size: 16px;
+}
+
+button {
+  background: #575ed8;
+  color: #fff;
+  font-size: 18px;
+  border: 0;
+  padding: 12px 0;
+  width: 100%;
+  border-radius: 0 0 2px 2px;
+}
+
+#status {
+  z-index: 30;
+  position: absolute;
+  padding: 5px;
+  color: #fff;
+  background: #ccc;
+}
+
+#status.fail {
+  background: #c00;
+}
+
+#status.success {
+  background: #0c0;
+}
+
+#status.offline {
+  background: #c00;
+}
+
+#status.online {
+  background: #0c0;
+}
+
+/* contain the main slider */
+.main-page .slide-wrap[data-index='1'] .slide-player {
+  display: none;
+}
+
+.slide-wrap {
+  position: relative;
+  -webkit-transition: 300ms;
+  transition: 300ms;
+  float: left;
+}
+
+.slide-wrap img {
+  display: block;
+}
+
+.slide-entry,
+.slide-entry.active .slide-content {
+  pointer-events: none;
+}
+
+/* ensure that we can adjust z-index or position elements absolutely within the slideshow itself (e.g., navigation) */
+.slideshow {
+  position: relative;
+}
+
+/* set all slides as absolute positioning so they will stack on top of each other, and hidden from one another */
+.slide-entry {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  -webkit-transition: 300ms;
+  transition: 300ms;
+  text-align: center;
+  visibility: hidden;
+  z-index: 20;
+}
+
+.slide-entry.active {
+  /* this is how we transition the slides in/out */
+  opacity: 1;
+  visibility: visible;
+}
+
+/* set up our basic left/right navigation, would should ideally be vertically centered */
+.slide-nav {
+  margin: 0px auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: absolute;
+  left: 40%;
+  top: 65px;
+  width: 90px;
+  list-style: none;
+  padding: 0;
+  z-index: 100;
+}
+
+.slide-nav li {
+  cursor: pointer;
+  background-color: grey;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  color: white;
+  text-align: center;
+  line-height: 1.5;
+  font-size: 25px;
+  z-index: 100;
+}
+
+/* pull our navigation out of the slider container to avoid z-index issues */
+.slide {
+  height: 100vh;
+}
+
+.slide-sub {
+  width: 100vw;
+}
+
+.slide-player {
+  position: absolute;
+  bottom: 5%;
+  left: 2%;
+  text-align: center;
+  padding: 3px;
+  z-index: 100;
+  color: white;
+  background-color: red;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.pin {
+  position: absolute;
+  z-index: 1000;
+  border-radius: 50% 50% 50% 0;
+  border: 4px solid #fff;
+  width: 20px;
+  height: 20px;
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+  margin-top: -10px;
+  margin-left: -10px;
+}
+
+.pin::after {
+  position: absolute;
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  margin-left: -3px;
+  margin-top: -3px;
+  background-color: #fff;
+}
+
+.positioning {
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+}
+/*# sourceMappingURL=customs.css.map */

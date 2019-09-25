@@ -29,35 +29,67 @@
       href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"
     />
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js"></script> -->
+
+    <!-- image file -->
+    <!-- https://smashballoon.com/instagram-feed/standalone/docs/host-on-google-drive/ -->
+    <!-- <script>
+      let htmlAssets = {
+        imagefile:
+          "https://drive.google.com/uc?export=view&id=11KUiq5rBLfHt-TBqQrWlOn3oBKU5DYrY"
+      };
+    </script> -->
+    <script>
+      let htmlAssets = {
+        main_1:
+          "https://drive.google.com/uc?export=view&id=1Ai3ttdGxx7HpgZY9375MSzAbKq5iP_bx",
+        main_2:
+          "https://drive.google.com/uc?export=view&id=1TdxsQI46rg29XFljiz8orIYsKmFOCgay",
+        main_3:
+          "https://drive.google.com/uc?export=view&id=1HDBS837ngbO_tFM_QcXslWxRVDZV5WdS",
+        main_4:
+          "https://drive.google.com/uc?export=view&id=1XsIisiBBiWzoisRYq917FdUKnrBZT9U7",
+        main_5:
+          "https://drive.google.com/uc?export=view&id=14y4SKoHl5HNBPARe8VOyd91G2VZnCuww",
+        main_6:
+          "https://drive.google.com/uc?export=view&id=15dJ0YbQq5PQh9qSsfxxHA4tdVGYNY6md",
+        main_7:
+          "https://drive.google.com/uc?export=view&id=1b_M8VFr-WtVdw6aIlTK-rpb6tjmXGsfj",
+        main_8:
+          "https://drive.google.com/uc?export=view&id=1UCw0ewarpLPXw_zbvKYuK5tLQfV4kPyR",
+        main_9:
+          "https://drive.google.com/uc?export=view&id=18CsnBfVpgg6MiF0lyN2DGV2xaOzdBi4m",
+        main_10:
+          "https://drive.google.com/uc?export=view&id=1hSIUKYbM2ThxYb8CkNeKgiD8-GQ0wH2H"
+      };
+    </script>
   </head>
 
   <body>
     <div class="positioning"></div>
     <p id="status">Not connected</p>
+
     <!-- <div class="positioning"></div> -->
-    <div class="main-page">
-      <div class="slide-wrap" data-length="2" data-index="1">
-        <div class="slideshow">
-          <div class="slide-entry">
-            <div class="slide-content">
-              <img
-                src="./assets/img/main-1.jpg"
-                alt="slide-1"
-                class="slide"
-                id="main-1"
-              />
-            </div>
+    <div class="slide-wrap" data-length="10" data-index="1">
+      <div class="slideshow">
+        <div class="slide-entry">
+          <div class="slide-content">
+            <img
+              src="https://drive.google.com/uc?export=view&id=16OvL5P5J9UDUFaurU0XX7vykrjCG22kL"
+              alt="slide-1"
+              class="slide"
+            />
           </div>
         </div>
-        <!-- end .slideshow -->
-        <div class="slide-player">
-          <i class="material-icons">
-            play_arrow
-          </i>
-        </div>
       </div>
-      <!-- end .slide-wrap -->
+      <!-- end .slideshow -->
+      <div class="slide-player">
+        <i class="material-icons">
+          play_arrow
+        </i>
+      </div>
     </div>
+
+    <!-- end .slide-wrap -->
   </body>
   <!--   Core JS Files   -->
   <script src="./assets/js/core/jquery.min.js" type="text/javascript"></script>
