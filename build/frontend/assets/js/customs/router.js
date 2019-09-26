@@ -106,7 +106,10 @@ function display(uri, from) {
             window.location.href = `${rootUrl}pollution-${from}.html`;
             break;
         default:
-            window.location.href = `${rootUrl}index.html`;
+            if (from === 'sub')
+                window.location.href = `${rootUrl}slider-${from}.html`;
+            if (from === 'main')
+                window.location.href = `${rootUrl}index.html`;
             break;
     }
 }
