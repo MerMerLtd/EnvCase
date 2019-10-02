@@ -30,7 +30,13 @@
     />
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js"></script> -->
   </head>
-
+  <script>
+    const load = () => {
+      console.log("load event detected!");
+      window.open(`${window.location.origin}/index_sub.html`);
+    };
+    window.addEventListener("load", load, false);
+  </script>
   <body>
     <div class="positioning"></div>
     <p id="status">Not connected</p>

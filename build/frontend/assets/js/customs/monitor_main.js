@@ -1,3 +1,5 @@
+
+
 function onOpen(evt) {
     state.className = "success";
     state.innerHTML = "Connected to server";
