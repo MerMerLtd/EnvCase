@@ -15652,4 +15652,101 @@ button {
   height: 100vh;
   width: 100vw; }
 
+.dashboard {
+  background: white;
+  height: 100%;
+  width: 444px;
+  position: relative; }
+  .dashboard__panel {
+    width: 80%;
+    height: 80%;
+    background: #efefef;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%; }
+  .dashboard__buttonbox {
+    width: 80%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%; }
+  .dashboard__button {
+    text-align: center;
+    background: #fff;
+    margin: 30px;
+    transition: all .2s ease; }
+    .dashboard__button:hover {
+      background: #eb9534;
+      color: white;
+      transform: translateY(-3px);
+      box-shadow: 4px 8px 20px rgba(0, 0, 0, 0.2); }
+    .dashboard__button:active {
+      transform: translateY(-1px);
+      box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.2); }
+    .dashboard__button p {
+      padding: 10px 20px 10px 20px; }
+
+.iframe__container {
+  pointer-events: none;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  width: 100vw;
+  height: 100vh; }
+
+.iframe__close-btn {
+  width: 100px;
+  height: 100px;
+  z-index: 10;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: #000;
+  border-radius: 100%; }
+  .iframe__close-btn .outer {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    margin: auto;
+    width: 70px;
+    cursor: pointer; }
+  .iframe__close-btn .inner {
+    width: inherit;
+    text-align: center; }
+  .iframe__close-btn label {
+    font-size: .8em;
+    line-height: 4em;
+    text-transform: uppercase;
+    color: #fff;
+    transition: all .3s ease-in;
+    opacity: 0;
+    cursor: pointer; }
+  .iframe__close-btn .inner:before,
+  .iframe__close-btn .inner:after {
+    position: absolute;
+    content: '';
+    height: 1px;
+    width: inherit;
+    background: #FFC107;
+    left: 0;
+    transition: all .3s ease-in; }
+  .iframe__close-btn .inner:before {
+    top: 50%;
+    transform: rotate(45deg); }
+  .iframe__close-btn .inner:after {
+    bottom: 50%;
+    transform: rotate(-45deg); }
+  .iframe__close-btn .outer:hover label {
+    opacity: 1; }
+  .iframe__close-btn .outer:hover .inner:before,
+  .iframe__close-btn .outer:hover .inner:after {
+    transform: rotate(0); }
+  .iframe__close-btn .outer:hover .inner:before {
+    top: 0; }
+  .iframe__close-btn .outer:hover .inner:after {
+    bottom: 0; }
+
 /*# sourceMappingURL=material-kit.css.map */

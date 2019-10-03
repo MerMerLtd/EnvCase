@@ -55,6 +55,7 @@ button {
 .main-page .slide-wrap[data-index='1'] .slide-player {
     display: none;
 }
+
 .slide-wrap {
 
     position: relative;
@@ -186,4 +187,135 @@ button {
     position: absolute;
     height: 100vh;
     width: 100vw;
+}
+
+@mixin absCenter {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+}
+
+.dashboard {
+    background: white;
+    height: 100%;
+    width: 444px;
+    position: relative;
+
+    &__panel {
+        width: 80%;
+        height: 80%;
+        background: #efefef;
+        @include absCenter();
+    }
+
+    &__buttonbox {
+        width: 80%;
+        @include absCenter();
+    }
+
+    &__button {
+        text-align: center;
+        background: #fff;
+        margin: 30px;
+        transition: all .2s ease;
+
+        &:hover {
+            background: #eb9534;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 4px 8px 20px rgba(0, 0, 0, .2);
+        }
+
+        &:active {
+            transform: translateY(-1px);
+            box-shadow: 2px 4px 10px rgba(0, 0, 0, .2);
+        }
+
+        & p {
+            padding: 10px 20px 10px 20px;
+        }
+    }
+}
+
+.iframe {
+    &__container {
+        pointer-events: none;
+        @include absCenter();
+        width: 100vw;
+        height: 100vh;
+    }
+
+    &__close-btn {
+        width: 100px;
+        height: 100px;
+        z-index: 10;
+        position: absolute;
+        top: 0;
+        right: 0;
+        background: #000;
+        border-radius: 100%;
+
+        & {
+            .outer {
+                @include absCenter();
+                margin: auto;
+                width: 70px;
+                cursor: pointer;
+            }
+
+            .inner {
+                width: inherit;
+                text-align: center;
+            }
+
+            label {
+                font-size: .8em;
+                line-height: 4em;
+                text-transform: uppercase;
+                color: #fff;
+                transition: all .3s ease-in;
+                opacity: 0;
+                cursor: pointer;
+            }
+
+            .inner:before,
+            .inner:after {
+                position: absolute;
+                content: '';
+                height: 1px;
+                width: inherit;
+                background: #FFC107;
+                left: 0;
+                transition: all .3s ease-in;
+            }
+
+            .inner:before {
+                top: 50%;
+                transform: rotate(45deg);
+            }
+
+            .inner:after {
+                bottom: 50%;
+                transform: rotate(-45deg);
+            }
+
+            .outer:hover label {
+                opacity: 1;
+            }
+
+            .outer:hover .inner:before,
+            .outer:hover .inner:after {
+                transform: rotate(0);
+            }
+
+            .outer:hover .inner:before {
+                top: 0;
+            }
+
+            .outer:hover .inner:after {
+                bottom: 0;
+            }
+        }
+    }
 }
