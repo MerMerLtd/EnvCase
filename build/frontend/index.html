@@ -66,6 +66,14 @@
       </div>
     </div>
     <div class="iframe__container"></div>
+      <div class="iframe__close-btn" style="display: none">
+        <div class="outer">
+          <div class="inner">
+            <label>Back</label>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
   <!--   Core JS Files   -->
   <script src="./assets/js/core/jquery.min.js" type="text/javascript"></script>
@@ -123,15 +131,11 @@
       false
     );
 
+    const iframeBtnClose = document.querySelector(".iframe__close-btn");
+
+
     const renderIframe = url => {
       const markup = `
-      <div class="iframe__close-btn">
-        <div class="outer">
-          <div class="inner">
-            <label>Back</label>
-          </div>
-        </div>
-      </div>
       <iframe
         src="${url}"
         frameborder="0"
@@ -142,13 +146,14 @@
         scrolling="No"
         allow="fullscreen"
       ></iframe>`;
-      iframeContainer.insertAdjacentHTML("afterbegin", markup);
+      iframeContainer.insertAdjacentHTML("beforeend", markup);
       const iframe = document.querySelector(".iframe__container iframe");
-      const iframeBtnClose = document.querySelector(".iframe__close-btn");
+      iframeBtnClose.style.display = "block";
       iframeBtnClose.addEventListener(
         "click",
         () => {
           iframe.remove();
+          iframeBtnClose.style.display = "none";
         },
         false
       );
@@ -170,7 +175,5 @@
     openIframe(dashboardBtnCon, "https://wot.epa.gov.tw/");
     openIframe(dashboardBtnMot, "https://wot.epa.gov.tw/");
     openIframe(dashboardBtnCar, "https://wot.epa.gov.tw/");
-
-    
   </script>
 </html>
