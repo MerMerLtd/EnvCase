@@ -15655,8 +15655,9 @@ button {
 .dashboard {
   background: white;
   height: 100%;
-  width: 444px;
-  position: relative; }
+  width: 100%;
+  position: relative;
+  margin: 0 auto; }
   .dashboard__panel {
     width: 80%;
     height: 80%;
@@ -15666,7 +15667,10 @@ button {
     top: 50%;
     left: 50%; }
   .dashboard__buttonbox {
-    width: 80%;
+    display: grid;
+    grid-template-rows: repeat(4, -webkit-min-content);
+    grid-template-rows: repeat(4, min-content);
+    grid-template-columns: repeat(2, minmax(40vw, 60vw));
     position: absolute;
     transform: translate(-50%, -50%);
     top: 50%;
@@ -15685,6 +15689,7 @@ button {
       transform: translateY(-1px);
       box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.2); }
     .dashboard__button p {
+      margin: 0px;
       padding: 10px 20px 10px 20px; }
 
 .iframe__container {

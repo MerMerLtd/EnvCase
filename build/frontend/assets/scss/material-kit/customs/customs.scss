@@ -1,3 +1,66 @@
+.row {
+    max-width: $grid-width;
+    margin: 0 auto;
+
+    &:not(:last-child) {
+        margin-bottom: $gutter-vertical;
+
+        @include respond(tab-port) {
+            margin-bottom: $gutter-vertical-small;
+        }
+    }
+    
+    @include respond(tab-port) {
+        max-width: 50rem;
+        padding: 0 3rem;
+    }
+
+    @include clearfix;
+
+    [class^="col-"] {
+        float: left;
+
+        &:not(:last-child) {
+            margin-right: $gutter-horizontal;
+
+            @include respond(tab-port) {
+                margin-right: 0;
+                margin-bottom: $gutter-vertical-small;
+            }
+        }
+
+        @include respond(tab-port) {
+            width: 100% !important;
+        }
+    }
+
+    .col-1-of-2 {
+        width: calc((100% - #{$gutter-horizontal}) / 2);
+        
+    }
+
+    .col-1-of-3 {
+        width: calc((100% - 2 * #{$gutter-horizontal}) / 3);
+    }
+
+    .col-2-of-3 {
+        width: calc(2 * ((100% - 2 * #{$gutter-horizontal}) / 3) + #{$gutter-horizontal});
+    }
+
+    .col-1-of-4 {
+        width: calc((100% - 3 * #{$gutter-horizontal}) / 4);
+    }
+
+    .col-2-of-4 {
+        width: calc(2 * ((100% - 3 * #{$gutter-horizontal}) / 4) + #{$gutter-horizontal});
+    }
+
+    .col-3-of-4 {
+        width: calc(3 * ((100% - 3 * #{$gutter-horizontal}) / 4) + 2 * #{$gutter-horizontal});
+    }
+
+}
+
 label {
     box-sizing: border-box;
     display: block;
@@ -199,8 +262,9 @@ button {
 .dashboard {
     background: white;
     height: 100%;
-    width: 444px;
+    width: 100%;
     position: relative;
+    margin: 0 auto;
 
     &__panel {
         width: 80%;
@@ -210,7 +274,10 @@ button {
     }
 
     &__buttonbox {
-        width: 80%;
+        // width: 80%;
+        display: grid;
+        grid-template-rows: repeat(4, min-content);
+        grid-template-columns: repeat(2, minmax(40vw, 60vw));
         @include absCenter();
     }
 
@@ -233,6 +300,7 @@ button {
         }
 
         & p {
+            margin: 0px;
             padding: 10px 20px 10px 20px;
         }
     }

@@ -91,7 +91,7 @@
 
 
 function display(uri, from) {
-    const rootUrl = 'http://127.0.0.1:80/';
+    const rootUrl = window.location.origin;
     // const rootUrl = 'http://127.0.0.1:5500/build/frontend/';
 
     switch (uri) {
