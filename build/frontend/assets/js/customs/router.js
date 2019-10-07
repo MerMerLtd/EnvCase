@@ -96,20 +96,20 @@ function display(uri, from) {
 
     switch (uri) {
         case "index.html":
-            window.location.href = `${rootUrl}slider-${from}.html`;
+            window.location.href = `${rootUrl}/slider-${from}.html`;
             break;
         case "slider-main.html":
-            window.location.href = `${rootUrl}analysis-${from}.html`;
+            window.location.href = `${rootUrl}/analysis-${from}.html`;
             break;
         case "analysis-main.html":
             // console.log(`${rootUrl}pollution-${from}.html`)
-            window.location.href = `${rootUrl}pollution-${from}.html`;
+            window.location.href = `${rootUrl}/pollution-${from}.html`;
             break;
         default:
             if (from === 'sub')
-                window.location.href = `${rootUrl}slider-${from}.html`;
+                window.location.href = `${rootUrl}/slider-${from}.html`;
             if (from === 'main')
-                window.location.href = `${rootUrl}index.html`;
+                window.location.href = `${rootUrl}/index.html`;
             break;
     }
 }
