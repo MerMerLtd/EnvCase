@@ -96,7 +96,8 @@ function display(uri, from) {
 
     switch (uri) {
         case "index.html":
-            window.location.href = `${rootUrl}/slider-${from}.html`;
+            // window.location.href = `${rootUrl}/slider-${from}.html`;
+            window.location.href = `${rootUrl}/main.html`;
             break;
         case "slider-main.html":
             window.location.href = `${rootUrl}/analysis-${from}.html`;
