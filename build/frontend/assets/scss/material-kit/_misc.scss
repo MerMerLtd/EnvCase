@@ -260,11 +260,13 @@ label{
 }
 
 #map {
-    position: relative;
-    z-index: 2;
+    position: absolute; //++
+    top: 0px; //++
+    left: 0px; //++
+    z-index: 100; //++
     width: 100%;
-    height: calc(100vh - 70px);
-    margin-top: 70px;
+    height: 100vh; //-- calc(100vh - 70px);
+    // margin-top: 70px; //--
 }
 
 .tim-typo{
