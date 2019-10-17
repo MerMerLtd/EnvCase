@@ -37,8 +37,15 @@ let circle = L.circle(map.getCenter(), {
   radius: 1000
 }).addTo(map);
 var layerGroup = L.layerGroup().addTo(map);
+let elements = {
+  constructionEl: document.querySelector("#construction"),
+  factoryEl: document.querySelector("#factory"),
+  restaurantEl: document.querySelector("#restaurant"),
+  cameraEl: document.querySelector("#camera"),
+}
 
 const addIcons = dataList => {
+  layerGroup.clearLayers(); // https://stackoverflow.com/questions/41256026/clear-marker-layers-leaflet
    // dataList.forEach(data => {
   //   let icon = (data) => {
   //     switch (data.type) {
@@ -57,6 +64,14 @@ const addIcons = dataList => {
   //     icon: icon,
   //   }).addTo(map);
   // });
+  
+  // 1. clear all icon-markers
+  // 2. check icon-menu checkList
+  // 3. if checked draw icon-marker
+  console.log("construction: "+elements.constructionEl.checked);
+  console.log("factory: "+elements.factoryEl.checked);
+  console.log("restaurant: "+elements.restaurantEl.checked);
+  console.log("camera: "+elements.cameraEl.checked);
 
   L.marker([`${marker.getLatLng().lat + Math.random()*0.0075}`,`${marker.getLatLng().lng + Math.random()*0.0075}`], {
     icon: constructionIcon
@@ -77,8 +92,8 @@ const onMarkerMoveStart = _ => {
     fillOpacity: 0,
     radius: 0
   });
-  // console.log("I am expired");
   layerGroup.clearLayers(); // https://stackoverflow.com/questions/41256026/clear-marker-layers-leaflet
+  // console.log("I am expired");
 }
 const onMarkerMoveEnd = _ => {
   circle.setLatLng(marker.getLatLng());
@@ -113,13 +128,13 @@ const onMarkerMoveEnd = _ => {
   }, ];
   addIcons(dataList);
   // 2. 在地圖上加上功能選單 - 顯示控制該區塊類別的checkbox list
+
   // 3. 在地圖上加上功能選單 -  跳出PM2.5污染源分析資料（帶入坐標呼叫API）
   // 4. 在地圖上加上功能選單 - 點選PM2.5污染源分析圓餅圖,主: 列出可疑名單（根據可疑程度排名）
   // 5. 在地圖上加上功能選單 - 點選名單（帶入參數呼叫API）副: 列出工廠、公司、店家相關資訊
   // 6. 在地圖上加上功能選單 - 點選PM2.5污染源分析圓餅圖上的移動污染源（帶入參數呼叫API）副: 呈現實時的監視器畫面（還未確定來源)
 }
 const onMapClick = evt => {
-  layerGroup.clearLayers();
   marker.setLatLng(evt.latlng); //.update()
   marker.setOpacity(1);
   onMarkerMoveEnd();

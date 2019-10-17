@@ -15759,4 +15759,54 @@ button {
   width: 100vw;
   height: 100vh; }
 
+.flex-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  align-content: flex-start; }
+
+.icon-menu {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1000;
+  background-color: #7481a7;
+  padding: 15px;
+  padding-left: 35px;
+  border-radius: 5px;
+  margin: 10px; }
+  .icon-menu__checkbox-group > .icon-menu__checkbox-input {
+    display: none; }
+  .icon-menu__checkbox-label {
+    cursor: pointer;
+    position: relative;
+    padding-left: 24px;
+    color: #fff;
+    margin: 0; }
+  .icon-menu__checkbox-button {
+    height: 20px;
+    width: 20px;
+    border: 3px solid #fff;
+    border-radius: 50%;
+    display: inline-block;
+    position: absolute;
+    left: -8px;
+    top: 8px; }
+    .icon-menu__checkbox-button::after {
+      content: "";
+      display: block;
+      height: 8px;
+      width: 8px;
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #fff;
+      opacity: 0;
+      transition: opacity .2s; }
+  .icon-menu__checkbox-input:checked ~ .icon-menu__checkbox-label .icon-menu__checkbox-button::after {
+    opacity: 1; }
+
 /*# sourceMappingURL=material-kit.css.map */
