@@ -15755,4 +15755,8 @@ button {
   .iframe__close-btn .outer:hover .inner:after {
     bottom: 0; }
 
+#mapid {
+  width: 100vw;
+  height: 100vh; }
+
 /*# sourceMappingURL=material-kit.css.map */

@@ -1,39 +1,51 @@
-var map = new ol.Map({
-  target: "map",
-  layers: [
-    new ol.layer.Tile({
-      source: new ol.source.OSM()
-    })
-  ],
-  view: new ol.View({
-    //EPSG:XXXX 代表的是什麼。這是由歐洲石油探勘組織(EPSG)標準所定義的空間參考識別系統(SRID)，為了地圖製作、探勘和測地資料儲存所開發的一套標準。
-    fromProjection: "EPSG:4326", //Cannot read property 'getExtent' of null
-    toProjection: "EPSG:90091",
-    // 初始化地圖中心地點
-    center: ol.proj.fromLonLat([121.464866, 25.009055]),
-    // 初始化視圖縮放等級
-    zoom: 11,
-    // 限制視圖最小縮放等級。預設 0
-    minZoom: 1,
-    // 限制視圖最大縮放等級。預設 28
-    maxZoom: 26,
-  })
-});
+let map = L.map('mapid').setView([25.009055, 121.464866], 11);
 
-map.on('click', function (evt) {
-  console.info(evt.pixel);
-  console.info(map.getPixelFromCoordinate(evt.coordinate));
-  console.info(ol.proj.toLonLat(evt.coordinate));
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '<a href="https://www.openstreetmap.org/">OSM</a>',
+  maxZoom: 18,
+}).addTo(map);
 
-  var coords = ol.proj.toLonLat(evt.coordinate);
-  var lat = coords[1];
-  var lon = coords[0];
-  var locTxt = "Latitude: " + lat + " Longitude: " + lon;
-  // coords is a div in HTML below the map to display
-  document.getElementById('coords').innerHTML = locTxt;
-});
+let marker = L.marker(map.getCenter(), {
+  draggable: true,
+  autoPan: true,
+  opacity: 0,
+}).addTo(map);
 
-const mapEl = document.querySelector("#map");
-mapEl.addEventListener("click", evt =>
-  getClickPosition(evt, mapEl)
-);
+let circle = L.circle(map.getCenter(), {
+  color: '#fff00',
+  fillColor: '#fff',
+  fillOpacity: 0, //0.3,
+  radius: 1000
+}).addTo(map);
+
+const onMapClick = evt => {
+  marker.setLatLng(evt.latlng); //.update()
+  marker.setOpacity(1);
+  circle.setLatLng(evt.latlng);
+  circle.setStyle({
+    color: '#fff',
+    fillOpacity: 0.3,
+  });
+  marker.bindPopup(`You clicked the map at ${evt.latlng.toString()}`).openPopup();
+  map.setView(evt.latlng, 13);
+  // 1. 呼叫API，回傳附近（方圓？？）營建、餐飲、工廠、路肩攝影機的坐標
+
+}
+
+const onDragMarker = evt => {
+  
+}
+
+map.on("click", onMapClick);
+
+
+
+
+// marker.setLatLng(evt.latlng).addTo(map);
+// marker.dragging.enable();
+// let popup = L.popup();
+// popup
+//   .setLatLng(evt.latlng)
+//   .setContent("You clicked the map at " + evt.latlng.toString())
+//   .openOn(map);
+// console.log(lat, lng);
