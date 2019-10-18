@@ -336,13 +336,22 @@ button {
     justify-content: space-between;
     align-items: flex-start;
     align-content: flex-start;
-}
-
-.icon-menu {
     position: absolute;
-    top: 0;
+    top: 30px;
     right: 0;
     z-index: 1000;
+    transition: all 1s ease-out;
+}
+
+.pie-chart{
+    padding: 20px;
+}
+.icon-menu {
+    // position: absolute;
+    // top: 0;
+    // right: 0;
+    // z-index: 1000;
+    display: none;
     background-color: rgb(116, 129, 167);
     padding: 15px;
     padding-left: 35px;

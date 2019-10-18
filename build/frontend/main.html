@@ -32,20 +32,23 @@
       integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
       crossorigin=""
     />
-    <!-- chart.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js"></script>
     <script
       src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
       integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
       crossorigin=""
     ></script>
 
+    <!-- chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
     <title>Main</title>
   </head>
   <body>
     <p id="status">Not connected</p>
     <div id="mapid"></div>
+    <!-- <div class="flex-box" style="width: 100vw;">
+      <input type="text" name="searchbar" id="searchbar">
+    </div> -->
     <div class="flex-box">
       <div class="icon-menu">
         <div class="icon-menu__checkbox-group">
@@ -54,6 +57,7 @@
             class="icon-menu__checkbox-input"
             id="construction"
             name="type"
+            checked
           />
           <label for="construction" class="icon-menu__checkbox-label">
             <span class="icon-menu__checkbox-button"></span>
@@ -66,6 +70,7 @@
             class="icon-menu__checkbox-input"
             id="factory"
             name="type"
+            checked
           />
           <label for="factory" class="icon-menu__checkbox-label">
             <span class="icon-menu__checkbox-button"></span>
@@ -78,6 +83,7 @@
             class="icon-menu__checkbox-input"
             id="restaurant"
             name="type"
+            checked
           />
           <label for="restaurant" class="icon-menu__checkbox-label">
             <span class="icon-menu__checkbox-button"></span>
@@ -90,6 +96,7 @@
             class="icon-menu__checkbox-input"
             id="camera"
             name="type"
+            checked
           />
           <label for="camera" class="icon-menu__checkbox-label">
             <span class="icon-menu__checkbox-button"></span>
@@ -97,7 +104,9 @@
           </label>
         </div>
       </div>
-      <div class="pie-chart"></div>
+      <div class="pie-chart">
+        <canvas id="myChart"></canvas>
+      </div>
       <div class="name-list"></div>
     </div>
   </body>
