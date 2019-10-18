@@ -1,27 +1,4 @@
 {
-  "_from": "mermer",
-  "_id": "mermer@0.1.11",
-  "_inBundle": false,
-  "_integrity": "sha512-7vRd/m6inalzoaAxq1JFFSRrQEtqd0FhkRPX5V8UTOsqZIBVu6FL/403GbmZvsZBuKygsmkliNv9brdZwHfYqg==",
-  "_location": "/mermer",
-  "_phantomChildren": {},
-  "_requested": {
-    "type": "tag",
-    "registry": true,
-    "raw": "mermer",
-    "name": "mermer",
-    "escapedName": "mermer",
-    "rawSpec": "",
-    "saveSpec": null,
-    "fetchSpec": "latest"
-  },
-  "_requiredBy": [
-    "#USER"
-  ],
-  "_resolved": "https://registry.npmjs.org/mermer/-/mermer-0.1.11.tgz",
-  "_shasum": "cdd6e48442e9c66f201c40e1f0fcf2c15ee5d50e",
-  "_spec": "mermer",
-  "_where": "/Users/emilyliang/mermer/MerMer-framework",
   "author": {
     "name": "MerMer Ltd."
   },
@@ -95,6 +72,7 @@
   },
   "scripts": {
     "dev": "webpack-dev-server --mode development --open 'google chrome'",
+    "gulp": "node_modules/gulp/bin/gulp.js watch & bin/main.js",
     "start": "bin/main.js",
     "build": "webpack --config webpack.config.js"
   },
