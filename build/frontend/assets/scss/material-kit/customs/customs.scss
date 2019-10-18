@@ -343,8 +343,23 @@ button {
     transition: all 1s ease-out;
 }
 
+.name-list{
+    overflow: scroll;
+    height: 189px;
+    background-color: #000000c0;
+    color: #fff;
+    margin: 0 10px;
+    border-radius: 5px;
+    padding: 10px;
+    &__item{
+        list-style: none;
+        padding: 3px;
+    }
+}
 .pie-chart{
     padding: 20px;
+    // background-color: #fff;
+    border-radius: 5px;
 }
 .icon-menu {
     // position: absolute;
@@ -352,11 +367,11 @@ button {
     // right: 0;
     // z-index: 1000;
     display: none;
-    background-color: rgb(116, 129, 167);
-    padding: 15px;
+    background-color: #000000c0;
+    padding: 25px;
     padding-left: 35px;
     border-radius: 5px;
-    margin: 10px;
+    margin: 0 10px;
 
     &__checkbox-group>&__checkbox-input {
         display: none;

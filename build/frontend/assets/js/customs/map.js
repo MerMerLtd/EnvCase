@@ -99,15 +99,22 @@ const switchIcon = (evt) => {
 }
 
 let lastClickIcon;
-
+const getNameList = (latlng, type) => {
+  // xhr request
+  // res = response.data
+  let res = [];
+  return res
+}
 const showNameList = (evt) => {
   if (lastClickIcon) {
     switchIcon(lastClickIcon);
   }
   let type = switchIcon(evt);
   lastClickIcon = evt;
+  // console.log(evt);
   //++ ask backend to get the nameList by passing latlng & type
-
+  let nameList = getNameList(evt.latlng, type);
+  // ++renderNameList
 }
 
 
@@ -246,7 +253,7 @@ const onMapClick = evt => {
         data: dataList.analysis.map(data => data.percentage),
         backgroundColor: [
           //資料顏色
-          "#F0F8FF",
+          "#70D49D",
           "#5599FF",
           "#FFFF77",
           "#FF8888"
@@ -279,6 +286,7 @@ const onMapClick = evt => {
         display: true,
         position: 'left',
         labels: {
+          fontColor: "#fff",
           generateLabels: function (chart) {
             var data = chart.data;
             if (data.labels.length && data.datasets.length) {
@@ -311,6 +319,7 @@ const onMapClick = evt => {
       }
     },
   });
+  elements.pieChart.style.backgroundColor = "#000000c0";
 }
 
 

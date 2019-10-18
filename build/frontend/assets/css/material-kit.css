@@ -15771,16 +15771,29 @@ button {
   z-index: 1000;
   transition: all 1s ease-out; }
 
+.name-list {
+  overflow: scroll;
+  height: 189px;
+  background-color: #000000c0;
+  color: #fff;
+  margin: 0 10px;
+  border-radius: 5px;
+  padding: 10px; }
+  .name-list__item {
+    list-style: none;
+    padding: 3px; }
+
 .pie-chart {
-  padding: 20px; }
+  padding: 20px;
+  border-radius: 5px; }
 
 .icon-menu {
   display: none;
-  background-color: #7481a7;
-  padding: 15px;
+  background-color: #000000c0;
+  padding: 25px;
   padding-left: 35px;
   border-radius: 5px;
-  margin: 10px; }
+  margin: 0 10px; }
   .icon-menu__checkbox-group > .icon-menu__checkbox-input {
     display: none; }
   .icon-menu__checkbox-label {
@@ -15814,4 +15827,4 @@ button {
   .icon-menu__checkbox-input:checked ~ .icon-menu__checkbox-label .icon-menu__checkbox-button::after {
     opacity: 1; }
 
-/*# sourceMappingURL=material-kit.css.map */
+/*# sourceMappingURL=build/frontend/material-kit.css.map */
