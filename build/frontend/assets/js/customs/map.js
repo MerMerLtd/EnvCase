@@ -1,18 +1,18 @@
 // polyfill for Element.closest from MDN
 if (!Element.prototype.matches)
-    Element.prototype.matches = Element.prototype.msMatchesSelector ||
-    Element.prototype.webkitMatchesSelector;
+  Element.prototype.matches = Element.prototype.msMatchesSelector ||
+  Element.prototype.webkitMatchesSelector;
 
 if (!Element.prototype.closest)
-    Element.prototype.closest = function (s) {
-        var el = this;
-        if (!document.documentElement.contains(el)) return null;
-        do {
-            if (el.matches(s)) return el;
-            el = el.parentElement;
-        } while (el !== null);
-        return null;
-    };
+  Element.prototype.closest = function (s) {
+    var el = this;
+    if (!document.documentElement.contains(el)) return null;
+    do {
+      if (el.matches(s)) return el;
+      el = el.parentElement;
+    } while (el !== null);
+    return null;
+  };
 
 // XHR
 const to = promise => {
@@ -150,9 +150,12 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   maxZoom: 18,
 }).addTo(map);
 const switchIcon = (evt) => {
-  let iconUrl = evt.sourceTarget.options.icon.options.iconUrl;
-  iconUrl = iconUrl.replace("assets/img/icons/", "");
-  iconUrl = iconUrl.replace(".png", "");
+  let iconUrl;
+  if (evt) {
+    iconUrl = evt.sourceTarget.options.icon.options.iconUrl;
+    iconUrl = iconUrl.replace("assets/img/icons/", "");
+    iconUrl = iconUrl.replace(".png", "");
+  }
   console.log(iconUrl);
   switch (iconUrl) {
     case "Factory":
@@ -208,14 +211,14 @@ const getShopDetails = async selectedShopId => {
 }
 
 const renderNameListItem = data => {
-  const markup = `<li class="name-list__item" data-id = ${data.id} >
+  const markup = `<li class="name-list__item" data-id = ${data.id} data-latlng = ${data.details.latlng.lat}_${data.details.latlng.lng}}>
   ${data.details.name}
 </li>`
   elements.nameList.insertAdjacentHTML("beforeend", markup)
 }
 
-const getNameList = async (markerCoordinate, type, selectedIconCoordinate) => {
-  console.log(markerCoordinate, type, selectedIconCoordinate);
+const getNameList = async (type, selectedIconCoordinate) => {
+  console.log(type, selectedIconCoordinate);
   // xhr request
   let err, data;
   const opts = {
@@ -223,7 +226,7 @@ const getNameList = async (markerCoordinate, type, selectedIconCoordinate) => {
     method: "GET",
     url: "/namelist",
     payload: {
-      "markerCoordinate": markerCoordinate,
+      "markerCoordinate": marker.getLatLng(),
       "type": type,
     }
   };
@@ -343,18 +346,21 @@ const getNameList = async (markerCoordinate, type, selectedIconCoordinate) => {
         renderNameListItem(data)
     });
   };
-  if (selectedIconCoordinate)
+  if (selectedIconCoordinate) {
     // make another request to get the shop detail and render to the second view.
     // ?? why let is not working but var is?
     var selectedShopId = data.filter(data => data.details.type === type).find(data => data.details.latlng !== selectedIconCoordinate).id; // !== will be changed to === ++
-  console.log(selectedShopId);
-  getShopDetails(selectedShopId);
-  // select main view nameList Pannel item
+    console.log(selectedShopId);
+    getShopDetails(selectedShopId);
+    // select main view nameList Pannel item
+  }
 }
 const selectNameListItem = evt => {
   // console.log(evt);
-  if(evt.target.matches("li, .name-list__item")){
+  if (evt.target.matches("li, .name-list__item")) {
     console.log(evt.target.dataset.id);
+    console.log(evt.target.dataset.latlng.split("_"));
+    // get icon by latlng ++++ 
     getShopDetails(evt.target.dataset.id);
   }
 }
@@ -369,7 +375,7 @@ const selectedIcon = (evt) => {
   lastClickIcon = evt;
   console.log(evt);
   //++ ask backend to get the nameList by passing latlng & type
-  getNameList(marker.getLatLng(), type, evt.latlng);
+  getNameList(type, evt.latlng);
 
 }
 
@@ -517,6 +523,28 @@ const onMapClick = evt => {
       }],
     },
     options: {
+      onClick: function (evt) {
+        // console.log(evt);
+        // console.log(pieChart.getElementAtEvent(evt));
+        // console.log(pieChart.getElementAtEvent(evt)[0]._index);
+        // console.log(dataList.analysis.map(data => data.type)[pieChart.getElementAtEvent(evt)[0]._index]);
+        controlPannel();
+        switch (dataList.analysis.map(data => data.type)[pieChart.getElementAtEvent(evt)[0]._index]) {
+          case "工廠":
+            getNameList("Factory");
+            break;
+          case "營建":
+            getNameList("Construction");
+            break;
+          case "餐飲":
+            getNameList("Restaurant");
+            break;
+          case "移動污染源":
+            getNameList("Camera");
+            break;
+        }
+
+      },
       animation: {
         animateScale: true,
         animateRotate: true

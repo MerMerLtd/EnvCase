@@ -346,7 +346,8 @@ button {
 .name-list{
     display: none;
     overflow: scroll;
-    height: 189px;
+    height: 189px; //--
+    width: 220px; // --
     background-color: #000000c0;
     color: #fff;
     margin: 0 10px;
