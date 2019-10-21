@@ -1,3 +1,89 @@
+// polyfill for Element.closest from MDN
+if (!Element.prototype.matches)
+    Element.prototype.matches = Element.prototype.msMatchesSelector ||
+    Element.prototype.webkitMatchesSelector;
+
+if (!Element.prototype.closest)
+    Element.prototype.closest = function (s) {
+        var el = this;
+        if (!document.documentElement.contains(el)) return null;
+        do {
+            if (el.matches(s)) return el;
+            el = el.parentElement;
+        } while (el !== null);
+        return null;
+    };
+
+// XHR
+const to = promise => {
+  return promise.then(data => {
+      return [null, data];
+    })
+    .catch(err => [err, null]);
+}
+
+const maxConnection = Infinity;
+const maxRetry = 3;
+let connection = 0;
+let queue = [];
+
+
+const closeConnection = () => {
+  connection--;
+
+  if (queue.length > 0 && connection < maxConnection) {
+    let next = queue.pop();
+    if (typeof next === "function") {
+      next();
+    }
+  }
+
+  return true;
+}
+
+const makeRequest = opts => {
+  // 工作排程 && 重傳
+  if (connection >= maxConnection) {
+    queue.push(opts); // ??
+  } else {
+    connection++;
+    const xhr = new XMLHttpRequest();
+    // xhr.responseType = "arraybuffer";
+    if (opts.responseType === "arraybuffer") {
+      xhr.responseType = "arraybuffer";
+    }
+    return new Promise((resolve, reject) => {
+      xhr.onreadystatechange = () => {
+        // only run if the request is complete
+        if (xhr.readyState !== 4) return;
+        if (xhr.status >= 200 && xhr.status < 300) {
+          // If successful
+          closeConnection();
+          opts.responseType === "arraybuffer" ?
+            resolve(new Uint8Array(xhr.response)) :
+            resolve(JSON.parse(xhr.responseText));
+        } else {
+          // If false  
+          closeConnection();
+          reject(xhr.response);
+        }
+      }
+      // Setup HTTP request
+      xhr.open(opts.method || "GET", opts.url, true);
+      if (opts.headers) {
+        Object.keys(opts.headers).forEach(key => xhr.setRequestHeader(key, opts.headers[key]));
+      }
+      // Send the request
+      if (opts.contentType === 'application/json') {
+        xhr.setRequestHeader('content-type', 'application/json');
+        // xhr.send(JSON.stringify(opts.payload)); //++
+      } else {
+        // xhr.send(opts.payload); //++
+      }
+    });
+  }
+}
+
 // class
 let OvalIcon = L.Icon.extend({
   options: {
@@ -99,22 +185,192 @@ const switchIcon = (evt) => {
 }
 
 let lastClickIcon;
-const getNameList = (latlng, type) => {
+const getShopDetails = async selectedShopId => {
+  Array.from(elements.nameList.children).forEach(el => el.style.color = "#fff");
+  console.log(selectedShopId);
+  document.querySelector(`[data-id=${selectedShopId}]`).style.color = "yellow";
   // xhr request
-  // res = response.data
-  let res = [];
-  return res
+  let err, data;
+  const opts = {
+    contentType: 'application/json',
+    method: "GET",
+    url: "/shopdetails",
+    payload: {
+      "selectedShopId": selectedShopId,
+    }
+  };
+  [err, data] = await to(makeRequest(opts));
+  if (err) throw new Error(err);
+  if (!data) { //++ will need to remove ! later
+    // call websokect;
+    // render data to the second view.
+  };
 }
-const showNameList = (evt) => {
+
+const renderNameListItem = data => {
+  const markup = `<li class="name-list__item" data-id = ${data.id} >
+  ${data.details.name}
+</li>`
+  elements.nameList.insertAdjacentHTML("beforeend", markup)
+}
+
+const getNameList = async (markerCoordinate, type, selectedIconCoordinate) => {
+  console.log(markerCoordinate, type, selectedIconCoordinate);
+  // xhr request
+  let err, data;
+  const opts = {
+    contentType: 'application/json',
+    method: "GET",
+    url: "/namelist",
+    payload: {
+      "markerCoordinate": markerCoordinate,
+      "type": type,
+    }
+  };
+  // [err, data] = await to(makeRequest(opts)); // ++ remove comment //
+  if (err) throw new Error(err);
+  if (!data) { //++ remove !
+    // ++renderNameList
+    //case1:¸ return all kinds of company
+    data = [{
+        id: "sdjk123",
+        details: {
+          type: "Construction",
+          name: "大漢預拌廠股份有限公司",
+          latlng: {
+            lat: 25.065569,
+            lng: 121.656042
+          }
+        }
+      },
+      {
+        id: "sedk123",
+        details: {
+          type: "Construction",
+          name: "漢鼎股份有限公司",
+          latlng: {
+            lat: 25.0659,
+            lng: 121.6542
+          }
+        }
+      },
+      {
+        id: "sdjksad",
+        details: {
+          type: "Factory",
+          name: "宏穎真空鍍金股份有限公司",
+          latlng: {
+            lat: 25.060057,
+            lng: 121.439981
+          }
+        }
+      },
+      {
+        id: "sdjkfrc",
+        details: {
+          type: "Restaurant",
+          name: "珍好味小吃店",
+          latlng: {
+            lat: 25.065569,
+            lng: 121.656042
+          }
+        }
+      },
+      {
+        id: "sdjkfdc",
+        details: {
+          type: "Camera",
+          name: "橋中二街街口",
+          latlng: {
+            lat: 24.981897448103847,
+            lng: 121.40645541699797
+          }
+        }
+      }
+    ];
+    // case2: return one type of company
+    //   data = [{
+    //     id: "sdjk123",
+    //     details: {
+    //       type: "factory",
+    //       name: "大漢預拌廠股份有限公司",
+    //       latlng: {
+    //         lat: 25.065569,
+    //         lng: 121.656042
+    //       }
+    //     }
+    //   },
+    //   {
+    //     id: "sdjksad",
+    //     details: {
+    //       type: "factory",
+    //       name: "宏穎預拌廠股份有限公司",
+    //       latlng: {
+    //         lat: 25.060057,
+    //         lng: 121.439981
+    //       }
+    //     }
+    //   },
+    //   {
+    //     id: "sdjkfrc",
+    //     details: {
+    //       type: "factory",
+    //       name: "珍漢預拌廠股份有限公司",
+    //       latlng: {
+    //         lat: 25.065569,
+    //         lng: 121.656042
+    //       }
+    //     }
+    //   },
+    //   {
+    //     id: "sdjkfdc",
+    //     details: {
+    //       type: "factory",
+    //       name: "興欣PBC股份有限公司",
+    //       latlng: {
+    //         lat: 24.981897448103847,
+    //         lng: 121.40645541699797
+    //       }
+    //     }
+    //   }
+    // ];
+    elements.nameList.style.display = 'block';
+    elements.nameList.innerHTML = '';
+    data.forEach(data => {
+      // console.log(data.details.type);
+      // console.log(type);
+      if (data.details.type === type)
+        renderNameListItem(data)
+    });
+  };
+  if (selectedIconCoordinate)
+    // make another request to get the shop detail and render to the second view.
+    // ?? why let is not working but var is?
+    var selectedShopId = data.filter(data => data.details.type === type).find(data => data.details.latlng !== selectedIconCoordinate).id; // !== will be changed to === ++
+  console.log(selectedShopId);
+  getShopDetails(selectedShopId);
+  // select main view nameList Pannel item
+}
+const selectNameListItem = evt => {
+  // console.log(evt);
+  if(evt.target.matches("li, .name-list__item")){
+    console.log(evt.target.dataset.id);
+    getShopDetails(evt.target.dataset.id);
+  }
+}
+
+elements.nameList.addEventListener("click", selectNameListItem, false);
+
+const selectedIcon = (evt) => {
   if (lastClickIcon) {
     switchIcon(lastClickIcon);
   }
   let type = switchIcon(evt);
   lastClickIcon = evt;
-  // console.log(evt);
+  console.log(evt);
   //++ ask backend to get the nameList by passing latlng & type
-  let nameList = getNameList(evt.latlng, type);
-  // ++renderNameList
+  getNameList(marker.getLatLng(), type, evt.latlng);
+
 }
 
 
@@ -141,7 +397,7 @@ const controlPannel = () => {
 
         L.marker([data.lat, data.lng], {
           icon: icon,
-        }).addTo(layerGroup).on("click", showNameList);
+        }).addTo(layerGroup).on("click", selectedIcon); //evt => selectedIcon(evt)
         // ++ control heatmap
         // (if icon !== null => that type of pollute is selected )
       }
