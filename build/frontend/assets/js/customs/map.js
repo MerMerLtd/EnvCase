@@ -268,8 +268,11 @@ const renderNameListItem = data => {
 }
 
 const getNameList = async (type, selectedIconCoordinate) => {
-  elements.nameList.style.display = 'block';
+  elements.nameList.classList.add('display');
+  if (elements.nameList.classList.contains('not-display'))
+    elements.nameList.classList.remove('not-display');
   elements.nameList.innerHTML = '';
+  elements.nameList.dataset.type = type;
   if (type === "Other") {
     const markup = `<li class="name-list__item" data-id = other >
     ${dataList.other.note}
@@ -323,8 +326,18 @@ const openNameListPannel = type => {
   }
 }
 
-const hiddenUnSelectedType = evt => {
-  console.log(evt.target);
+const toggleUnSelectedType = evt => {
+  // console.log(evt.target.checked, elements.nameList.dataset.type);
+  // console.log(evt.target.checked&& elements.nameList.dataset.type);
+  if (elements.nameList.classList.contains('display') && !evt.target.checked)
+    elements.nameList.classList.remove('display');
+  if (elements.nameList.dataset.type === evt.target.dataset.type && !evt.target.checked)
+    elements.nameList.classList.add('not-display');
+  if (evt.target.checked && elements.nameList.dataset.type){
+    elements.nameList.classList.remove('not-display');
+    elements.nameList.classList.add('display');
+  }
+  
 }
 
 const onMapClick = evt => {
@@ -439,6 +452,6 @@ const onMapClick = evt => {
 addMultiListener(["movestart, dragstart, move, drag"], marker, onMarkerMoveStart);
 addMultiListener(["moveend, dragend"], marker, onMarkerMoveEnd);
 multiElsAddListener([elements.nameList], "click", selectNameListItem);
-multiElsAddListener([elements.constructionEl, elements.cameraEl, elements.factoryEl, elements.restaurantEl], "click", hiddenUnSelectedType);
+multiElsAddListener([elements.constructionEl, elements.cameraEl, elements.factoryEl, elements.restaurantEl], "click", toggleUnSelectedType);
 
 map.on("click", onMapClick);

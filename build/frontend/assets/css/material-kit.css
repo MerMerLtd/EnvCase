@@ -15787,7 +15787,8 @@ button {
 
 .pie-chart {
   padding: 20px;
-  border-radius: 5px; }
+  border-radius: 5px;
+  margin: 0 10px; }
 
 .icon-menu {
   display: none;
@@ -15828,5 +15829,11 @@ button {
       transition: opacity .2s; }
   .icon-menu__checkbox-input:checked ~ .icon-menu__checkbox-label .icon-menu__checkbox-button::after {
     opacity: 1; }
+
+.display {
+  display: block; }
+
+.not-display {
+  display: none; }
 
 /*# sourceMappingURL=build/frontend/material-kit.css.map */

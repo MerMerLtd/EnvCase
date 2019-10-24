@@ -362,6 +362,7 @@ button {
     padding: 20px;
     // background-color: #fff;
     border-radius: 5px;
+    margin: 0 10px;
 }
 .icon-menu {
     // position: absolute;
@@ -416,4 +417,12 @@ button {
     &__checkbox-input:checked~&__checkbox-label &__checkbox-button::after {
         opacity: 1;
     }
+}
+
+.display{
+    display: block;
+}
+
+.not-display{
+    display: none;
 }
