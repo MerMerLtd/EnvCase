@@ -1,5 +1,5 @@
 // var
-let dataList, lastClickIcon, iconMarker = {},
+let dataList, lastClickIcon, iconMarkers = {},
   map = L.map('mapid').setView([25.009055, 121.464866], 11),
   marker = L.marker(map.getCenter(), {
     draggable: true,
@@ -29,23 +29,57 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   maxZoom: 18,
 }).addTo(map);
 
-const selectedIcon = (evt, icon) => {
+const selectedIcon = (iconMarker) => {
   if (lastClickIcon) {
+    lastClickIcon['options']['isSelected'] = false;
+    // iconMarkers[lastClickIcon.options.id] = {
+    //   ...lastClickIcon,
+    //   options: {
+    //     ...lastClickIcon["options"],
+    //     isSelected: false,
+    //   },
+    // };
+    // iconMarkers[lastClickIcon.options.id] = {
+    //   ...{
+    //     ...iconMarkers
+    //   } [lastClickIcon.options.id],
+    //   options: {
+    //     ...{
+    //       ...{
+    //         ...iconMarkers
+    //       } [lastClickIcon.options.id]
+    //     } ['options'],
+    //     isSelected: false,
+    //   },
+    // };
     switchIcon(lastClickIcon);
   }
-  let type = switchIcon(icon ? icon : evt.target);
-  lastClickIcon = icon ? icon : evt.target;
+  console.log(iconMarker);
+  iconMarker['options']['isSelected'] = true;
+  console.log(iconMarker);
+
+  // iconMarkers[iconMarker.options.id] = {
+  //   ...iconMarker,
+  //   options: {
+  //     ...iconMarker["options"],
+  //     isSelected: true
+  //   }
+  // }
+  switchIcon(iconMarker);
+
+  lastClickIcon = iconMarker;
   // console.log(type, evt.target);
   //++ ask backend to get the nameList by passing latlng & type
-  getNameList(type, evt.latlng);
+  getNameList(iconMarker.options.type, iconMarker.getLatLng());
 }
 
 const controlPannel = () => {
   layerGroup.clearLayers(); // https://stackoverflow.com/questions/41256026/clear-marker-layers-leaflet;
   let icon;
-  // render iconMarker on the layerGroup layer
+  // render iconMarkers on the layerGroup layer
+  // 1. decide Icon Image by type
   if (dataList)
-    dataList.list.forEach((data, i) => {
+    dataList.list.forEach(data => {
       icon = ((data) => {
         // console.log(data.type);
         switch (data.type) {
@@ -62,11 +96,16 @@ const controlPannel = () => {
       })(data);
       // console.log(icon);
       if (icon) {
-        iconMarker[data.id] =
+        iconMarkers[data.id] =
           L.marker(data.latlng, {
             icon: icon,
-            alt: data.id,
-          }).addTo(layerGroup).on("click", selectedIcon); //evt => selectedIcon(evt)
+            id: data.id,
+            isSelected: false,
+            type: data.type,
+          }).addTo(layerGroup).on("click", evt => {
+            console.log(evt.target === iconMarkers[evt.target.options.id]);
+            selectedIcon(evt.target);
+          }); //evt => selectedIcon(evt)
         // ++ control heatmap
         // (if icon !== null => that type of pollute is selected )
       }
@@ -75,7 +114,7 @@ const controlPannel = () => {
 
 const getShopDetails = async selectedShopId => {
   Array.from(elements.nameList.children).forEach(el => el.style.color = "#fff");
-  console.log(selectedShopId);
+  // console.log(selectedShopId);
   document.querySelector(`[data-id='${selectedShopId}']`).style.color = "yellow";
   // xhr request
   let err, data;
@@ -219,15 +258,25 @@ const onMarkerMoveEnd = async _ => {
 }
 
 const renderNameListItem = data => {
+  console.log(data);
   const markup = `<li class="name-list__item" data-id = ${data.id} data-latlng = ${data.latlng.lat}_${data.latlng.lng}>
   ${data.name}
 </li>`
-  elements.nameList.insertAdjacentHTML("beforeend", markup)
+  elements.nameList.insertAdjacentHTML("beforeend", markup);
+  if (iconMarkers[data.id].options.alt) document.querySelector(`[data-id='${data.id}']`).style.color = "yellow";
+  // if (iconMarkers[data.id].options.alt) getShopDetails(data.id);
 }
 
 const getNameList = async (type, selectedIconCoordinate) => {
   elements.nameList.style.display = 'block';
   elements.nameList.innerHTML = '';
+  if (type === "Other") {
+    const markup = `<li class="name-list__item" data-id = other >
+    ${dataList.other.note}
+  </li>`
+    elements.nameList.insertAdjacentHTML("beforeend", markup)
+    return;
+  }
   dataList.list.forEach(data => {
     if (data.type === type)
       renderNameListItem(data);
@@ -236,7 +285,7 @@ const getNameList = async (type, selectedIconCoordinate) => {
     // make another request to get the shop detail and render to the second view.
     // ?? why let is not working but var is?
     var selectedShopId = dataList.list.filter(data => data.type === type).find(data => data.latlng.lat === selectedIconCoordinate.lat && data.latlng.lng === selectedIconCoordinate.lng).id; // !== will be changed to === ++
-    console.log(selectedShopId);
+    // console.log(selectedShopId);
     getShopDetails(selectedShopId);
     // select main view nameList Pannel item
   }
@@ -246,15 +295,37 @@ const getNameList = async (type, selectedIconCoordinate) => {
 const selectNameListItem = evt => {
   console.log(evt);
   if (evt.target.matches("li, .name-list__item")) {
-    console.log(evt.target.dataset.id);
+    // console.log(evt.target.dataset.id);
     // console.log(evt.target.dataset.latlng.split("_").map(data => parseFloat(data)));
-    // lastClickIcon = iconMarker[evt.target.dataset.id];
-    selectedIcon(evt, iconMarker[evt.target.dataset.id]);
+    // lastClickIcon = iconMarkers[evt.target.dataset.id];
+    selectedIcon(iconMarkers[evt.target.dataset.id]);
     getShopDetails(evt.target.dataset.id);
   }
 }
 
-elements.nameList.addEventListener("click", selectNameListItem, false);
+const openNameListPannel = type => {
+  switch (type) {
+    case "Factory":
+      getNameList("Factory");
+      break;
+    case "Construction":
+      getNameList("Construction");
+      break;
+    case "Restaurant":
+      getNameList("Restaurant");
+      break;
+    case "Transportation": // ++ change
+      getNameList("Transportation");
+      break;
+    case "Other":
+      getNameList("Other");
+      break;
+  }
+}
+
+const hiddenUnSelectedType = evt => {
+  console.log(evt.target);
+}
 
 const onMapClick = evt => {
   // 1. get marker latlng
@@ -283,24 +354,14 @@ const onMapClick = evt => {
       }],
     },
     options: {
-      onClick: function (evt) {
-        controlPannel();
-        // console.log("pieChart: onClick");
-        switch (Object.keys(dataList.pollutionRatio)[pieChart.getElementAtEvent(evt)[0]._index]) {
-          case "Factory":
-            getNameList("Factory");
-            break;
-          case "Construction":
-            getNameList("Construction");
-            break;
-          case "Restaurant":
-            getNameList("Restaurant");
-            break;
-          case "Transportation": // ++ change
-            getNameList("Transportation");
-            break;
-        }
+      // https://www.chartjs.org/docs/latest/configuration/legend.html
 
+      onClick: function (evt) {
+        let ci = this.chart;
+        if (ci.getElementAtEvent(evt)[0]) {
+          // https://www.chartjs.org/docs/latest/developers/api.html#getelementatevente
+          openNameListPannel(Object.keys(dataList.pollutionRatio)[pieChart.getElementAtEvent(evt)[0]._index]);
+        }
       },
       animation: {
         animateScale: true,
@@ -356,7 +417,16 @@ const onMapClick = evt => {
               return [];
             }
           }
-        }
+        },
+        onClick: function (evt, legendItem) {
+          console.log(evt, legendItem);
+          openNameListPannel(Object.keys(dataList.pollutionRatio)[legendItem.index]);
+        },
+        //https://codepen.io/jordanwillis/pen/BWKKKo 
+        //👆 That looks legit, but mine is not working
+        onHover: function (evt, legendItem) {
+          document.getElementById("myChart").style.cursor = 'pointer';
+        },
       }
     },
   });
@@ -368,6 +438,7 @@ const onMapClick = evt => {
 
 addMultiListener(["movestart, dragstart, move, drag"], marker, onMarkerMoveStart);
 addMultiListener(["moveend, dragend"], marker, onMarkerMoveEnd);
-multiElsAddListener([elements.constructionEl, elements.cameraEl, elements.factoryEl, elements.restaurantEl], "click", controlPannel);
+multiElsAddListener([elements.nameList], "click", selectNameListItem);
+multiElsAddListener([elements.constructionEl, elements.cameraEl, elements.factoryEl, elements.restaurantEl], "click", hiddenUnSelectedType);
 
 map.on("click", onMapClick);

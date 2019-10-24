@@ -133,40 +133,42 @@ const renderPin = (parentEl, posX, posY) => {
 }
 
 
-const switchIcon = (icon) => {
-    console.log(icon);
-    let iconUrl;
-    if (icon) {
-        iconUrl = icon.options.icon.options.iconUrl;
-        iconUrl = iconUrl.replace("assets/img/icons/", "");
-        iconUrl = iconUrl.replace(".png", "");
-    }
-    switch (iconUrl) {
+const switchIcon = (iconMarker) => {
+    console.log(iconMarker);
+    let iconUrl = iconMarker.options.type;
+    // if (iconMarker) {
+    //     iconUrl = iconMarker.options.iconMarker.options.iconUrl;
+    //     iconUrl = iconUrl.replace("assets/img/icons/", "");
+    //     iconUrl = iconUrl.replace(".png", "");
+    // }
+    // iconMarker.options.type
+    // switch (iconUrl) {
+    switch (iconMarker.options.type) {
         case "Factory":
-            icon.setIcon(selectedFactoryIcon);
+            !iconMarker.options.isSelected ? iconMarker.setIcon(factoryIcon) : iconMarker.setIcon(selectedFactoryIcon);
             break;
         case "Construction":
-            icon.setIcon(selectedConstructionIcon);
+            !iconMarker.options.isSelected ? iconMarker.setIcon(constructionIcon) : iconMarker.setIcon(selectedConstructionIcon);
             break;
         case "Restaurant":
-            icon.setIcon(selectedRestaurantIcon);
+            !iconMarker.options.isSelected ? iconMarker.setIcon(restaurantIcon) : iconMarker.setIcon(selectedRestaurantIcon);
             break;
-        case "Camera":
-            icon.setIcon(selectedCameraIcon);
+        case "Transportation":
+            !iconMarker.options.isSelected ? iconMarker.setIcon(cameraIcon) : iconMarker.setIcon(selectedCameraIcon);
             iconUrl = "Transportation"; // ++
             break;
-        case "Factory_selected":
-            icon.setIcon(factoryIcon);
-            break;
-        case "Construction_selected":
-            icon.setIcon(constructionIcon);
-            break;
-        case "Restaurant_selected":
-            icon.setIcon(restaurantIcon);
-            break;
-        case "Camera_selected":
-            icon.setIcon(cameraIcon);
-            break;
+            // case "Factory_selected":
+            //     iconMarker.setIcon(factoryIcon);
+            //     break;
+            // case "Construction_selected":
+            //     iconMarker.setIcon(constructionIcon);
+            //     break;
+            // case "Restaurant_selected":
+            //     iconMarker.setIcon(restaurantIcon);
+            //     break;
+            // case "Camera_selected":
+            //     iconMarker.setIcon(cameraIcon);
+            //     break;
         default:
     }
     return iconUrl;
