@@ -133,44 +133,44 @@ const renderPin = (parentEl, posX, posY) => {
 }
 
 
-const switchIcon = (evt) => {
+const switchIcon = (icon) => {
+    console.log(icon);
     let iconUrl;
-    if (evt) {
-      iconUrl = evt.sourceTarget.options.icon.options.iconUrl;
-      iconUrl = iconUrl.replace("assets/img/icons/", "");
-      iconUrl = iconUrl.replace(".png", "");
+    if (icon) {
+        iconUrl = icon.options.icon.options.iconUrl;
+        iconUrl = iconUrl.replace("assets/img/icons/", "");
+        iconUrl = iconUrl.replace(".png", "");
     }
-    // console.log(iconUrl);
     switch (iconUrl) {
-      case "Factory":
-        evt.target.setIcon(selectedFactoryIcon);
-        break;
-      case "Construction":
-        evt.target.setIcon(selectedConstructionIcon);
-        break;
-      case "Restaurant":
-        evt.target.setIcon(selectedRestaurantIcon);
-        break;
-      case "Camera":
-        evt.target.setIcon(selectedCameraIcon);
-        iconUrl = "Transportation"; // ++
-        break;
-      case "Factory_selected":
-        evt.target.setIcon(factoryIcon);
-        break;
-      case "Construction_selected":
-        evt.target.setIcon(constructionIcon);
-        break;
-      case "Restaurant_selected":
-        evt.target.setIcon(restaurantIcon);
-        break;
-      case "Camera_selected":
-        evt.target.setIcon(cameraIcon);
-        break;
-      default:
+        case "Factory":
+            icon.setIcon(selectedFactoryIcon);
+            break;
+        case "Construction":
+            icon.setIcon(selectedConstructionIcon);
+            break;
+        case "Restaurant":
+            icon.setIcon(selectedRestaurantIcon);
+            break;
+        case "Camera":
+            icon.setIcon(selectedCameraIcon);
+            iconUrl = "Transportation"; // ++
+            break;
+        case "Factory_selected":
+            icon.setIcon(factoryIcon);
+            break;
+        case "Construction_selected":
+            icon.setIcon(constructionIcon);
+            break;
+        case "Restaurant_selected":
+            icon.setIcon(restaurantIcon);
+            break;
+        case "Camera_selected":
+            icon.setIcon(cameraIcon);
+            break;
+        default:
     }
     return iconUrl;
-  }
+}
 
 function getClickPosition(e, parentEl) {
     var posX = e.clientX;
