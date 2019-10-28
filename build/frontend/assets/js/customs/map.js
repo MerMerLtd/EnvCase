@@ -54,7 +54,7 @@ const selectedIcon = (iconMarker) => {
     // };
     switchIcon(lastClickIcon);
   }
-  console.log(iconMarker);
+  // console.log(iconMarker);
   iconMarker['options']['isSelected'] = true;
   console.log(iconMarker);
 
@@ -74,6 +74,7 @@ const selectedIcon = (iconMarker) => {
 }
 
 const controlPannel = () => {
+  // console.log("click");
   layerGroup.clearLayers(); // https://stackoverflow.com/questions/41256026/clear-marker-layers-leaflet;
   let icon;
   // render iconMarkers on the layerGroup layer
@@ -263,7 +264,7 @@ const renderNameListItem = data => {
   ${data.name}
 </li>`
   elements.nameList.insertAdjacentHTML("beforeend", markup);
-  if (iconMarkers[data.id].options.alt) document.querySelector(`[data-id='${data.id}']`).style.color = "yellow";
+  // if (iconMarkers[data.id].options.isSelected) document.querySelector(`[data-id='${data.id}']`).style.color = "yellow";
   // if (iconMarkers[data.id].options.alt) getShopDetails(data.id);
 }
 
@@ -328,16 +329,46 @@ const openNameListPannel = type => {
 
 const toggleUnSelectedType = evt => {
   // console.log(evt.target.checked, elements.nameList.dataset.type);
-  // console.log(evt.target.checked&& elements.nameList.dataset.type);
-  if (elements.nameList.classList.contains('display') && !evt.target.checked)
-    elements.nameList.classList.remove('display');
-  if (elements.nameList.dataset.type === evt.target.dataset.type && !evt.target.checked)
-    elements.nameList.classList.add('not-display');
-  if (evt.target.checked && elements.nameList.dataset.type){
-    elements.nameList.classList.remove('not-display');
-    elements.nameList.classList.add('display');
+  // console.log(evt.target.dataset.type);
+  if (evt.target.checked) {
+    console.log("true");
+    Object.values(iconMarkers).filter(iconMarker => iconMarker.options.type === evt.target.dataset.type).forEach(iconMarker => {
+      iconMarker._icon.classList.remove("not-display");
+      iconMarker._icon.classList.add("display");
+      // unSelectIcon
+      iconMarker['options']['isSelected'] = false;
+      switchIcon(iconMarker);
+      document.querySelector(`[data-id='${iconMarker.options.id}']`)?document.querySelector(`[data-id='${iconMarker.options.id}']`).style.color = "white":null;
+    });
+    if (evt.target.dataset.type === elements.nameList.dataset.type) {
+      elements.nameList.classList.add('display');
+      elements.nameList.classList.remove('not-display');
+    }
+  } else {
+    console.log(false);
+    Object.values(iconMarkers).filter(iconMarker => iconMarker.options.type === evt.target.dataset.type).forEach(iconMarker => {
+      iconMarker._icon.classList.remove("display");
+      iconMarker._icon.classList.add("not-display");
+    });
+    if (evt.target.dataset.type === elements.nameList.dataset.type) {
+      elements.nameList.classList.remove('display');
+      elements.nameList.classList.add('not-display');
+    }
   }
-  
+  // let unSelectedIconMarkers = Object.values(iconMarkers).filter(iconMarker => iconMarker.type === elements.nameList.dataset.type);
+  // console.log(unSelectedIconMarkers);
+  // console.log(evt.target.checked && elements.nameList.dataset.type);
+  // if (elements.nameList.classList.contains('display') && !evt.target.checked) {
+  //   elements.nameList.classList.remove('display');
+
+  // }
+  // if (elements.nameList.dataset.type === evt.target.dataset.type && !evt.target.checked)
+  //   elements.nameList.classList.add('not-display');
+  // if (evt.target.checked && elements.nameList.dataset.type) {
+  //   elements.nameList.classList.remove('not-display');
+  //   elements.nameList.classList.add('display');
+  // }
+
 }
 
 const onMapClick = evt => {

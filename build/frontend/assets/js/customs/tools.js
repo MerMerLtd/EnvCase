@@ -88,7 +88,7 @@ const makeRequest = opts => {
 // class
 let OvalIcon = L.Icon.extend({
     options: {
-        shadowUrl: 'assets/img/icons/shadow.png',
+        // shadowUrl: 'assets/img/icons/shadow.png',
         iconSize: [30, 30], // size of the icon
         shadowSize: [15, 15], // size of the shadow
         iconAnchor: [15, 15], // point of the icon which will correspond to marker's location
@@ -145,6 +145,13 @@ const switchIcon = (iconMarker) => {
     // switch (iconUrl) {
     switch (iconMarker.options.type) {
         case "Factory":
+            // if(!iconMarker.options.isSelected){
+            //     iconMarker.setIcon(factoryIcon);
+            //     document.querySelector(`[data-id='${iconMarker.options.id}']`).style.color = "yellow";
+            // }else{
+            //     iconMarker.setIcon(selectedFactoryIcon);
+            //     document.querySelector(`[data-id='${iconMarker.options.id}']`).style.color = "white";
+            // }
             !iconMarker.options.isSelected ? iconMarker.setIcon(factoryIcon) : iconMarker.setIcon(selectedFactoryIcon);
             break;
         case "Construction":

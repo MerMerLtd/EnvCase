@@ -420,9 +420,9 @@ button {
 }
 
 .display{
-    display: block;
+    display: block !important;
 }
 
 .not-display{
-    display: none;
+    display: none !important;
 }

@@ -15831,9 +15831,9 @@ button {
     opacity: 1; }
 
 .display {
-  display: block; }
+  display: block !important; }
 
 .not-display {
-  display: none; }
+  display: none !important; }
 
 /*# sourceMappingURL=build/frontend/material-kit.css.map */
