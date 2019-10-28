@@ -134,7 +134,7 @@ const renderPin = (parentEl, posX, posY) => {
 
 
 const switchIcon = (iconMarker) => {
-    console.log(iconMarker);
+    // console.log(iconMarker);
     let iconUrl = iconMarker.options.type;
     // if (iconMarker) {
     //     iconUrl = iconMarker.options.iconMarker.options.iconUrl;
@@ -184,6 +184,6 @@ const switchIcon = (iconMarker) => {
 function getClickPosition(e, parentEl) {
     var posX = e.clientX;
     var posY = e.clientY;
-    console.log(posX, posY, parentEl);
+    // console.log(posX, posY, parentEl);
     renderPin(parentEl, posX, posY);
 }

@@ -56,7 +56,7 @@ const selectedIcon = (iconMarker) => {
   }
   // console.log(iconMarker);
   iconMarker['options']['isSelected'] = true;
-  console.log(iconMarker);
+  // console.log(iconMarker);
 
   // iconMarkers[iconMarker.options.id] = {
   //   ...iconMarker,
@@ -73,7 +73,7 @@ const selectedIcon = (iconMarker) => {
   getNameList(iconMarker.options.type, iconMarker.getLatLng());
 }
 
-const controlPannel = () => {
+const controlPannel = evt => {
   // console.log("click");
   layerGroup.clearLayers(); // https://stackoverflow.com/questions/41256026/clear-marker-layers-leaflet;
   let icon;
@@ -85,13 +85,20 @@ const controlPannel = () => {
         // console.log(data.type);
         switch (data.type) {
           case "Factory":
-            return elements.factoryEl.checked ? factoryIcon : null;
+            // elements.factoryEl.checked ? null : toggleUnSelectedType(elements.factoryEl);
+            return factoryIcon;
           case "Transportation":
-            return elements.cameraEl.checked ? cameraIcon : null;
+            // return elements.cameraEl.checked ? cameraIcon : null;
+            // elements.cameraEl.checked ? null : toggleUnSelectedType(elements.cameraEl);
+            return cameraIcon;
           case "Restaurant":
-            return elements.restaurantEl.checked ? restaurantIcon : null;
+            // return elements.restaurantEl.checked ? restaurantIcon : null;
+            // elements.restaurantEl.checked ? null : toggleUnSelectedType(elements.restaurantEl);
+            return restaurantIcon;
           case "Construction":
-            return elements.constructionEl.checked ? constructionIcon : null;
+            // return elements.constructionEl.checked ? constructionIcon : null;
+            // elements.constructionEl.checked ? null : toggleUnSelectedType(elements.constructionEl);
+            return constructionIcon;
           default:
         }
       })(data);
@@ -104,13 +111,14 @@ const controlPannel = () => {
             isSelected: false,
             type: data.type,
           }).addTo(layerGroup).on("click", evt => {
-            console.log(evt.target === iconMarkers[evt.target.options.id]);
+            // console.log(evt.target === iconMarkers[evt.target.options.id]);
             selectedIcon(evt.target);
           }); //evt => selectedIcon(evt)
         // ++ control heatmap
         // (if icon !== null => that type of pollute is selected )
       }
     });
+  toggleUnSelectedType();
 }
 
 const getShopDetails = async selectedShopId => {
@@ -259,7 +267,7 @@ const onMarkerMoveEnd = async _ => {
 }
 
 const renderNameListItem = data => {
-  console.log(data);
+  // console.log(data);
   const markup = `<li class="name-list__item" data-id = ${data.id} data-latlng = ${data.latlng.lat}_${data.latlng.lng}>
   ${data.name}
 </li>`
@@ -297,7 +305,7 @@ const getNameList = async (type, selectedIconCoordinate) => {
 
 
 const selectNameListItem = evt => {
-  console.log(evt);
+  // console.log(evt);
   if (evt.target.matches("li, .name-list__item")) {
     // console.log(evt.target.dataset.id);
     // console.log(evt.target.dataset.latlng.split("_").map(data => parseFloat(data)));
@@ -327,48 +335,54 @@ const openNameListPannel = type => {
   }
 }
 
-const toggleUnSelectedType = evt => {
+const toggleUnSelectedType = () => {
   // console.log(evt.target.checked, elements.nameList.dataset.type);
   // console.log(evt.target.dataset.type);
-  if (evt.target.checked) {
-    console.log("true");
-    Object.values(iconMarkers).filter(iconMarker => iconMarker.options.type === evt.target.dataset.type).forEach(iconMarker => {
-      iconMarker._icon.classList.remove("not-display");
-      iconMarker._icon.classList.add("display");
-      // unSelectIcon
-      iconMarker['options']['isSelected'] = false;
-      switchIcon(iconMarker);
-      document.querySelector(`[data-id='${iconMarker.options.id}']`)?document.querySelector(`[data-id='${iconMarker.options.id}']`).style.color = "white":null;
-    });
-    if (evt.target.dataset.type === elements.nameList.dataset.type) {
-      elements.nameList.classList.add('display');
-      elements.nameList.classList.remove('not-display');
-    }
-  } else {
-    console.log(false);
-    Object.values(iconMarkers).filter(iconMarker => iconMarker.options.type === evt.target.dataset.type).forEach(iconMarker => {
-      iconMarker._icon.classList.remove("display");
-      iconMarker._icon.classList.add("not-display");
-    });
-    if (evt.target.dataset.type === elements.nameList.dataset.type) {
-      elements.nameList.classList.remove('display');
-      elements.nameList.classList.add('not-display');
-    }
-  }
-  // let unSelectedIconMarkers = Object.values(iconMarkers).filter(iconMarker => iconMarker.type === elements.nameList.dataset.type);
-  // console.log(unSelectedIconMarkers);
-  // console.log(evt.target.checked && elements.nameList.dataset.type);
-  // if (elements.nameList.classList.contains('display') && !evt.target.checked) {
-  //   elements.nameList.classList.remove('display');
+  // let el = evt.target ? evt.target : evt;
+  Array.from(elements.iconMenu.children).forEach(el => {
+    // console.log(el.firstElementChild.checked);
+    if (el.firstElementChild.checked) {
+      // console.log("true");
+      Object.values(iconMarkers).filter(iconMarker => iconMarker.options.type === el.firstElementChild.dataset.type).forEach(iconMarker => {
+        // console.log(iconMarker.options.type, el.firstElementChild.dataset.type);
+        iconMarker._icon.classList.remove("not-display");
+        iconMarker._icon.classList.add("display");
+        // unSelectIcon
+        iconMarker['options']['isSelected'] = false;
+        switchIcon(iconMarker);
+        document.querySelector(`[data-id='${iconMarker.options.id}']`) ? document.querySelector(`[data-id='${iconMarker.options.id}']`).style.color = "white" : null;
+      });
+      if (el.firstElementChild.dataset.type === elements.nameList.dataset.type) {
+        elements.nameList.classList.add('display');
+        elements.nameList.classList.remove('not-display');
+      }
+    } else {
+      // console.log(false);
+      Object.values(iconMarkers).filter(iconMarker => iconMarker.options.type === el.firstElementChild.dataset.type).forEach(iconMarker => {
+        iconMarker._icon.classList.remove("display");
+        iconMarker._icon.classList.add("not-display");
+      });
+      if (el.firstElementChild.dataset.type === elements.nameList.dataset.type) {
+        elements.nameList.classList.remove('display');
+        elements.nameList.classList.add('not-display');
+      }
 
-  // }
-  // if (elements.nameList.dataset.type === evt.target.dataset.type && !evt.target.checked)
-  //   elements.nameList.classList.add('not-display');
-  // if (evt.target.checked && elements.nameList.dataset.type) {
-  //   elements.nameList.classList.remove('not-display');
-  //   elements.nameList.classList.add('display');
-  // }
+    }
+    // let unSelectedIconMarkers = Object.values(iconMarkers).filter(iconMarker => iconMarker.type === elements.nameList.dataset.type);
+    // console.log(unSelectedIconMarkers);
+    // console.log(evt.target.checked && elements.nameList.dataset.type);
+    // if (elements.nameList.classList.contains('display') && !evt.target.checked) {
+    //   elements.nameList.classList.remove('display');
 
+    // }
+    // if (elements.nameList.dataset.type === evt.target.dataset.type && !evt.target.checked)
+    //   elements.nameList.classList.add('not-display');
+    // if (evt.target.checked && elements.nameList.dataset.type) {
+    //   elements.nameList.classList.remove('not-display');
+    //   elements.nameList.classList.add('display');
+    // }
+
+  });
 }
 
 const onMapClick = evt => {
@@ -463,7 +477,7 @@ const onMapClick = evt => {
           }
         },
         onClick: function (evt, legendItem) {
-          console.log(evt, legendItem);
+          // console.log(evt, legendItem);
           openNameListPannel(Object.keys(dataList.pollutionRatio)[legendItem.index]);
         },
         //https://codepen.io/jordanwillis/pen/BWKKKo 
