@@ -93,7 +93,6 @@
 function display(uri, from) {
     const rootUrl = window.location.origin;
     // const rootUrl = 'http://127.0.0.1:5500/build/frontend/';
-
     switch (uri) {
         case "index.html":
             // window.location.href = `${rootUrl}/slider-${from}.html`;
@@ -110,7 +109,7 @@ function display(uri, from) {
             if (from === 'sub')
                 window.location.href = `${rootUrl}/slider-${from}.html`;
             if (from === 'main')
-                window.location.href = `${rootUrl}/index.html`;
+                window.location.href = `${rootUrl}/main.html`;
             break;
     }
 }

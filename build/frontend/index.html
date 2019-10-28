@@ -29,10 +29,22 @@
       href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"
     />
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js"></script> -->
+     <!-- leaflet -->
+     <link
+     rel="stylesheet"
+     href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
+     integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+     crossorigin=""
+   />
+   <script
+     src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
+     integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
+     crossorigin=""
+   ></script>
   </head>
   <script>
     const load = () => {
-      window.open(`${window.location.origin}/index_sub.html`);
+      // window.open(`${window.location.origin}/index_sub.html`);
     };
     window.addEventListener("load", load, false);
   </script>
@@ -124,13 +136,13 @@
     dashboardBtnMain.addEventListener(
       "click",
       evt => {
-        websocket.send(
-          JSON.stringify({
-            event: "changePage",
-            // currentPage: window.location.href,
-            currentPage: window.location.href.split("/").pop()
-          })
-        );
+        // websocket.send(
+        //   JSON.stringify({
+        //     event: "changePage",
+        //     // currentPage: window.location.href,
+        //     currentPage: window.location.href.split("/").pop()
+        //   })
+        // );
         display(window.location.href.split("/").pop(), "main");
       },
       false

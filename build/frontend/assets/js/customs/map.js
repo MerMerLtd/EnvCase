@@ -1,3 +1,40 @@
+// class
+let OvalIcon = L.Icon.extend({
+  options: {
+    // shadowUrl: 'assets/img/icons/shadow.png',
+    iconSize: [30, 30], // size of the icon
+    shadowSize: [15, 15], // size of the shadow
+    iconAnchor: [15, 15], // point of the icon which will correspond to marker's location
+    shadowAnchor: [15, 15], // the same for the shadow
+    popupAnchor: [30, 30] // point from which the popup should open relative to the iconAnchor
+  }
+});
+
+let constructionIcon = new OvalIcon({
+    iconUrl: 'assets/img/icons/Construction.png'
+  }),
+  cameraIcon = new OvalIcon({
+    iconUrl: 'assets/img/icons/Camera.png'
+  }),
+  factoryIcon = new OvalIcon({
+    iconUrl: 'assets/img/icons/Factory.png'
+  }),
+  restaurantIcon = new OvalIcon({
+    iconUrl: 'assets/img/icons/Restaurant.png'
+  }),
+  selectedConstructionIcon = new OvalIcon({
+    iconUrl: 'assets/img/icons/Construction_selected.png'
+  }),
+  selectedCameraIcon = new OvalIcon({
+    iconUrl: 'assets/img/icons/Camera_selected.png'
+  }),
+  selectedFactoryIcon = new OvalIcon({
+    iconUrl: 'assets/img/icons/Factory_selected.png'
+  }),
+  selectedRestaurantIcon = new OvalIcon({
+    iconUrl: 'assets/img/icons/Restaurant_selected.png'
+  });
+
 // var
 let dataList, lastClickIcon, iconMarkers = {},
   map = L.map('mapid').setView([25.009055, 121.464866], 11),
@@ -137,8 +174,27 @@ const getShopDetails = async selectedShopId => {
   };
   // [err, data] = await to(makeRequest(opts));
   if (err) throw new Error(err);
-  if (!data) { //++ will need to remove ! later
+  // dummy data  
+  data = {
+    id: selectedShopId,
+    image: 'https://drive.google.com/open?id=1I3rtvfiNwUZGDqTm5bXhqKBW2qJb5QJS',
+    personInCharge: '許承光',
+    tel: '(02)2968-6641',
+    latlng: iconMarkers[selectedShopId].getLatLng(),
+    address: '板橋區大觀路二段174巷178號',
+    service: ['真空電鍍程序'],
+    violations: ['2017-05-10 從事真空電鍍程序，檢測結果異味污染物濃度實測值為15，超過固定污染源空氣污染物排放標準（工業區及農業區以外地區標準值10）'],
+    reports: ['2017-04-23 造成惡臭'],
+    rate: 47,
+  };
+  if (data) { //++ will need to remove ! later
     // call websokect;
+    websocket.send(
+      JSON.stringify({
+        event: "renderShopDetails",
+        data: data,
+      })
+    );
     // render data to the second view.
   };
 }
@@ -450,6 +506,7 @@ const onMapClick = evt => {
           generateLabels: function (chart) {
             var data = chart.data;
             if (data.labels.length && data.datasets.length) {
+              console.log(data.datasets[0], chart.getDatasetMeta(0).data);
               return data.labels.map(function (label, i) {
                 var ds = data.datasets[0];
                 var arc = chart.getDatasetMeta(0).data[i];

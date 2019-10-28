@@ -85,42 +85,6 @@ const makeRequest = opts => {
         });
     }
 }
-// class
-let OvalIcon = L.Icon.extend({
-    options: {
-        // shadowUrl: 'assets/img/icons/shadow.png',
-        iconSize: [30, 30], // size of the icon
-        shadowSize: [15, 15], // size of the shadow
-        iconAnchor: [15, 15], // point of the icon which will correspond to marker's location
-        shadowAnchor: [15, 15], // the same for the shadow
-        popupAnchor: [30, 30] // point from which the popup should open relative to the iconAnchor
-    }
-});
-
-let constructionIcon = new OvalIcon({
-        iconUrl: 'assets/img/icons/Construction.png'
-    }),
-    cameraIcon = new OvalIcon({
-        iconUrl: 'assets/img/icons/Camera.png'
-    }),
-    factoryIcon = new OvalIcon({
-        iconUrl: 'assets/img/icons/Factory.png'
-    }),
-    restaurantIcon = new OvalIcon({
-        iconUrl: 'assets/img/icons/Restaurant.png'
-    }),
-    selectedConstructionIcon = new OvalIcon({
-        iconUrl: 'assets/img/icons/Construction_selected.png'
-    }),
-    selectedCameraIcon = new OvalIcon({
-        iconUrl: 'assets/img/icons/Camera_selected.png'
-    }),
-    selectedFactoryIcon = new OvalIcon({
-        iconUrl: 'assets/img/icons/Factory_selected.png'
-    }),
-    selectedRestaurantIcon = new OvalIcon({
-        iconUrl: 'assets/img/icons/Restaurant_selected.png'
-    });
 
 const renderPin = (parentEl, posX, posY) => {
     let pin = document.querySelector(`.pin`);

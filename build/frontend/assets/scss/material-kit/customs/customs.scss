@@ -343,7 +343,7 @@ button {
     transition: all 1s ease-out;
 }
 
-.name-list{
+.name-list {
     display: none;
     overflow: scroll;
     height: 189px; //--
@@ -353,17 +353,20 @@ button {
     margin: 0 10px;
     border-radius: 5px;
     padding: 10px;
-    &__item{
+
+    &__item {
         list-style: none;
         padding: 3px;
     }
 }
-.pie-chart{
+
+.pie-chart {
     padding: 20px;
     // background-color: #fff;
     border-radius: 5px;
     margin: 0 10px;
 }
+
 .icon-menu {
     // position: absolute;
     // top: 0;
@@ -419,10 +422,51 @@ button {
     }
 }
 
-.display{
+.display {
     display: block !important;
 }
 
-.not-display{
+.not-display {
     display: none !important;
+}
+
+.company {
+    display: none;
+    position: absolute;
+    top: 0vh; //5vh;
+    left: 0vw; //5vw;
+    height: 100vh; //90vh;
+    width: 100vw; // 90vw;
+    color: #fff;
+
+    // margin: auto;
+    // background-color: #000000c8;
+    // border-radius: 15px;
+    & li {
+        list-style: none;
+    }
+
+    &__detail-box {
+        height: 90vh;
+        width: 90vw;
+        background-color: #000000c8; //#efefef;
+        border-radius: 10px;
+        margin: 5vh auto 5vh;
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__right {
+        display: flex;
+        flex: 1 1;
+        flex-direction: column;
+    }
+
+    &__basic-info {
+        display: flex;
+        justify-content: space-around;
+
+    }
 }
