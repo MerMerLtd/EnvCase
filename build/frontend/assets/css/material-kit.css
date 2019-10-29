@@ -15846,14 +15846,21 @@ button {
   color: #fff; }
   .company li {
     list-style: none; }
+  .company__left {
+    width: 50%; }
+  .company__img-box {
+    background-size: cover; }
+    .company__img-box img {
+      width: 100%; }
   .company__detail-box {
     height: 90vh;
     width: 90vw;
     background-color: #000000c8;
     border-radius: 10px;
     margin: 5vh auto 5vh;
+    padding: 0 30px;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center; }
   .company__right {
     display: flex;
@@ -15861,6 +15868,25 @@ button {
     flex-direction: column; }
   .company__basic-info {
     display: flex;
-    justify-content: space-around; }
+    justify-content: space-between; }
+  .company__rate {
+    display: flex;
+    justify-content: space-between;
+    padding: 35px 23px 30px 0; }
+    .company__rate p {
+      font-size: 24px; }
+    .company__rate > p:last-child {
+      position: relative; }
+      .company__rate > p:last-child::after {
+        content: '';
+        display: block;
+        position: absolute;
+        top: -23px;
+        bottom: 0;
+        left: -21px;
+        right: 0;
+        padding: 30px;
+        border-radius: 100%;
+        border: 5px solid #ccc; }
 
 /*# sourceMappingURL=build/frontend/material-kit.css.map */

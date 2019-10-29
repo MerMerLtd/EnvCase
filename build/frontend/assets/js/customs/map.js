@@ -177,7 +177,7 @@ const getShopDetails = async selectedShopId => {
   // dummy data  
   data = {
     id: selectedShopId,
-    image: 'https://drive.google.com/open?id=1I3rtvfiNwUZGDqTm5bXhqKBW2qJb5QJS',
+    image: 'http://dahanconcrete.com/wp-content/uploads/2012/11/aboutUs_1_s2.jpg',
     personInCharge: '許承光',
     tel: '(02)2968-6641',
     latlng: iconMarkers[selectedShopId].getLatLng(),
