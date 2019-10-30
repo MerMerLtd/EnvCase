@@ -1,5 +1,7 @@
 let elements = {
-    company: document.querySelector('.company'),
+    detailBox: document.querySelector('.detail__box'),
+    iframeContainer: document.querySelector('.iframe__container'),
+
     // companyPersonInCharge: document.querySelector('.company__person-in-charge li:last-child'),
     // companyTel: document.querySelector('.company__tel li:last-child'),
     // companyLatlng: document.querySelector('.company__latlng li:last-child'),
@@ -10,6 +12,7 @@ let elements = {
     // companyRate: document.querySelector('.company__rate p:last-child'),
     // companyImgBox: document.querySelector('.company__img-box'),
 }
+
 
 function onOpen(evt) {
     state.className = "success";
@@ -47,11 +50,14 @@ function onMessage(evt) {
 
     // }
     var data = JSON.parse(evt.data);
+    let markup = ``;
     switch (data.event) {
-        case 'renderShopDetails':
-            elements.company.innerHTML = '';
-            console.log(data.data);
-            const markup = `  <div class="company__detail-box">
+        case 'renderCompanyDetails':
+            // console.log(data.data);
+            elements.iframeContainer.classList.add('not-display');
+            elements.detailBox.innerHTML = '';
+            elements.detailBox.classList.contains('not-display') ? elements.detailBox.classList.remove('not-display') : null;
+            markup = `  <div class="company">
             <div class="company__left">
               <div class="company__img-box">
                 <img src="${data.data.image}" alt="" />
@@ -94,8 +100,7 @@ function onMessage(evt) {
               </ul>
             </div>
           </div>`;
-            elements.company.insertAdjacentHTML("afterbegin", markup);
-            elements.company.style.display = 'block';
+            elements.detailBox.insertAdjacentHTML("afterbegin", markup);
 
             // elements.companyPersonInCharge.innerText = data.data.personInCharge;
             // elements.companyTel.innerText = data.data.tel;
@@ -106,6 +111,136 @@ function onMessage(evt) {
             // elements.companyReports.innerText = data.data.reports;
             // elements.companyRate.innerText = data.data.rate;
             // elements.companyRate.innerHTML = `<img src = ${data.data.image}/>`;
+            break;
+        case "renderTransportationDetail":
+            elements.iframeContainer.classList.contains('not-display') ? elements.iframeContainer.classList.remove('not-display') : null;
+            elements.detailBox.innerHTML = '';
+            elements.detailBox.classList.contains('not-display') ? elements.detailBox.classList.remove('not-display') : null;
+            markup = ` <div class="transportation">
+            <div class="transportation__img">
+              <p>道路檢測畫面</p>
+              <div class="transportation__img--box">
+                <img
+                  src="https://images.unsplash.com/photo-1492666918209-d0a9ea801f2f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80"
+                  alt="monitor-view"
+                />
+              </div>
+            </div>
+            <div class="transportation__license">
+              <p>72小時內監測到的車牌號</p>
+              <div class="transportation__license--list">
+                <ul>
+                  <li class="is-polluted">AKA - 969</li>
+                  <li>YHU - 122</li>
+                  <li>AYA - 293</li>
+                  <li class="is-polluted">QSX - 378</li>
+                  <li>YHU - 122</li>
+                  <li class="is-polluted">AYA - 293</li>
+                  <li>QSX - 378</li>
+                  <li>YHU - 122</li>
+                </ul>
+              </div>
+            </div>
+            <div class="transportation__owner-info">
+              <p>烏賊車主資訊</p>
+              <div>
+                <ul class="license-plate">
+                  <li>車牌號</li>
+                  <li>AKA - 969</li>
+                </ul>
+                <ul>
+                  <li class="checked-data">檢測日期</li>
+                  <li>2019/09/04</li>
+                </ul>
+                <ul>
+                  <li class="car-owner">車主</li>
+                  <li>張順發</li>
+                </ul>
+                <ul>
+                  <li class="contact-info">聯絡資訊</li>
+                  <li>
+                    <span> 0981881128/ </span>
+                    <span> 台北市信義區松高路9號25F </span>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <ul class="license-plate">
+                  <li>車牌號</li>
+                  <li>AKA - 969</li>
+                </ul>
+                <ul>
+                  <li class="checked-data">檢測日期</li>
+                  <li>2019/09/04</li>
+                </ul>
+                <ul>
+                  <li class="car-owner">車主</li>
+                  <li>張順發</li>
+                </ul>
+                <ul>
+                  <li class="contact-info">聯絡資訊</li>
+                  <li>
+                    <span> 0981881128/ </span>
+                    <span> 台北市信義區松高路9號25F </span>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <ul class="license-plate">
+                  <li>車牌號</li>
+                  <li>AKA - 969</li>
+                </ul>
+                <ul>
+                  <li class="checked-data">檢測日期</li>
+                  <li>2019/09/04</li>
+                </ul>
+                <ul>
+                  <li class="car-owner">車主</li>
+                  <li>張順發</li>
+                </ul>
+                <ul>
+                  <li class="contact-info">聯絡資訊</li>
+                  <li>
+                    <span> 0981881128/ </span>
+                    <span> 台北市信義區松高路9號25F </span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>`;
+            elements.detailBox.insertAdjacentHTML("afterbegin", markup);
+            elements = {
+                ...elements,
+                pollutedList: document.querySelector('.transportation__license--list > ul'),
+                ownerInfo: document.querySelector('.transportation__owner-info'),
+            };
+            elements.pollutedList.innerHTML = '';
+            elements.ownerInfo.innerHTML = '<p>烏賊車主資訊</p>';
+            data.data.licensePlate.forEach(item => {
+                let markup = ` <li class=${item.isPolluted?"is-polluted":null}>${item.license}</li>`;
+                elements.pollutedList.insertAdjacentHTML('beforeend', markup);
+            });
+            data.data.pollutedCarOwnerInfo.forEach(item => {
+                let markup = `<div>
+                <ul class="license-plate">
+                  <li>車牌號</li>
+                  <li>${item.license}</li>
+                </ul>
+                <ul>
+                  <li class="checked-data">檢測日期</li>
+                  <li>${item.checkedDate}</li>
+                </ul>
+                <ul>
+                  <li class="car-owner">車主</li>
+                  <li>${item.owner}</li>
+                </ul>
+                <ul>
+                  <li class="contact-info">聯絡資訊</li>
+                  <li>${item.contactInfo}</li>
+                </ul>
+              </div>`;
+                elements.ownerInfo.insertAdjacentHTML('beforeend', markup);
+            });
             break;
         default:
             break;

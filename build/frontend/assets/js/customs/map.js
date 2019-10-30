@@ -1,3 +1,163 @@
+//--
+let details = {
+  '234jdbuw923': {
+    type: 'Construction',
+    image: 'http://dahanconcrete.com/wp-content/uploads/2012/11/aboutUs_1_s2.jpg',
+    personInCharge: '蔡錦忠',
+    tel: '(02)8691-8573',
+    latlng: '',
+    address: '新北市泰山區中港南路310號1樓',
+    services: ['水泥及混凝土製品製造業'],
+    violations: ['2019-02-20 未遵行停工命令，仍在上址續行操作預拌混凝土作業', '2018-10-24 未依相關規定取得固定污染源操作許可2018-12-11 廢氣排放超標'],
+    reports: ['2018-07-01 造成空氣混濁', '2017-06-23 造成空氣混濁'],
+    rate: 47,
+  },
+  '234jdajw923': {
+    type: 'Construction',
+    image: 'https://images.unsplash.com/photo-1516937941344-00b4e0337589?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80',
+    personInCharge: '許承光',
+    tel: '(02)2968-6641',
+    latlng: '',
+    address: '板橋區大觀路二段174巷178號',
+    services: ['真空電鍍程序'],
+    violations: ['2017-05-10 從事真空電鍍程序，檢測結果異味污染物濃度實測值為15，超過固定污染源空氣污染物排放標準（工業區及農業區以外地區標準值10）'],
+    reports: ['2017-04-23 造成惡臭'],
+    rate: 47,
+  },
+  '234jdhyw923': {
+    type: 'Factory',
+    image: 'https://images.unsplash.com/photo-1531431057391-da7a1aabd412?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1568&q=80',
+    personInCharge: '許承光',
+    tel: '(02)2968-6641',
+    latlng: '',
+    address: '板橋區大觀路二段174巷178號',
+    services: ['真空電鍍程序'],
+    violations: ['2017-05-10 從事真空電鍍程序，檢測結果異味污染物濃度實測值為15，超過固定污染源空氣污染物排放標準（工業區及農業區以外地區標準值10）'],
+    reports: ['2017-04-23 造成惡臭'],
+    rate: 47,
+  },
+  '234jdasw923': {
+    type: 'Factory',
+    image: 'https://images.unsplash.com/photo-1531431057391-da7a1aabd412?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1568&q=80',
+    personInCharge: '許承光',
+    tel: '(02)2968-6641',
+    latlng: '',
+    address: '板橋區大觀路二段174巷178號',
+    services: ['真空電鍍程序'],
+    violations: ['2017-05-10 從事真空電鍍程序，檢測結果異味污染物濃度實測值為15，超過固定污染源空氣污染物排放標準（工業區及農業區以外地區標準值10）'],
+    reports: ['2017-04-23 造成惡臭'],
+    rate: 47,
+  },
+  '234jdbuw123': {
+    type: 'Restaurant',
+    image: 'https://images.unsplash.com/photo-1473106235427-b7202ef5453d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2089&q=80',
+    personInCharge: '許承光',
+    tel: '(02)2968-6641',
+    latlng: '',
+    address: '板橋區大觀路二段174巷178號',
+    services: ['真空電鍍程序'],
+    violations: ['2017-05-10 從事真空電鍍程序，檢測結果異味污染物濃度實測值為15，超過固定污染源空氣污染物排放標準（工業區及農業區以外地區標準值10）'],
+    reports: ['2017-04-23 造成惡臭'],
+    rate: 47,
+  },
+  '234jdb0w123': {
+    type: 'Restaurant',
+    image: 'https://images.unsplash.com/photo-1530014708989-55a898ad9552?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80g',
+    personInCharge: '許承光',
+    tel: '(02)2968-6641',
+    latlng: '',
+    address: '板橋區大觀路二段174巷178號',
+    services: ['真空電鍍程序'],
+    violations: ['2017-05-10 從事真空電鍍程序，檢測結果異味污染物濃度實測值為15，超過固定污染源空氣污染物排放標準（工業區及農業區以外地區標準值10）'],
+    reports: ['2017-04-23 造成惡臭'],
+    rate: 47,
+  },
+  '234jklouw923': {
+    type: 'Transportation',
+    image: 'https://images.unsplash.com/photo-1468136020796-0eec5226a897?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80',
+    licensePlate: [{
+      license: 'AKA - 969',
+      isPolluted: true
+    }, {
+      license: 'YHU - 122',
+      isPolluted: false
+    }, {
+      license: 'AYA - 293',
+      isPolluted: false
+    }, {
+      license: 'QSX - 378',
+      isPolluted: true
+    }, {
+      license: 'YHU - 122',
+      isPolluted: false
+    }, {
+      license: 'AYA - 293',
+      isPolluted: true
+    }, {
+      license: 'QSX - 378',
+      isPolluted: false
+    }, {
+      license: 'YHU - 122',
+      isPolluted: false
+    }, ],
+    pollutedCarOwnerInfo: [{
+        license: 'AYA - 293',
+        checkedDate: '2019/09/04',
+        owner: '張順發',
+        contactInfo: '0981881128/ 台北市信義區松高路9號25F',
+      },
+      {
+        license: 'AYA - 293',
+        checkedDate: '2019/09/04',
+        owner: '張順發',
+        contactInfo: '0981881128/ 台北市信義區松高路9號25F',
+      },
+      {
+        license: 'AYA - 293',
+        checkedDate: '2019/09/04',
+        owner: '張順發',
+        contactInfo: '0981881128/ 台北市信義區松高路9號25F',
+      },
+    ],
+  },
+  'sasdkmskkw12': {
+    type: 'Transportation',
+    image: 'https://images.unsplash.com/photo-1492666918209-d0a9ea801f2f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80',
+    licensePlate: [{
+      license: 'AKA - 969',
+      isPolluted: true
+    }, {
+      license: 'YHU - 122',
+      isPolluted: false
+    }, {
+      license: 'AYA - 293',
+      isPolluted: false
+    }, {
+      license: 'AYA - 293',
+      isPolluted: true
+    }, {
+      license: 'QSX - 378',
+      isPolluted: false
+    }, {
+      license: 'YHU - 122',
+      isPolluted: false
+    }, ],
+    pollutedCarOwnerInfo: [{
+        license: 'AYA - 293',
+        checkedDate: '2019/09/04',
+        owner: '張順發',
+        contactInfo: '0981881128/ 台北市信義區松高路9號25F',
+      },
+      {
+        license: 'AYA - 293',
+        checkedDate: '2019/09/04',
+        owner: '張順發',
+        contactInfo: '0981881128/ 台北市信義區松高路9號25F',
+      },
+    ],
+  },
+}
+
 // class
 let OvalIcon = L.Icon.extend({
   options: {
@@ -158,40 +318,33 @@ const controlPannel = evt => {
   toggleUnSelectedType();
 }
 
-const getShopDetails = async selectedShopId => {
+const getDetails = async selectedId => {
   Array.from(elements.nameList.children).forEach(el => el.style.color = "#fff");
-  // console.log(selectedShopId);
-  document.querySelector(`[data-id='${selectedShopId}']`).style.color = "yellow";
+  // console.log(selectedId);
+  document.querySelector(`[data-id='${selectedId}']`).style.color = "yellow";
   // xhr request
   let err, data;
   const opts = {
     contentType: 'application/json',
     method: "GET",
-    url: "/shopdetails",
+    url: "/details",
     payload: {
-      "selectedShopId": selectedShopId,
+      "selectedId": selectedId,
     }
   };
   // [err, data] = await to(makeRequest(opts));
   if (err) throw new Error(err);
   // dummy data  
   data = {
-    id: selectedShopId,
-    image: 'http://dahanconcrete.com/wp-content/uploads/2012/11/aboutUs_1_s2.jpg',
-    personInCharge: '許承光',
-    tel: '(02)2968-6641',
-    latlng: iconMarkers[selectedShopId].getLatLng(),
-    address: '板橋區大觀路二段174巷178號',
-    service: ['真空電鍍程序'],
-    violations: ['2017-05-10 從事真空電鍍程序，檢測結果異味污染物濃度實測值為15，超過固定污染源空氣污染物排放標準（工業區及農業區以外地區標準值10）'],
-    reports: ['2017-04-23 造成惡臭'],
-    rate: 47,
+    ...details[selectedId],
+    latlng: iconMarkers[selectedId].getLatLng()
   };
   if (data) { //++ will need to remove ! later
     // call websokect;
     websocket.send(
       JSON.stringify({
-        event: "renderShopDetails",
+        // event: elements.nameList.dataset.type === "Transportation" ? "renderTransportationDetail" : "renderCompanyDetails",
+        event: data.type === "Transportation" ? "renderTransportationDetail" : "renderCompanyDetails",
         data: data,
       })
     );
@@ -329,7 +482,7 @@ const renderNameListItem = data => {
 </li>`
   elements.nameList.insertAdjacentHTML("beforeend", markup);
   // if (iconMarkers[data.id].options.isSelected) document.querySelector(`[data-id='${data.id}']`).style.color = "yellow";
-  // if (iconMarkers[data.id].options.alt) getShopDetails(data.id);
+  // if (iconMarkers[data.id].options.alt) getDetails(data.id);
 }
 
 const getNameList = async (type, selectedIconCoordinate) => {
@@ -352,9 +505,9 @@ const getNameList = async (type, selectedIconCoordinate) => {
   if (selectedIconCoordinate) {
     // make another request to get the shop detail and render to the second view.
     // ?? why let is not working but var is?
-    var selectedShopId = dataList.list.filter(data => data.type === type).find(data => data.latlng.lat === selectedIconCoordinate.lat && data.latlng.lng === selectedIconCoordinate.lng).id; // !== will be changed to === ++
-    // console.log(selectedShopId);
-    getShopDetails(selectedShopId);
+    var selectedId = dataList.list.filter(data => data.type === type).find(data => data.latlng.lat === selectedIconCoordinate.lat && data.latlng.lng === selectedIconCoordinate.lng).id; // !== will be changed to === ++
+    // console.log(selectedId);
+    getDetails(selectedId);
     // select main view nameList Pannel item
   }
 };
@@ -367,7 +520,7 @@ const selectNameListItem = evt => {
     // console.log(evt.target.dataset.latlng.split("_").map(data => parseFloat(data)));
     // lastClickIcon = iconMarkers[evt.target.dataset.id];
     selectedIcon(iconMarkers[evt.target.dataset.id]);
-    getShopDetails(evt.target.dataset.id);
+    getDetails(evt.target.dataset.id);
   }
 }
 

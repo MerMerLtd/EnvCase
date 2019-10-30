@@ -15836,14 +15836,27 @@ button {
 .not-display {
   display: none !important; }
 
-.company {
-  display: none;
+.detail {
   position: absolute;
   top: 0vh;
   left: 0vw;
   height: 100vh;
   width: 100vw;
   color: #fff; }
+  .detail__box {
+    height: 90vh;
+    width: 90vw;
+    background-color: #000000c8;
+    border-radius: 10px;
+    margin: 5vh auto 5vh;
+    padding: 0 30px; }
+
+.company {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  height: 100%; }
   .company li {
     list-style: none; }
   .company__left {
@@ -15852,16 +15865,6 @@ button {
     background-size: cover; }
     .company__img-box img {
       width: 100%; }
-  .company__detail-box {
-    height: 90vh;
-    width: 90vw;
-    background-color: #000000c8;
-    border-radius: 10px;
-    margin: 5vh auto 5vh;
-    padding: 0 30px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center; }
   .company__right {
     display: flex;
     flex: 1 1;
@@ -15888,5 +15891,55 @@ button {
         padding: 30px;
         border-radius: 100%;
         border: 5px solid #ccc; }
+
+.transportation {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-top: 30px; }
+  .transportation > div > p {
+    color: #ffc107; }
+  .transportation__img {
+    flex: 3; }
+    .transportation__img--box {
+      padding: 15px;
+      background-color: #fff;
+      border-radius: 5px; }
+      .transportation__img--box img {
+        max-width: 100%; }
+  .transportation__license {
+    flex: 1;
+    margin: 0 15px; }
+    .transportation__license--list {
+      border: 1px solid #fff;
+      border-radius: 5px; }
+      .transportation__license--list ul {
+        list-style: none;
+        padding: 10px 0 0 10px;
+        margin: 0; }
+        .transportation__license--list ul > li {
+          padding: 0 0 10px 0; }
+        .transportation__license--list ul .is-polluted {
+          color: red; }
+  .transportation__owner-info {
+    flex: 1.5; }
+    .transportation__owner-info > div {
+      border: 1px solid #fff;
+      border-radius: 5px;
+      margin-bottom: 15px; }
+    .transportation__owner-info ul {
+      padding: 10px 0 0 10px;
+      display: flex;
+      flex-direction: row;
+      list-style: none;
+      margin: 0; }
+      .transportation__owner-info ul > li {
+        flex: 1; }
+      .transportation__owner-info ul > li:last-child {
+        flex: 1.5; }
+      .transportation__owner-info ul:last-child {
+        padding-bottom: 10px; }
 
 /*# sourceMappingURL=build/frontend/material-kit.css.map */
