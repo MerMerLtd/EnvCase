@@ -158,6 +158,8 @@ let details = {
   },
 }
 
+
+
 // class
 let OvalIcon = L.Icon.extend({
   options: {
@@ -362,7 +364,38 @@ const onMarkerMoveStart = _ => {
   // console.log("I am expired");
 }
 
+//--
+
+const createHeatmapData = gross => {
+  let points = [];
+  for(; gross>0;gross--){
+    points.push([
+      Math.random()>0.5? 25.009055+Math.random()*2.5:25.009055-Math.random()*2.5,
+      Math.random()>0.5? 121.464866+Math.random()*1.5:121.464866-Math.random()*1.5,
+      10000*Math.random()
+    ]);
+  }
+  return points;
+}
+
+var heat = L.heatLayer(createHeatmapData(50),{
+  radius:10,
+  
+}).addTo(map);
+//     draw = true;
+// map.on({
+//     movestart: function () { draw = false; },
+//     moveend:   function () { draw = true; },
+//     mousemove: function (e) {
+//         if (draw) {
+//             heat.addLatLng(e.latlng);
+//         }
+//     }
+// })
+//--
+
 const onMarkerMoveEnd = async _ => {
+  //-- 
   let num = 100;
   circle.setLatLng(marker.getLatLng());
   circle.setStyle({
@@ -671,7 +704,7 @@ const onMapClick = evt => {
                 var bw = custom.borderWidth ? custom.borderWidth : getValueAtIndexOrDefault(ds.borderWidth, i, arcOpts.borderWidth);
 
                 var value = chart.config.data.datasets[chart.getDatasetMeta(0).data[i]._datasetIndex].data[chart.getDatasetMeta(0).data[i]._index];
-
+                // console.log(chart.config.data.datasets[chart.getDatasetMeta(0).data[i]._datasetIndex]);
                 return {
                   text: label + ": " + value + "%",
                   fillStyle: fill,
