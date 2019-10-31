@@ -1,229 +1,3 @@
-//--
-let details = {
-  '234jdbuw923': {
-    type: 'Construction',
-    image: 'http://dahanconcrete.com/wp-content/uploads/2012/11/aboutUs_1_s2.jpg',
-    personInCharge: '蔡錦忠',
-    tel: '(02)8691-8573',
-    latlng: '',
-    address: '新北市泰山區中港南路310號1樓',
-    services: ['水泥及混凝土製品製造業'],
-    violations: ['2019-02-20 未遵行停工命令，仍在上址續行操作預拌混凝土作業', '2018-10-24 未依相關規定取得固定污染源操作許可2018-12-11 廢氣排放超標'],
-    reports: ['2018-07-01 造成空氣混濁', '2017-06-23 造成空氣混濁'],
-    rate: 47,
-  },
-  '234jdajw923': {
-    type: 'Construction',
-    image: 'https://images.unsplash.com/photo-1516937941344-00b4e0337589?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80',
-    personInCharge: '許承光',
-    tel: '(02)2968-6641',
-    latlng: '',
-    address: '板橋區大觀路二段174巷178號',
-    services: ['真空電鍍程序'],
-    violations: ['2017-05-10 從事真空電鍍程序，檢測結果異味污染物濃度實測值為15，超過固定污染源空氣污染物排放標準（工業區及農業區以外地區標準值10）'],
-    reports: ['2017-04-23 造成惡臭'],
-    rate: 47,
-  },
-  '234jdhyw923': {
-    type: 'Factory',
-    image: 'https://images.unsplash.com/photo-1531431057391-da7a1aabd412?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1568&q=80',
-    personInCharge: '許承光',
-    tel: '(02)2968-6641',
-    latlng: '',
-    address: '板橋區大觀路二段174巷178號',
-    services: ['真空電鍍程序'],
-    violations: ['2017-05-10 從事真空電鍍程序，檢測結果異味污染物濃度實測值為15，超過固定污染源空氣污染物排放標準（工業區及農業區以外地區標準值10）'],
-    reports: ['2017-04-23 造成惡臭'],
-    rate: 47,
-  },
-  '234jdasw923': {
-    type: 'Factory',
-    image: 'https://images.unsplash.com/photo-1531431057391-da7a1aabd412?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1568&q=80',
-    personInCharge: '許承光',
-    tel: '(02)2968-6641',
-    latlng: '',
-    address: '板橋區大觀路二段174巷178號',
-    services: ['真空電鍍程序'],
-    violations: ['2017-05-10 從事真空電鍍程序，檢測結果異味污染物濃度實測值為15，超過固定污染源空氣污染物排放標準（工業區及農業區以外地區標準值10）'],
-    reports: ['2017-04-23 造成惡臭'],
-    rate: 47,
-  },
-  '234jdbuw123': {
-    type: 'Restaurant',
-    image: 'https://images.unsplash.com/photo-1473106235427-b7202ef5453d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2089&q=80',
-    personInCharge: '許承光',
-    tel: '(02)2968-6641',
-    latlng: '',
-    address: '板橋區大觀路二段174巷178號',
-    services: ['真空電鍍程序'],
-    violations: ['2017-05-10 從事真空電鍍程序，檢測結果異味污染物濃度實測值為15，超過固定污染源空氣污染物排放標準（工業區及農業區以外地區標準值10）'],
-    reports: ['2017-04-23 造成惡臭'],
-    rate: 47,
-  },
-  '234jdb0w123': {
-    type: 'Restaurant',
-    image: 'https://images.unsplash.com/photo-1530014708989-55a898ad9552?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80g',
-    personInCharge: '許承光',
-    tel: '(02)2968-6641',
-    latlng: '',
-    address: '板橋區大觀路二段174巷178號',
-    services: ['真空電鍍程序'],
-    violations: ['2017-05-10 從事真空電鍍程序，檢測結果異味污染物濃度實測值為15，超過固定污染源空氣污染物排放標準（工業區及農業區以外地區標準值10）'],
-    reports: ['2017-04-23 造成惡臭'],
-    rate: 47,
-  },
-  '234jklouw923': {
-    type: 'Transportation',
-    image: 'https://images.unsplash.com/photo-1468136020796-0eec5226a897?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80',
-    licensePlate: [{
-      license: 'AKA - 969',
-      isPolluted: true
-    }, {
-      license: 'YHU - 122',
-      isPolluted: false
-    }, {
-      license: 'AYA - 293',
-      isPolluted: false
-    }, {
-      license: 'QSX - 378',
-      isPolluted: true
-    }, {
-      license: 'YHU - 122',
-      isPolluted: false
-    }, {
-      license: 'AYA - 293',
-      isPolluted: true
-    }, {
-      license: 'QSX - 378',
-      isPolluted: false
-    }, {
-      license: 'YHU - 122',
-      isPolluted: false
-    }, ],
-    pollutedCarOwnerInfo: [{
-        license: 'AYA - 293',
-        checkedDate: '2019/09/04',
-        owner: '張順發',
-        contactInfo: '0981881128/ 台北市信義區松高路9號25F',
-      },
-      {
-        license: 'AYA - 293',
-        checkedDate: '2019/09/04',
-        owner: '張順發',
-        contactInfo: '0981881128/ 台北市信義區松高路9號25F',
-      },
-      {
-        license: 'AYA - 293',
-        checkedDate: '2019/09/04',
-        owner: '張順發',
-        contactInfo: '0981881128/ 台北市信義區松高路9號25F',
-      },
-    ],
-  },
-  'sasdkmskkw12': {
-    type: 'Transportation',
-    image: 'https://images.unsplash.com/photo-1492666918209-d0a9ea801f2f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80',
-    licensePlate: [{
-      license: 'AKA - 969',
-      isPolluted: true
-    }, {
-      license: 'YHU - 122',
-      isPolluted: false
-    }, {
-      license: 'AYA - 293',
-      isPolluted: false
-    }, {
-      license: 'AYA - 293',
-      isPolluted: true
-    }, {
-      license: 'QSX - 378',
-      isPolluted: false
-    }, {
-      license: 'YHU - 122',
-      isPolluted: false
-    }, ],
-    pollutedCarOwnerInfo: [{
-        license: 'AYA - 293',
-        checkedDate: '2019/09/04',
-        owner: '張順發',
-        contactInfo: '0981881128/ 台北市信義區松高路9號25F',
-      },
-      {
-        license: 'AYA - 293',
-        checkedDate: '2019/09/04',
-        owner: '張順發',
-        contactInfo: '0981881128/ 台北市信義區松高路9號25F',
-      },
-    ],
-  },
-}
-
-
-
-// class
-let OvalIcon = L.Icon.extend({
-  options: {
-    // shadowUrl: 'assets/img/icons/shadow.png',
-    iconSize: [30, 30], // size of the icon
-    shadowSize: [15, 15], // size of the shadow
-    iconAnchor: [15, 15], // point of the icon which will correspond to marker's location
-    shadowAnchor: [15, 15], // the same for the shadow
-    popupAnchor: [30, 30] // point from which the popup should open relative to the iconAnchor
-  }
-});
-
-let constructionIcon = new OvalIcon({
-    iconUrl: 'assets/img/icons/Construction.png'
-  }),
-  cameraIcon = new OvalIcon({
-    iconUrl: 'assets/img/icons/Camera.png'
-  }),
-  factoryIcon = new OvalIcon({
-    iconUrl: 'assets/img/icons/Factory.png'
-  }),
-  restaurantIcon = new OvalIcon({
-    iconUrl: 'assets/img/icons/Restaurant.png'
-  }),
-  selectedConstructionIcon = new OvalIcon({
-    iconUrl: 'assets/img/icons/Construction_selected.png'
-  }),
-  selectedCameraIcon = new OvalIcon({
-    iconUrl: 'assets/img/icons/Camera_selected.png'
-  }),
-  selectedFactoryIcon = new OvalIcon({
-    iconUrl: 'assets/img/icons/Factory_selected.png'
-  }),
-  selectedRestaurantIcon = new OvalIcon({
-    iconUrl: 'assets/img/icons/Restaurant_selected.png'
-  });
-
-// var
-let lastClickIcon, iconMarkers = {},
-  map = L.map('mapid').setView([25.009055, 121.464866], 11),
-  marker = L.marker(map.getCenter(), {
-    draggable: true,
-    autoPan: true,
-    opacity: 0,
-  }).addTo(map),
-  circle = L.circle(map.getCenter(), {
-    color: '#fff00',
-    fillColor: '#fff',
-    fillOpacity: 0, //0.3,
-    radius: 1000
-  }).addTo(map),
-  layerGroup = L.layerGroup().addTo(map),
-  elements = {
-    constructionEl: document.querySelector("#construction"),
-    factoryEl: document.querySelector("#factory"),
-    restaurantEl: document.querySelector("#restaurant"),
-    cameraEl: document.querySelector("#camera"),
-    iconMenu: document.querySelector(".icon-menu"),
-    pieChart: document.querySelector(".pie-chart"),
-    nameList: document.querySelector(".name-list"),
-    myChart: document.getElementById('myChart').getContext('2d')
-  },
-  dataList;
-
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution: '<a href="https://www.openstreetmap.org/">OSM</a>',
   maxZoom: 18,
@@ -364,36 +138,6 @@ const onMarkerMoveStart = _ => {
   layerGroup.clearLayers(); // https://stackoverflow.com/questions/41256026/clear-marker-layers-leaflet
   // console.log("I am expired");
 }
-
-//--
-
-const createHeatmapData = gross => {
-  let points = [];
-  for (; gross > 0; gross--) {
-    points.push([
-      Math.random() > 0.5 ? 25.009055 + Math.random() * 2.5 : 25.009055 - Math.random() * 2.5,
-      Math.random() > 0.5 ? 121.464866 + Math.random() * 1.5 : 121.464866 - Math.random() * 1.5,
-      10000 * Math.random()
-    ]);
-  }
-  return points;
-}
-
-var heat = L.heatLayer(createHeatmapData(50), {
-  radius: 10,
-
-}).addTo(map);
-//     draw = true;
-// map.on({
-//     movestart: function () { draw = false; },
-//     moveend:   function () { draw = true; },
-//     mousemove: function (e) {
-//         if (draw) {
-//             heat.addLatLng(e.latlng);
-//         }
-//     }
-// })
-//--
 
 const onMarkerMoveEnd = async _ => {
   //-- 
@@ -547,7 +291,6 @@ const getNameList = async (type, selectedIconCoordinate) => {
   }
 };
 
-
 const selectNameListItem = evt => {
   // console.log(evt);
   if (evt.target.matches("li, .name-list__item")) {
@@ -645,8 +388,8 @@ const getLabelTag = type => {
 }
 // ++ add arguments, like pollute type and need to fetch or get new dataList to draw pieChart
 const renderPieChart = _ => {
-  if(elements.pieChartTitle)
-  elements.pieChart.removeChild(elements.pieChartTitle) //--
+  if (elements.pieChartTitle)
+    elements.pieChart.removeChild(elements.pieChartTitle) //--
   // console.log(dataList);
   let pieChart = new Chart(elements.myChart, {
     type: 'pie',
@@ -772,6 +515,62 @@ const onMapClick = evt => {
   // http://no2don.blogspot.com/2018/07/javascript-chartjs-pie-chart.html
 
 }
+
+const parseExcelFile = evt => {
+  var files = evt.target.files;
+  var fileReader = new FileReader();
+  fileReader.onload = function (ev) {
+    try {
+      var data = ev.target.result;
+      var workbook = XLSX.read(data, {
+        type: "binary"
+      }); // 以二進位制流方式讀取得到整份excel表格物件
+      var result = []; // 儲存獲取到的資料
+    } catch (e) {
+      console.log("檔案型別不正確");
+      return;
+    }
+    // 表格的表格範圍，可用於判斷表頭是否數量是否正確
+    var fromTo = "";
+    // 遍歷每張表讀取
+    for (var sheet in workbook.Sheets) {
+      if (workbook.Sheets.hasOwnProperty(sheet)) {
+        fromTo = workbook.Sheets[sheet]["!ref"];
+        console.log(fromTo);
+        result = result.concat(
+          XLSX.utils.sheet_to_json(workbook.Sheets[sheet])
+        );
+        // break; // 如果只取第一張表，就取消註釋這行
+      }
+    }
+    //在控制檯打印出來表格中的資料
+    // console.log(result);
+    // result.map(data => console.log(data,data['TSP'],!!data['TSP']));
+    coordinates = result.filter(data => !!data['TSP'] && (data['UTMN'] || data['UTM_N'])).map(data => [parseFloat(data['UTME'] || data['UTM_E']), parseFloat(data['UTMN'] || data['UTM_N'])]);
+    // console.log(coordinates);
+    heatmapData = coordinates.map(data => TWD97_To_lonlat(data[0], data[1], 2));
+    console.log(heatmapData);
+
+    L.heatLayer(heatmapData, {
+      radius: 10,
+    }).addTo(map);
+    //     draw = true;
+    // map.on({
+    //     movestart: function () { draw = false; },
+    //     moveend:   function () { draw = true; },
+    //     mousemove: function (e) {
+    //         if (draw) {
+    //             heat.addLatLng(e.latlng);
+    //         }
+    //     }
+    // })
+    //--
+  };
+  // 以二進位制方式開啟檔案
+  fileReader.readAsBinaryString(files[0]);
+}
+
+elements.fileInput.addEventListener('change', parseExcelFile, false);
 
 addMultiListener(["movestart, dragstart, move, drag"], marker, onMarkerMoveStart);
 addMultiListener(["moveend, dragend"], marker, onMarkerMoveEnd);

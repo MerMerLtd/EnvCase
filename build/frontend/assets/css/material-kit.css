@@ -16408,6 +16408,15 @@ button {
   width: 100vw;
   height: 100vh; }
 
+#excel-file {
+  position: absolute;
+  top: 30px;
+  left: 60px;
+  z-index: 1000;
+  padding: 0;
+  width: 200px;
+  border: none; }
+
 .flex-box {
   display: -webkit-box;
   display: flex;

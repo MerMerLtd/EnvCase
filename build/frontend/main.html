@@ -40,6 +40,9 @@
 
     <!-- chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <!-- excel to json -->
+    <!-- <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script> -->
+    <script src="https://cdn.bootcss.com/xlsx/0.11.5/xlsx.core.min.js"></script>
 
     <title>Main</title>
   </head>
@@ -49,6 +52,7 @@
     <!-- <div class="flex-box" style="width: 100vw;">
       <input type="text" name="searchbar" id="searchbar">
     </div> -->
+    <input type="file" id="excel-file" />
     <div class="flex-box">
       <div class="icon-menu">
         <div class="icon-menu__checkbox-group">
@@ -133,7 +137,6 @@
   ></script>
 
   <!--   Plugins JS Files   -->
-  <script src="./assets/js/customs/coordinate_transform.js"></script>
   <script src="./assets/js/plugins/moment.min.js"></script>
   <!-- <script src="./assets/js/plugins/heatmap.js"></script>
   <script src="./assets/js/plugins/gmaps-heatmap.js"></script> -->

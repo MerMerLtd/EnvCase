@@ -9,6 +9,7 @@
   <body>
     <input type="file" id="excel-file" />
     <script>
+      let coordinates;
       //給input標籤繫結change事件，一上傳選中的.xls檔案就會觸發該函式
       $("#excel-file").change(function(e) {
         var files = e.target.files;
@@ -19,7 +20,7 @@
             var workbook = XLSX.read(data, {
               type: "binary"
             }); // 以二進位制流方式讀取得到整份excel表格物件
-            var persons = []; // 儲存獲取到的資料
+            var result = []; // 儲存獲取到的資料
           } catch (e) {
             console.log("檔案型別不正確");
             return;
@@ -31,14 +32,17 @@
             if (workbook.Sheets.hasOwnProperty(sheet)) {
               fromTo = workbook.Sheets[sheet]["!ref"];
               console.log(fromTo);
-              persons = persons.concat(
+              result = result.concat(
                 XLSX.utils.sheet_to_json(workbook.Sheets[sheet])
               );
               // break; // 如果只取第一張表，就取消註釋這行
             }
           }
           //在控制檯打印出來表格中的資料
-          console.log(persons);
+          console.log(result);
+          // result.map(data => console.log(data,data['TSP'],!!data['TSP']));
+          coordinates = result.filter(data => !!data['TSP'] && (data['UTMN']||data['UTM_N'])).map(data => [parseFloat(data['UTME']||data['UTM_E']),parseFloat(data['UTMN']||data['UTM_N'])]);
+          console.log(coordinates);
         };
         // 以二進位制方式開啟檔案
         fileReader.readAsBinaryString(files[0]);
