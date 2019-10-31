@@ -198,7 +198,7 @@ let constructionIcon = new OvalIcon({
   });
 
 // var
-let dataList, lastClickIcon, iconMarkers = {},
+let lastClickIcon, iconMarkers = {},
   map = L.map('mapid').setView([25.009055, 121.464866], 11),
   marker = L.marker(map.getCenter(), {
     draggable: true,
@@ -220,8 +220,9 @@ let dataList, lastClickIcon, iconMarkers = {},
     iconMenu: document.querySelector(".icon-menu"),
     pieChart: document.querySelector(".pie-chart"),
     nameList: document.querySelector(".name-list"),
-    ctx: document.getElementById('myChart').getContext('2d')
-  };
+    myChart: document.getElementById('myChart').getContext('2d')
+  },
+  dataList;
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution: '<a href="https://www.openstreetmap.org/">OSM</a>',
@@ -368,19 +369,19 @@ const onMarkerMoveStart = _ => {
 
 const createHeatmapData = gross => {
   let points = [];
-  for(; gross>0;gross--){
+  for (; gross > 0; gross--) {
     points.push([
-      Math.random()>0.5? 25.009055+Math.random()*2.5:25.009055-Math.random()*2.5,
-      Math.random()>0.5? 121.464866+Math.random()*1.5:121.464866-Math.random()*1.5,
-      10000*Math.random()
+      Math.random() > 0.5 ? 25.009055 + Math.random() * 2.5 : 25.009055 - Math.random() * 2.5,
+      Math.random() > 0.5 ? 121.464866 + Math.random() * 1.5 : 121.464866 - Math.random() * 1.5,
+      10000 * Math.random()
     ]);
   }
   return points;
 }
 
-var heat = L.heatLayer(createHeatmapData(50),{
-  radius:10,
-  
+var heat = L.heatLayer(createHeatmapData(50), {
+  radius: 10,
+
 }).addTo(map);
 //     draw = true;
 // map.on({
@@ -427,8 +428,8 @@ const onMarkerMoveEnd = async _ => {
           lat: marker.getLatLng().lat + Math.random() * 0.0075,
           lng: marker.getLatLng().lng + Math.random() * 0.0075,
         },
-        type: "Construction", // (dummy data: create a dummy int i between 0 - 3, pick one in type array, ex dummyData[i]["type"])
-        name: "大漢預拌廠股份有限公司", //dummyData[i]["type"]
+        type: "Construction",
+        name: "大漢預拌廠股份有限公司",
       },
       {
         id: "234jdajw923",
@@ -436,16 +437,16 @@ const onMarkerMoveEnd = async _ => {
           lat: marker.getLatLng().lat + Math.random() * 0.0075,
           lng: marker.getLatLng().lng + Math.random() * 0.0075,
         },
-        type: "Construction", // (dummy data: create a dummy int i between 0 - 3, pick one in type array, ex dummyData[i]["type"])
-        name: "漢鼎建設股份有限公司", //dummyData[i]["type"]
+        type: "Construction",
+        name: "漢鼎建設股份有限公司",
       }, {
         id: "234jdhyw923",
         latlng: {
           lat: marker.getLatLng().lat + Math.random() * -0.0075,
           lng: marker.getLatLng().lng + Math.random() * 0.0075,
         },
-        type: "Factory", // (dummy data: create a dummy int i between 0 - 3, pick one in type array, ex dummyData[i]["type"])
-        name: "宏穎真空鍍金股份有限公司", //dummyData[i]["type"]
+        type: "Factory",
+        name: "宏穎真空鍍金股份有限公司",
       },
       {
         id: "234jdasw923",
@@ -453,16 +454,16 @@ const onMarkerMoveEnd = async _ => {
           lat: marker.getLatLng().lat + Math.random() * -0.0075,
           lng: marker.getLatLng().lng + Math.random() * 0.0075,
         },
-        type: "Factory", // (dummy data: create a dummy int i between 0 - 3, pick one in type array, ex dummyData[i]["type"])
-        name: "積體電路股份有限公司", //dummyData[i]["type"]
+        type: "Factory",
+        name: "積體電路股份有限公司",
       }, {
         id: "234jdbuw123",
         latlng: {
           lat: marker.getLatLng().lat + Math.random() * 0.0075,
           lng: marker.getLatLng().lng + Math.random() * -0.0075,
         },
-        type: "Restaurant", // (dummy data: create a dummy int i between 0 - 3, pick one in type array, ex dummyData[i]["type"])
-        name: "珍好味小吃店", //dummyData[i]["type"]
+        type: "Restaurant",
+        name: "珍好味小吃店",
       },
       {
         id: "234jdb0w123",
@@ -470,32 +471,32 @@ const onMarkerMoveEnd = async _ => {
           lat: marker.getLatLng().lat + Math.random() * 0.0075,
           lng: marker.getLatLng().lng + Math.random() * -0.0075,
         },
-        type: "Restaurant", // (dummy data: create a dummy int i between 0 - 3, pick one in type array, ex dummyData[i]["type"])
-        name: "廟口鴨肉飯", //dummyData[i]["type"]
+        type: "Restaurant",
+        name: "廟口鴨肉飯",
       }, {
         id: "234jklouw923",
         latlng: {
           lat: marker.getLatLng().lat + Math.random() * -0.0075,
           lng: marker.getLatLng().lng + Math.random() * -0.0075,
         },
-        type: "Transportation", // (dummy data: create a dummy int i between 0 - 3, pick one in type array, ex dummyData[i]["type"])
-        name: "橋中二街街口", //dummyData[i]["type"]
+        type: "Transportation",
+        name: "橋中二街街口",
       }, {
         id: "sasdkmskkw12",
         latlng: {
           lat: marker.getLatLng().lat + Math.random() * -0.0075,
           lng: marker.getLatLng().lng + Math.random() * -0.0075,
         },
-        type: "Transportation", // (dummy data: create a dummy int i between 0 - 3, pick one in type array, ex dummyData[i]["type"])
-        name: "新北市環保局街口", //dummyData[i]["type"]
+        type: "Transportation",
+        name: "新北市環保局街口",
       },
     ],
     pollutionRatio: {
-      Construction: num -= Math.round(Math.random() * 30), //0.1,
-      Factory: num -= Math.round(Math.random() * 25), //0.2,
-      Restaurant: num -= Math.round(Math.random() * 25), //0.3,
-      Transportation: num -= Math.round(Math.random() * 15), //0.3,
-      Other: num -= Math.round(Math.random() * 5), // 0.1,
+      Construction: num -= Math.round(Math.random() * 30),
+      Factory: num -= Math.round(Math.random() * 25),
+      Restaurant: num -= Math.round(Math.random() * 25),
+      Transportation: num -= Math.round(Math.random() * 15),
+      Other: num -= Math.round(Math.random() * 5),
     },
     other: {
       note: "還有一部份污染推斷是來至其他線上，請參考空氣網的大氣流動模擬圖"
@@ -503,7 +504,8 @@ const onMarkerMoveEnd = async _ => {
   }
   // UI - 根據坐標 render company 到地圖上
   controlPannel(dataList);
-
+  console.log(dataList);
+  return dataList;
 
   // 6. 在地圖上加上功能選單 - 點選PM2.5污染源分析圓餅圖上的移動污染源（帶入參數呼叫API）副: 呈現實時的監視器畫面（還未確定來源)
 }
@@ -627,16 +629,26 @@ const toggleUnSelectedType = () => {
   });
 }
 
-const onMapClick = evt => {
-  // 1. get marker latlng
-  marker.setOpacity(1);
-  marker.setLatLng(evt.latlng); //.update()
-  // 2. 取得附近（方圓？？，在最一開始就設定了，現在不可更改 // ++ ）營建、餐飲、工廠、路肩攝影機的坐標，並畫到畫面上
-  onMarkerMoveEnd();
-  // 3. 在地圖上加上功能選單 - 顯示控制該區塊類別的checkbox list
-  elements.iconMenu.style.display = "block";
-  // 4. 在地圖上加上功能選單 -  跳出PM2.5污染源分析資料（帶入坐標呼叫API）
-  let pieChart = new Chart(elements.ctx, {
+const getLabelTag = type => {
+  switch (type) {
+    case 'Construction':
+      return '營建業';
+    case 'Factory':
+      return '工廠';
+    case 'Restaurant':
+      return '餐飲業';
+    case 'Transportation':
+      return '移動污染源';
+    default:
+      return '其他';
+  }
+}
+// ++ add arguments, like pollute type and need to fetch or get new dataList to draw pieChart
+const renderPieChart = _ => {
+  if(elements.pieChartTitle)
+  elements.pieChart.removeChild(elements.pieChartTitle) //--
+  // console.log(dataList);
+  let pieChart = new Chart(elements.myChart, {
     type: 'pie',
     data: {
       labels: Object.keys(dataList.pollutionRatio),
@@ -706,7 +718,7 @@ const onMapClick = evt => {
                 var value = chart.config.data.datasets[chart.getDatasetMeta(0).data[i]._datasetIndex].data[chart.getDatasetMeta(0).data[i]._index];
                 // console.log(chart.config.data.datasets[chart.getDatasetMeta(0).data[i]._datasetIndex]);
                 return {
-                  text: label + ": " + value + "%",
+                  text: getLabelTag(label), //label + ": " + value + "%",
                   fillStyle: fill,
                   strokeStyle: stroke,
                   lineWidth: bw,
@@ -731,8 +743,32 @@ const onMapClick = evt => {
       }
     },
   });
+  const markup = ` <p class="pie-chart__title">PM2.5 污染原分析</p>`;
+  elements.pieChart.insertAdjacentHTML('afterbegin', markup);
+  // elements.pieChart.classList.remove('not-display');
   elements.pieChart.style.backgroundColor = "#000000c0";
   elements.pieChart.style.display = "block";
+  elements = {
+    ...elements,
+    pieChartTitle: document.querySelector('.pie-chart__title')
+  };
+  multiElsAddListener([elements.pieChartTitle], 'click', evt => {
+    evt.target.style.color = '#ffc100';
+    renderPieChart();
+  });
+
+}
+
+const onMapClick = evt => {
+  // 1. get marker latlng
+  marker.setOpacity(1);
+  marker.setLatLng(evt.latlng); //.update()
+  // 2. 取得附近（方圓？？，在最一開始就設定了，現在不可更改 // ++ ）營建、餐飲、工廠、路肩攝影機的坐標，並畫到畫面上
+  onMarkerMoveEnd();
+  // 3. 在地圖上加上功能選單 - 顯示控制該區塊類別的checkbox list
+  elements.iconMenu.style.display = "block";
+  // 4. 在地圖上加上功能選單 -  跳出PM2.5污染源分析資料（帶入坐標呼叫API）
+  renderPieChart();
   // http://no2don.blogspot.com/2018/07/javascript-chartjs-pie-chart.html
 
 }
