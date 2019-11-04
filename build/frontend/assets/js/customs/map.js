@@ -1,3 +1,68 @@
+// class
+let OvalIcon = L.Icon.extend({
+  options: {
+    // shadowUrl: 'assets/img/icons/shadow.png',
+    iconSize: [30, 30], // size of the icon
+    shadowSize: [15, 15], // size of the shadow
+    iconAnchor: [15, 15], // point of the icon which will correspond to marker's location
+    shadowAnchor: [15, 15], // the same for the shadow
+    popupAnchor: [30, 30] // point from which the popup should open relative to the iconAnchor
+  }
+});
+
+let constructionIcon = new OvalIcon({
+    iconUrl: 'assets/img/icons/Construction.png'
+  }),
+  cameraIcon = new OvalIcon({
+    iconUrl: 'assets/img/icons/Camera.png'
+  }),
+  factoryIcon = new OvalIcon({
+    iconUrl: 'assets/img/icons/Factory.png'
+  }),
+  restaurantIcon = new OvalIcon({
+    iconUrl: 'assets/img/icons/Restaurant.png'
+  }),
+  selectedConstructionIcon = new OvalIcon({
+    iconUrl: 'assets/img/icons/Construction_selected.png'
+  }),
+  selectedCameraIcon = new OvalIcon({
+    iconUrl: 'assets/img/icons/Camera_selected.png'
+  }),
+  selectedFactoryIcon = new OvalIcon({
+    iconUrl: 'assets/img/icons/Factory_selected.png'
+  }),
+  selectedRestaurantIcon = new OvalIcon({
+    iconUrl: 'assets/img/icons/Restaurant_selected.png'
+  });
+
+// var
+let lastClickIcon, iconMarkers = {},
+  map = L.map('mapid').setView([25.009055, 121.464866], 11),
+  marker = L.marker(map.getCenter(), {
+    draggable: true,
+    autoPan: true,
+    opacity: 0,
+  }).addTo(map),
+  circle = L.circle(map.getCenter(), {
+    color: '#fff00',
+    fillColor: '#fff',
+    fillOpacity: 0, //0.3,
+    radius: 1000
+  }).addTo(map),
+  layerGroup = L.layerGroup().addTo(map),
+  elements = {
+    constructionEl: document.querySelector("#construction"),
+    factoryEl: document.querySelector("#factory"),
+    restaurantEl: document.querySelector("#restaurant"),
+    cameraEl: document.querySelector("#camera"),
+    iconMenu: document.querySelector(".icon-menu"),
+    pieChart: document.querySelector(".pie-chart"),
+    nameList: document.querySelector(".name-list"),
+    myChart: document.getElementById('myChart').getContext('2d'),
+    fileInput: document.querySelector('#excel-file'),
+  },
+  dataList, coordinates, heatmapData;
+
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution: '<a href="https://www.openstreetmap.org/">OSM</a>',
   maxZoom: 18,
@@ -45,6 +110,54 @@ const selectedIcon = (iconMarker) => {
   // console.log(type, evt.target);
   //++ ask backend to get the nameList by passing latlng & type
   getNameList(iconMarker.options.type, iconMarker.getLatLng());
+}
+
+const switchIcon = (iconMarker) => {
+  // console.log(iconMarker);
+  let iconUrl = iconMarker.options.type;
+  // if (iconMarker) {
+  //     iconUrl = iconMarker.options.iconMarker.options.iconUrl;
+  //     iconUrl = iconUrl.replace("assets/img/icons/", "");
+  //     iconUrl = iconUrl.replace(".png", "");
+  // }
+  // iconMarker.options.type
+  // switch (iconUrl) {
+  switch (iconMarker.options.type) {
+      case "Factory":
+          // if(!iconMarker.options.isSelected){
+          //     iconMarker.setIcon(factoryIcon);
+          //     document.querySelector(`[data-id='${iconMarker.options.id}']`).style.color = "yellow";
+          // }else{
+          //     iconMarker.setIcon(selectedFactoryIcon);
+          //     document.querySelector(`[data-id='${iconMarker.options.id}']`).style.color = "white";
+          // }
+          !iconMarker.options.isSelected ? iconMarker.setIcon(factoryIcon) : iconMarker.setIcon(selectedFactoryIcon);
+          break;
+      case "Construction":
+          !iconMarker.options.isSelected ? iconMarker.setIcon(constructionIcon) : iconMarker.setIcon(selectedConstructionIcon);
+          break;
+      case "Restaurant":
+          !iconMarker.options.isSelected ? iconMarker.setIcon(restaurantIcon) : iconMarker.setIcon(selectedRestaurantIcon);
+          break;
+      case "Transportation":
+          !iconMarker.options.isSelected ? iconMarker.setIcon(cameraIcon) : iconMarker.setIcon(selectedCameraIcon);
+          iconUrl = "Transportation"; // ++
+          break;
+          // case "Factory_selected":
+          //     iconMarker.setIcon(factoryIcon);
+          //     break;
+          // case "Construction_selected":
+          //     iconMarker.setIcon(constructionIcon);
+          //     break;
+          // case "Restaurant_selected":
+          //     iconMarker.setIcon(restaurantIcon);
+          //     break;
+          // case "Camera_selected":
+          //     iconMarker.setIcon(cameraIcon);
+          //     break;
+      default:
+  }
+  return iconUrl;
 }
 
 const controlPannel = evt => {
