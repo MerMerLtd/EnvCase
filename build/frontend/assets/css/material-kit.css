@@ -16637,4 +16637,120 @@ button {
       .transportation__owner-info ul:last-child {
         padding-bottom: 10px; }
 
+.display-progress {
+  margin: 20px 0;
+  z-index: 10000;
+  position: absolute; }
+
+#timeline {
+  position: absolute;
+  bottom: 32px;
+  left: 45%;
+  z-index: 1500;
+  width: 80%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%); }
+
+.timeline {
+  display: -webkit-box;
+  display: flex;
+  padding-top: 20px;
+  -webkit-box-align: center;
+          align-items: center; }
+  .timeline .play-btn {
+    float: left;
+    background-color: #fff;
+    height: 29px;
+    width: 29px;
+    border-radius: 100px;
+    box-shadow: 2px 2px rgba(0, 0, 0, 0.6);
+    text-align: center;
+    cursor: pointer; }
+    .timeline .play-btn:hover {
+      opacity: 0.8; }
+    .timeline .play-btn .fa-play {
+      position: relative;
+      left: 2px; }
+    .timeline .play-btn .fa-stop {
+      position: relative;
+      left: 0px; }
+    .timeline .play-btn .text {
+      color: #bf1919;
+      margin: 7px;
+      font-size: 14px; }
+  .timeline .play-btn.disabled {
+    opacity: 0.5; }
+    .timeline .play-btn.disabled:hover {
+      opacity: 0.5; }
+  .timeline .bar_container {
+    position: relative;
+    float: left;
+    width: auto;
+    margin-left: 11px;
+    -webkit-box-flex: 1;
+            flex: 1; }
+    .timeline .bar_container .progress_bar {
+      width: 100%;
+      height: 10px;
+      cursor: pointer; }
+      .timeline .bar_container .progress_bar .progress {
+        border-radius: 8px;
+        background-color: #fff;
+        z-index: 110; }
+      .timeline .bar_container .progress_bar .bar {
+        border-radius: 8px;
+        height: 4px;
+        position: absolute; }
+      .timeline .bar_container .progress_bar .background {
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.6);
+        z-index: 100; }
+    .timeline .bar_container .tip_bar {
+      width: 100%;
+      height: 12px; }
+      .timeline .bar_container .tip_bar .text {
+        position: absolute;
+        background-color: #ffffffc8;
+        box-shadow: 3px 3px rgba(0, 0, 0, 0.4);
+        font-size: 14px;
+        padding: 0 0 0 10px;
+        margin-top: -24px;
+        margin-left: -13px;
+        border-radius: 5px;
+        text-align: left;
+        left: 1%;
+        z-index: 900;
+        cursor: pointer;
+        white-space: nowrap;
+        width: auto;
+        display: -webkit-box;
+        display: flex;
+        -webkit-box-align: center;
+                align-items: center; }
+      .timeline .bar_container .tip_bar .pannel {
+        position: absolute;
+        background-color: #ffffffc8;
+        box-shadow: 3px 3px rgba(0, 0, 0, 0.4);
+        font-size: 14px;
+        padding: 0 0 0 10px;
+        margin-top: -33px;
+        margin-left: -13px;
+        border-radius: 5px;
+        text-align: left;
+        left: 1%;
+        z-index: 900;
+        bottom: 22px;
+        display: -webkit-box;
+        display: flex;
+        -webkit-box-align: start;
+                align-items: flex-start; }
+      .timeline .bar_container .tip_bar .arrow {
+        position: absolute;
+        color: #ffffffc9;
+        margin-top: -8px;
+        margin-left: -7px;
+        font-size: 14px;
+        left: 1%;
+        z-index: 900; }
+
 /*# sourceMappingURL=build/frontend/material-kit.css.map */
