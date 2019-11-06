@@ -42,37 +42,33 @@
         <div class="play-btn"><i class="text fas fa-play"></i></div>
         <div class="bar_container">
           <div class="tip_bar" style="visibility: visible;">
-            <div class="text " style="left: 0%;">
-              <span>2019/11/05 - 13:00:00 - 72時</span>
-              <i class="material-icons">
-                arrow_drop_up
-              </i>
-            </div>
-            <!-- <div class="pannel " style="left: 0%;">
-              <div>
+              <div class="circle ui-draggable ui-draggable-handle" style="left: 100%;"></div>
+            <div class="pannel" style="left: 1%;">
+              <div class="summary not-display"><span>2019/11/05</span> - <span>日</span></div>
+              <div class="config">
                 <div>起始時間</div>
-                <div>2019/11/05 - 13:00:00</div>
+                <input type="date" name="timeline-date" id="date" value="2019-11-05">
                 <div>時間長度</div>
-                <div>
-                  <span>24時</span>
-                  <span>1週</span>
-                  <span>1月</span>
-                  <span>1季</span>
-                  <span>1年</span>
+                <div class="time-length">
+                  <span class='selected ' data-type="hr"> 日</span>
+                  <span class='' data-type="week"> 週</span>
+                  <span class='' data-type="month"> 月</span>
+                  <span class='' data-type="season"> 季</span>
+                  <span class='' data-type="year"> 年</span>
                 </div>
-                <div>時間單位</div>
-                <div>
-                  <span>30秒</span>
-                  <span>10分鐘</span>
-                  <span>1時</span>
-                </div>
+                <!-- <div>時間單位</div> -->
+                <!-- <div class="time-unit">
+                  <span data-unit="week">30秒</span>
+                  <span data-unit="week">10分鐘</span>
+                  <span data-unit="week">1時</span>
+                </div> -->
               </div>
               <i class="material-icons">
                 arrow_drop_down
               </i>
-            </div> -->
+            </div>
 
-            <div class="arrow" style="left: 0%;">▼</div>
+            <div class="arrow" style="left: 1%;">▼</div>
           </div>
           <div class="progress_bar">
             <div class="progress bar" style="width: 100%;"></div>
