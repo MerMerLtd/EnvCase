@@ -723,7 +723,7 @@ const parseExcelFile = evt => {
       data: setHeatmapPollutedType('PM25'),
     });
 
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 20; i++) {
       animateData.push({
         ...setHeatmapPollutedType('PM25'),
         count: setHeatmapPollutedType('PM25')['count'] * Math.random() * 1.5
