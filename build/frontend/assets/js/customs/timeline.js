@@ -1,4 +1,5 @@
-let elements = {
+elements = {
+    ...elements,
     timelineConfigPannelBtn: document.querySelector('.timeline .bar_container .pannel i'),
     timelineConfig: document.querySelector('.timeline .bar_container .pannel .config'),
     timelineSummary: document.querySelector('.timeline .bar_container .pannel .summary'),
@@ -85,7 +86,7 @@ const togglePlay = evt => {
     if (playBtnIcon.classList.contains('fa-play')) {
         playBtnIcon.classList.remove('fa-play');
         playBtnIcon.classList.add('fa-pause');
-        let progress = parseFloat(elements.timelineProgressBar.style.width.replace('%', ''))/100;
+        let progress = parseFloat(elements.timelineProgressBar.style.width.replace('%', '')) / 100;
         // testtest = setInterval(() => {
         //     if (progress < 100) {
         //         progress += 0.1;

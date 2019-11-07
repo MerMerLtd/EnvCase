@@ -82,20 +82,19 @@ let lastClickIcon, iconMarkers = {},
   }).addTo(map),
   layerGroup = L.layerGroup().addTo(map),
   dataList, coordinates = [],
-  heatmapData = [];
-elements = {
-  ...elements,
-  constructionEl: document.querySelector("#construction"),
-  factoryEl: document.querySelector("#factory"),
-  restaurantEl: document.querySelector("#restaurant"),
-  cameraEl: document.querySelector("#camera"),
-  iconMenu: document.querySelector(".icon-menu"),
-  pieChart: document.querySelector(".pie-chart"),
-  nameList: document.querySelector(".name-list"),
-  myChart: document.getElementById('myChart').getContext('2d'),
-  fileInput: document.querySelector('#excel-file'),
-};
-
+  heatmapData = [],
+  elements = {
+    constructionEl: document.querySelector("#construction"),
+    factoryEl: document.querySelector("#factory"),
+    restaurantEl: document.querySelector("#restaurant"),
+    cameraEl: document.querySelector("#camera"),
+    iconMenu: document.querySelector(".icon-menu"),
+    pieChart: document.querySelector(".pie-chart"),
+    nameList: document.querySelector(".name-list"),
+    myChart: document.getElementById('myChart').getContext('2d'),
+    fileInput: document.querySelector('#excel-file'),
+  },
+  animateData = [];
 
 const selectedIcon = (iconMarker) => {
   if (lastClickIcon) {
@@ -718,26 +717,20 @@ const parseExcelFile = evt => {
         data[' NMHC'] ? delete data[' NMHC'] : null;
         return data;
       });
-    console.log(setHeatmapPollutedType('PM25'));
+    // console.log(setHeatmapPollutedType('PM25'));
     heatmapLayer.setData({
       // max: 8,
       data: setHeatmapPollutedType('PM25'),
     });
-    // console.log(heatmapData);
-    // L.heatLayer(heatmapData, {
-    //   radius: 10,
-    // }).addTo(map);
-    //     draw = true;
-    // map.on({
-    //     movestart: function () { draw = false; },
-    //     moveend:   function () { draw = true; },
-    //     mousemove: function (e) {
-    //         if (draw) {
-    //             heat.addLatLng(e.latlng);
-    //         }
-    //     }
-    // })
-    //--
+
+    for (let i = 0; i < 10; i++) {
+      animateData.push({
+        ...setHeatmapPollutedType('PM25'),
+        count: setHeatmapPollutedType('PM25')['count'] * Math.random() * 1.5
+      });
+    }
+    console.log(animateData);
+
   };
   // 以二進位制方式開啟檔案
   fileReader.readAsBinaryString(files[0]);
