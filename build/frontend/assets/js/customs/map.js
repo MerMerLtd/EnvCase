@@ -35,9 +35,40 @@ let constructionIcon = new OvalIcon({
     iconUrl: 'assets/img/icons/Restaurant_selected.png'
   });
 
+let baseLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '<a href="https://www.openstreetmap.org/">OSM</a>',
+  maxZoom: 18,
+});
+
+let cfg = {
+  // radius should be small ONLY if scaleRadius is true (or small radius is intended)
+  // if scaleRadius is false it will be the constant radius used in pixels
+  "radius": .01,
+  "maxOpacity": .8,
+  // scales the radius based on map zoom
+  "scaleRadius": true,
+  // if set to false the heatmap uses the global maximum for colorization
+  // if activated: uses the data maximum within the current map boundaries
+  //   (there will always be a red spot with useLocalExtremas true)
+  "useLocalExtrema": true,
+  // which field name in your data represents the latitude - default "lat"
+  latField: 'lat',
+  // which field name in your data represents the longitude - default "lng"
+  lngField: 'lng',
+  // which field name in your data represents the data value - default "value"
+  valueField: 'count'
+};
+
+let heatmapLayer = new HeatmapOverlay(cfg);
+
+let map = L.map('mapid', {
+  center: [25.009055, 121.464866],
+  zoom: 11,
+  layers: [baseLayer, heatmapLayer],
+});
+
 // var
 let lastClickIcon, iconMarkers = {},
-  map = L.map('mapid').setView([25.009055, 121.464866], 11),
   marker = L.marker(map.getCenter(), {
     draggable: true,
     autoPan: true,
@@ -50,23 +81,21 @@ let lastClickIcon, iconMarkers = {},
     radius: 1000
   }).addTo(map),
   layerGroup = L.layerGroup().addTo(map),
-  elements = {
-    constructionEl: document.querySelector("#construction"),
-    factoryEl: document.querySelector("#factory"),
-    restaurantEl: document.querySelector("#restaurant"),
-    cameraEl: document.querySelector("#camera"),
-    iconMenu: document.querySelector(".icon-menu"),
-    pieChart: document.querySelector(".pie-chart"),
-    nameList: document.querySelector(".name-list"),
-    myChart: document.getElementById('myChart').getContext('2d'),
-    fileInput: document.querySelector('#excel-file'),
-  },
-  dataList, coordinates, heatmapData;
+  dataList, coordinates = [],
+  heatmapData = [];
+elements = {
+  ...elements,
+  constructionEl: document.querySelector("#construction"),
+  factoryEl: document.querySelector("#factory"),
+  restaurantEl: document.querySelector("#restaurant"),
+  cameraEl: document.querySelector("#camera"),
+  iconMenu: document.querySelector(".icon-menu"),
+  pieChart: document.querySelector(".pie-chart"),
+  nameList: document.querySelector(".name-list"),
+  myChart: document.getElementById('myChart').getContext('2d'),
+  fileInput: document.querySelector('#excel-file'),
+};
 
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  attribution: '<a href="https://www.openstreetmap.org/">OSM</a>',
-  maxZoom: 18,
-}).addTo(map);
 
 const selectedIcon = (iconMarker) => {
   if (lastClickIcon) {
@@ -123,39 +152,39 @@ const switchIcon = (iconMarker) => {
   // iconMarker.options.type
   // switch (iconUrl) {
   switch (iconMarker.options.type) {
-      case "Factory":
-          // if(!iconMarker.options.isSelected){
-          //     iconMarker.setIcon(factoryIcon);
-          //     document.querySelector(`[data-id='${iconMarker.options.id}']`).style.color = "yellow";
-          // }else{
-          //     iconMarker.setIcon(selectedFactoryIcon);
-          //     document.querySelector(`[data-id='${iconMarker.options.id}']`).style.color = "white";
-          // }
-          !iconMarker.options.isSelected ? iconMarker.setIcon(factoryIcon) : iconMarker.setIcon(selectedFactoryIcon);
-          break;
-      case "Construction":
-          !iconMarker.options.isSelected ? iconMarker.setIcon(constructionIcon) : iconMarker.setIcon(selectedConstructionIcon);
-          break;
-      case "Restaurant":
-          !iconMarker.options.isSelected ? iconMarker.setIcon(restaurantIcon) : iconMarker.setIcon(selectedRestaurantIcon);
-          break;
-      case "Transportation":
-          !iconMarker.options.isSelected ? iconMarker.setIcon(cameraIcon) : iconMarker.setIcon(selectedCameraIcon);
-          iconUrl = "Transportation"; // ++
-          break;
-          // case "Factory_selected":
-          //     iconMarker.setIcon(factoryIcon);
-          //     break;
-          // case "Construction_selected":
-          //     iconMarker.setIcon(constructionIcon);
-          //     break;
-          // case "Restaurant_selected":
-          //     iconMarker.setIcon(restaurantIcon);
-          //     break;
-          // case "Camera_selected":
-          //     iconMarker.setIcon(cameraIcon);
-          //     break;
-      default:
+    case "Factory":
+      // if(!iconMarker.options.isSelected){
+      //     iconMarker.setIcon(factoryIcon);
+      //     document.querySelector(`[data-id='${iconMarker.options.id}']`).style.color = "yellow";
+      // }else{
+      //     iconMarker.setIcon(selectedFactoryIcon);
+      //     document.querySelector(`[data-id='${iconMarker.options.id}']`).style.color = "white";
+      // }
+      !iconMarker.options.isSelected ? iconMarker.setIcon(factoryIcon) : iconMarker.setIcon(selectedFactoryIcon);
+      break;
+    case "Construction":
+      !iconMarker.options.isSelected ? iconMarker.setIcon(constructionIcon) : iconMarker.setIcon(selectedConstructionIcon);
+      break;
+    case "Restaurant":
+      !iconMarker.options.isSelected ? iconMarker.setIcon(restaurantIcon) : iconMarker.setIcon(selectedRestaurantIcon);
+      break;
+    case "Transportation":
+      !iconMarker.options.isSelected ? iconMarker.setIcon(cameraIcon) : iconMarker.setIcon(selectedCameraIcon);
+      iconUrl = "Transportation"; // ++
+      break;
+      // case "Factory_selected":
+      //     iconMarker.setIcon(factoryIcon);
+      //     break;
+      // case "Construction_selected":
+      //     iconMarker.setIcon(constructionIcon);
+      //     break;
+      // case "Restaurant_selected":
+      //     iconMarker.setIcon(restaurantIcon);
+      //     break;
+      // case "Camera_selected":
+      //     iconMarker.setIcon(cameraIcon);
+      //     break;
+    default:
   }
   return iconUrl;
 }
@@ -629,6 +658,16 @@ const onMapClick = evt => {
 
 }
 
+const setHeatmapPollutedType = type => {
+  if (!heatmapData) return;
+  let heatmapDataWithType = heatmapData.map(data => ({
+    lat: data['lat'],
+    lng: data['lng'],
+    count: data[type]
+  }));
+  return heatmapDataWithType;
+}
+
 const parseExcelFile = evt => {
   var files = evt.target.files;
   var fileReader = new FileReader();
@@ -659,14 +698,35 @@ const parseExcelFile = evt => {
     //在控制檯打印出來表格中的資料
     // console.log(result);
     // result.map(data => console.log(data,data['TSP'],!!data['TSP']));
-    coordinates = result.filter(data => !!data['TSP'] && (data['UTMN'] || data['UTM_N'])).map(data => [parseFloat(data['UTME'] || data['UTM_E']), parseFloat(data['UTMN'] || data['UTM_N'])]);
+    // coordinates = result.filter(data => !!data['PM25'] && (data['UTMN'] || data['UTM_N']));//.map(data => [parseFloat(data['UTME'] || data['UTM_E']), parseFloat(data['UTMN'] || data['UTM_N']), parseFloat(data['PM25'])]);
     // console.log(coordinates);
-    heatmapData = coordinates.map(data => TWD97_To_lonlat(data[0], data[1], 2));
-    console.log(heatmapData);
-
-    L.heatLayer(heatmapData, {
-      radius: 10,
-    }).addTo(map);
+    heatmapData = result
+      .filter(data => !!data['PM25'] && (data['UTMN'] || data['UTM_N']))
+      .map((data, i) => {
+        coordinates.push(TWD97_To_lonlat(parseFloat(data['UTME'] || data['UTM_E']), data['UTMN'] || data['UTM_N'], 2));
+        // console.log(data[' NMHC']);
+        data = {
+          ...data,
+          lat: coordinates[i][0],
+          lng: coordinates[i][1],
+          NOX: parseFloat(data['NOX']),
+          PM25: parseFloat(data['PM25']),
+          SOX: parseFloat(data['SOX']),
+          TSP: parseFloat(data['TSP']),
+          NMHC: parseFloat(data[' NMHC'] || data['NMHC']),
+        };
+        data[' NMHC'] ? delete data[' NMHC'] : null;
+        return data;
+      });
+    console.log(setHeatmapPollutedType('PM25'));
+    heatmapLayer.setData({
+      // max: 8,
+      data: setHeatmapPollutedType('PM25'),
+    });
+    // console.log(heatmapData);
+    // L.heatLayer(heatmapData, {
+    //   radius: 10,
+    // }).addTo(map);
     //     draw = true;
     // map.on({
     //     movestart: function () { draw = false; },
