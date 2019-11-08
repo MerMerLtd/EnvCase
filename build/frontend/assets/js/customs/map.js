@@ -717,19 +717,21 @@ const parseExcelFile = evt => {
         data[' NMHC'] ? delete data[' NMHC'] : null;
         return data;
       });
-    // console.log(setHeatmapPollutedType('PM25'));
+    console.log(setHeatmapPollutedType('PM25'));
     heatmapLayer.setData({
       // max: 8,
       data: setHeatmapPollutedType('PM25'),
     });
 
-    for (let i = 0; i < 20; i++) {
-      animateData.push({
-        ...setHeatmapPollutedType('PM25'),
-        count: setHeatmapPollutedType('PM25')['count'] * Math.random() * 1.5
-      });
+    for (let i = 0; i <  Math.round(1000 * Math.random()); i++) {
+      let heatmapDataWithType = setHeatmapPollutedType('PM25').map(data => ({
+        ...data,
+        count: data['count'] * Math.random() * 1.5,
+      }));
+      animateData.push(heatmapDataWithType);
+      // console.log(animateData[i][0]);
+      // console.log(animateData[i][0]['count']);
     }
-    console.log(animateData);
 
   };
   // 以二進位制方式開啟檔案

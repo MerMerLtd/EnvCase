@@ -1,109 +1,109 @@
-// creating a class to wrap the heatmap cycling logic
-function AnimationPlayer(options) {
-    this.heatmap = options.heatmap;
-    this.data = options.data;
-    this.interval = null;
-    this.animationSpeed = options.animationSpeed || 300;
-    this.wrapperEl = options.wrapperEl;
-    this.isPlaying = false;
-    this.init();
-};
-// define the prototype functions
-AnimationPlayer.prototype = {
-    init: function () {
-        var dataLen = this.data.length;
-        this.wrapperEl.innerHTML = '';
-        var playButton = this.playButton = document.createElement('button');
-        playButton.onclick = function () {
-            if (this.isPlaying) {
-                this.stop();
-            } else {
-                this.play();
-            }
-            this.isPlaying = !this.isPlaying;
-        }.bind(this);
-        playButton.innerText = 'play';
+// // creating a class to wrap the heatmap cycling logic
+// function AnimationPlayer(options) {
+//     this.heatmap = options.heatmap;
+//     this.data = options.data;
+//     this.interval = null;
+//     this.animationSpeed = options.animationSpeed || 300;
+//     this.wrapperEl = options.wrapperEl;
+//     this.isPlaying = false;
+//     this.init();
+// };
+// // define the prototype functions
+// AnimationPlayer.prototype = {
+//     init: function () {
+//         var dataLen = this.data.length;
+//         this.wrapperEl.innerHTML = '';
+//         var playButton = this.playButton = document.createElement('button');
+//         playButton.onclick = function () {
+//             if (this.isPlaying) {
+//                 this.stop();
+//             } else {
+//                 this.play();
+//             }
+//             this.isPlaying = !this.isPlaying;
+//         }.bind(this);
+//         playButton.innerText = 'play';
 
-        this.wrapperEl.appendChild(playButton);
+//         this.wrapperEl.appendChild(playButton);
 
-        var events = document.createElement('div');
-        events.className = 'heatmap-timeline';
-        events.innerHTML = '';
+//         var events = document.createElement('div');
+//         events.className = 'heatmap-timeline';
+//         events.innerHTML = '';
 
-        for (var i = 0; i < dataLen; i++) {
+//         for (var i = 0; i < dataLen; i++) {
 
-            var xOffset = 100 / (dataLen - 1) * i;
+//             var xOffset = 100 / (dataLen - 1) * i;
 
-            var ev = document.createElement('div');
-            ev.className = 'time-point';
-            ev.style.left = xOffset + '%';
+//             var ev = document.createElement('div');
+//             ev.className = 'time-point';
+//             ev.style.left = xOffset + '%';
 
-            ev.onclick = (function (i) {
-                return function () {
-                    this.isPlaying = false;
-                    this.stop();
-                    this.setFrame(i);
-                }.bind(this);
-            }.bind(this))(i);
+//             ev.onclick = (function (i) {
+//                 return function () {
+//                     this.isPlaying = false;
+//                     this.stop();
+//                     this.setFrame(i);
+//                 }.bind(this);
+//             }.bind(this))(i);
 
-            events.appendChild(ev);
+//             events.appendChild(ev);
 
-        }
-        this.wrapperEl.appendChild(events);
-        this.setFrame(0);
-    },
-    play: function () {
-        var dataLen = this.data.length;
-        this.playButton.innerText = 'pause';
-        this.interval = setInterval(function () {
-            this.setFrame(++this.currentFrame % dataLen);
-        }.bind(this), this.animationSpeed)
-    },
-    stop: function () {
-        clearInterval(this.interval);
-        this.playButton.innerText = 'play';
-    },
-    setFrame: function (frame) {
-        this.currentFrame = frame;
-        var snapshot = this.data[frame];
-        this.heatmap.setData(snapshot);
-        var timePoints = $('.heatmap-timeline .time-point');
-        for (var i = 0; i < timePoints.length; i++) {
-            timePoints[i].classList.remove('active');
-        }
-        timePoints[frame].classList.add('active');
-    },
-    setAnimationData: function (data) {
-        this.isPlaying = false;
-        this.stop();
-        this.data = data;
-        this.init();
-    },
-    setAnimationSpeed: function (speed) {
-        this.isPlaying = false;
-        this.stop();
-        this.animationSpeed = speed;
-    }
-};
+//         }
+//         this.wrapperEl.appendChild(events);
+//         this.setFrame(0);
+//     },
+//     play: function () {
+//         var dataLen = this.data.length;
+//         this.playButton.innerText = 'pause';
+//         this.interval = setInterval(function () {
+//             this.setFrame(++this.currentFrame % dataLen);
+//         }.bind(this), this.animationSpeed)
+//     },
+//     stop: function () {
+//         clearInterval(this.interval);
+//         this.playButton.innerText = 'play';
+//     },
+//     setFrame: function (frame) {
+//         this.currentFrame = frame;
+//         var snapshot = this.data[frame];
+//         this.heatmap.setData(snapshot);
+//         var timePoints = $('.heatmap-timeline .time-point');
+//         for (var i = 0; i < timePoints.length; i++) {
+//             timePoints[i].classList.remove('active');
+//         }
+//         timePoints[frame].classList.add('active');
+//     },
+//     setAnimationData: function (data) {
+//         this.isPlaying = false;
+//         this.stop();
+//         this.data = data;
+//         this.init();
+//     },
+//     setAnimationSpeed: function (speed) {
+//         this.isPlaying = false;
+//         this.stop();
+//         this.animationSpeed = speed;
+//     }
+// };
 
-var heatmapInstance = h337.create({
-    container: document.querySelector('.heatmap')
-});
+// var heatmapInstance = h337.create({
+//     container: document.querySelector('.heatmap')
+// });
 
-// animationData contains an array of heatmap data objects
-var animationData = [];
+// // animationData contains an array of heatmap data objects
+// var animationData = [];
 
-// generate some heatmap data objects
-for (var i = 0; i < 20; i++) {
-    animationData.push(generateRandomData(300));
-}
+// // generate some heatmap data objects
+// for (var i = 0; i < 20; i++) {
+//     animationData.push(generateRandomData(300));
+// }
 
-var player = new AnimationPlayer({
-    heatmap: heatmapInstance,
-    wrapperEl: document.querySelector('.timeline-wrapper'),
-    data: animationData,
-    animationSpeed: 100
-});
+// var player = new AnimationPlayer({
+//     heatmap: heatmapInstance,
+//     wrapperEl: document.querySelector('.timeline-wrapper'),
+//     data: animationData,
+//     animationSpeed: 100
+// });
 
 elements = {
     ...elements,
@@ -142,8 +142,8 @@ const toggleTimelineConfigPannel = evt => {
 }
 
 const setDate = evt => {
-    console.log(elements.timelineTimeInput.value);
-    Array.from(elements.timelineSummary.children)[0].innerText = elements.timelineTimeInput.value;
+    console.log(elements.timelineSetDate.value);
+    Array.from(elements.timelineSummary.children)[0].innerText = elements.timelineSetDate.value;
 }
 
 const setTimeLength = evt => {
@@ -188,16 +188,42 @@ const setProgress = evt => {
 }
 
 const togglePlay = evt => {
+    // if (!animateData.length) return;
     const playBtnIcon = elements.timelinePlayBtn.children[0];
     // let testtest;
     if (playBtnIcon.classList.contains('fa-play')) {
         playBtnIcon.classList.remove('fa-play');
         playBtnIcon.classList.add('fa-pause');
-        let progress = parseFloat(elements.timelineProgressBar.style.width.replace('%', '')) / 100;
+        let progress = parseFloat(elements.timelineProgressBar.style.width.replace('%', ''));
+        console.log(progress);
+        renderProgress(progress / 100);
+        if (!animateData.length) {
+            playBtnIcon.classList.add('fa-play');
+            playBtnIcon.classList.remove('fa-pause');
+            return;
+        }
+        let i = Math.round(animateData.length * progress / 100);
+        // while (i < animateData.length) {
+        testtest = setInterval(() => {
+            if (i === animateData.length ) clearInterval(testtest);
+            renderProgress(i / animateData.length);
+            console.log(animateData[i], i);
+            heatmapLayer.setData({
+                data: animateData[i]
+            });
+            i++;
+        }, 1000);
+        // }
+
         // testtest = setInterval(() => {
         //     if (progress < 100) {
         //         progress += 0.1;
         //         renderProgress(progress / 100);
+        //         console.log(animateData);
+        //         if (!animateData.length) return;
+        //         heatmapLayer.setData({
+        //             data: animateData[Math.round(animateData.length * progress / 100)]
+        //         });
         //     } else {
         //         renderProgress(1);
         //         clearInterval(testtest);
@@ -206,7 +232,7 @@ const togglePlay = evt => {
         //     }
         // }, 100);
     } else if (playBtnIcon.classList.contains('fa-pause')) {
-        // clearInterval(testtest);
+        clearInterval(testtest);
         playBtnIcon.classList.add('fa-play');
         playBtnIcon.classList.remove('fa-pause');
     }
