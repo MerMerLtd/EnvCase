@@ -73,7 +73,8 @@ const play = () => {
         return;
     } // --
 
-    // animationData = to(makeRequest({
+    let err;
+    // [err, animationData] = to(makeRequest({
     //     method: 'GET',
     //     url: '',
     //     payload: {
@@ -84,7 +85,7 @@ const play = () => {
     //     }
     // })); //++
 
-    // response = {
+    // animationData = {
     //     '1573643465143': [{
     //             count: 0.044,
     //             lat: 25.05248945869619,
@@ -116,8 +117,6 @@ const play = () => {
     //         },
     //     ],
     // };
-
-    // animationData = Object.values(reposne);
 
     playBtnIcon.classList.remove('fa-play');
     playBtnIcon.classList.add('fa-pause');

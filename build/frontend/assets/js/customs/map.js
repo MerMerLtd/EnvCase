@@ -69,6 +69,7 @@ let map = L.map('mapid', {
 
 // var
 let lastClickIcon, iconMarkers = {},
+  scale = L.control.scale().addTo(map), // add a scale at at  map.
   marker = L.marker(map.getCenter(), {
     draggable: true,
     autoPan: true,

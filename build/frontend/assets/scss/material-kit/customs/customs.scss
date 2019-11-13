@@ -834,3 +834,31 @@ button {
     z-index: 1000;
     cursor: pointer;
   }
+  .timeline .bar_container .tip_bar .text {
+    position: absolute;
+    background-color: #d49500;
+    box-shadow: 3px 3px rgba(0, 0, 0, 0.4);
+    height: 27px;
+    font-size: 13px;
+    padding: 4px 10px 6px 10px;
+    margin-top: -24px;
+    margin-left: -13px;
+    border-radius: 5px;
+    color: #fff;
+    text-align: left;
+    left: 0%;
+    z-index: 2000;
+    cursor: pointer;
+    white-space: nowrap;
+    width: auto;
+  }
+
+  .timeline .bar_container .tip_bar .arrow {
+    position: absolute;
+    color: #d49500;
+    margin-top: -5px;
+    margin-left: -7px;
+    font-size: 14px;
+    left: 0%;
+    z-index: 2000;
+  }
