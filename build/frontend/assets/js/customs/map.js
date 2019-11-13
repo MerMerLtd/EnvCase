@@ -94,7 +94,7 @@ let lastClickIcon, iconMarkers = {},
     myChart: document.getElementById('myChart').getContext('2d'),
     fileInput: document.querySelector('#excel-file'),
   },
-  animateData = [];
+  animationData = [];
 
 const selectedIcon = (iconMarker) => {
   if (lastClickIcon) {
@@ -662,7 +662,9 @@ const setHeatmapPollutedType = type => {
   let heatmapDataWithType = heatmapData.map(data => ({
     lat: data['lat'],
     lng: data['lng'],
-    count: data[type]
+    type: type,
+    count: data[type],
+    timeStamp: data['timeStamp'],
   }));
   return heatmapDataWithType;
 }
@@ -713,6 +715,7 @@ const parseExcelFile = evt => {
           SOX: parseFloat(data['SOX']),
           TSP: parseFloat(data['TSP']),
           NMHC: parseFloat(data[' NMHC'] || data['NMHC']),
+          timeStamp: Date().now,
         };
         data[' NMHC'] ? delete data[' NMHC'] : null;
         return data;
@@ -723,15 +726,17 @@ const parseExcelFile = evt => {
       data: setHeatmapPollutedType('PM25'),
     });
 
-    for (let i = 0; i <  Math.round(1000 * Math.random()); i++) {
+    for (let i = 0; i < Math.round(10000 * Math.random()); i++) {
       let heatmapDataWithType = setHeatmapPollutedType('PM25').map(data => ({
         ...data,
-        count: data['count'] * Math.random() * 1.5,
+        count: data['count'] * Math.random() * 1.2,
       }));
-      animateData.push(heatmapDataWithType);
-      // console.log(animateData[i][0]);
-      // console.log(animateData[i][0]['count']);
+      animationData.push(heatmapDataWithType);
+      // console.log(animationData[i][0]);
+      // console.log(animationData[i][0]['count']);
     }
+
+
 
   };
   // 以二進位制方式開啟檔案
