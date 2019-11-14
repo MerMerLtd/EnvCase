@@ -9,6 +9,7 @@ elements = {
     timelineLength: document.querySelector('.timeline .bar_container .pannel .time-length'),
     timelinePlayBtn: document.querySelector('.timeline .play-btn'),
     timelineDraggableCircle: document.querySelector('.timeline .bar_container .tip_bar .circle'),
+    timelineDraggableText: document.querySelector('.timeline .bar_container .tip_bar .text'),
     timelineProgressBarContainer: document.querySelector('.timeline .progress_bar'),
     timelineProgressBar: document.querySelector('.timeline .progress_bar .progress'),
 };
@@ -61,8 +62,10 @@ const setTimeInterval = evt => {
 const renderProgress = progress => {
     elements.timelineProgressBar.style.width = `${progress*100}%`;
     elements.timelineDraggableCircle.style.left = `${progress*100}%`;
-    // console.log(progress * 100);
-    // console.log(elements.timelineProgressBar.style.width);
+    elements.timelineDraggableText.style.left = `${progress*100}%`;
+    // ++
+    // if (animationData.length)
+        // elements.timelineDraggableText.innerText = `${Object.keys(animationData)[Math.round(progress*animationData.length)]}`
 }
 
 const play = () => {
