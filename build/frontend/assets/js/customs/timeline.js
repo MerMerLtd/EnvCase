@@ -129,6 +129,7 @@ const play = () => {
     let i = Math.round(animationData.length * progress / 100);
     interval = setInterval(() => {
         if (i === animationData.length) { // Object.values(animationData).length
+            console.log(animationData[i], i);
             clearInterval(interval);
             playBtnIcon.classList.add('fa-play');
             playBtnIcon.classList.remove('fa-pause');
