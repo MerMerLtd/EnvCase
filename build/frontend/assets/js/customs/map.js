@@ -79,7 +79,7 @@ let lastClickIcon, iconMarkers = {},
     color: '#fff00',
     fillColor: '#fff',
     fillOpacity: 0, //0.3,
-    radius: 1000
+    radius: 500
   }).addTo(map),
   layerGroup = L.layerGroup().addTo(map),
   dataList, coordinates = [],
@@ -289,7 +289,7 @@ const onMarkerMoveEnd = async _ => {
     color: '#fff',
     fillOpacity: 0.3,
   });
-  map.setView(marker.getLatLng(), 14);
+  map.setView(marker.getLatLng(), 16);
   marker.bindPopup(`You clicked the map at ${marker.getLatLng().toString()}`).openPopup();
   setTimeout(_ => marker.closePopup(), 1000);
   // 呼叫API，回傳附近（方圓？？）營建、餐飲、工廠、路肩攝影機的坐標
@@ -311,8 +311,8 @@ const onMarkerMoveEnd = async _ => {
     list: [{
         id: "234jdbuw923",
         latlng: {
-          lat: marker.getLatLng().lat + Math.random() * 0.0075,
-          lng: marker.getLatLng().lng + Math.random() * 0.0075,
+          lat: marker.getLatLng().lat + Math.random() * 0.0025,
+          lng: marker.getLatLng().lng + Math.random() * 0.0025,
         },
         type: "Construction",
         name: "大漢預拌廠股份有限公司",
@@ -320,16 +320,16 @@ const onMarkerMoveEnd = async _ => {
       {
         id: "234jdajw923",
         latlng: {
-          lat: marker.getLatLng().lat + Math.random() * 0.0075,
-          lng: marker.getLatLng().lng + Math.random() * 0.0075,
+          lat: marker.getLatLng().lat + Math.random() * 0.0025,
+          lng: marker.getLatLng().lng + Math.random() * 0.0025,
         },
         type: "Construction",
         name: "漢鼎建設股份有限公司",
       }, {
         id: "234jdhyw923",
         latlng: {
-          lat: marker.getLatLng().lat + Math.random() * -0.0075,
-          lng: marker.getLatLng().lng + Math.random() * 0.0075,
+          lat: marker.getLatLng().lat + Math.random() * -0.0025,
+          lng: marker.getLatLng().lng + Math.random() * 0.0025,
         },
         type: "Factory",
         name: "宏穎真空鍍金股份有限公司",
@@ -337,16 +337,16 @@ const onMarkerMoveEnd = async _ => {
       {
         id: "234jdasw923",
         latlng: {
-          lat: marker.getLatLng().lat + Math.random() * -0.0075,
-          lng: marker.getLatLng().lng + Math.random() * 0.0075,
+          lat: marker.getLatLng().lat + Math.random() * -0.0025,
+          lng: marker.getLatLng().lng + Math.random() * 0.0025,
         },
         type: "Factory",
         name: "積體電路股份有限公司",
       }, {
         id: "234jdbuw123",
         latlng: {
-          lat: marker.getLatLng().lat + Math.random() * 0.0075,
-          lng: marker.getLatLng().lng + Math.random() * -0.0075,
+          lat: marker.getLatLng().lat + Math.random() * 0.0025,
+          lng: marker.getLatLng().lng + Math.random() * -0.0025,
         },
         type: "Restaurant",
         name: "珍好味小吃店",

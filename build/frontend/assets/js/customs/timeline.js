@@ -62,8 +62,8 @@ const setTimeInterval = evt => {
 const renderProgress = progress => {
     elements.timelineProgressBar.style.width = `${progress*100}%`;
     elements.timelineDraggableCircle.style.left = `${progress*100}%`;
-    elements.timelineDraggableText.style.left = `${progress*100}%`;
     // ++
+    // elements.timelineDraggableText.style.left = `${progress*100}%`;
     // if (animationData.length)
         // elements.timelineDraggableText.innerText = `${Object.keys(animationData)[Math.round(progress*animationData.length)]}`
 }
