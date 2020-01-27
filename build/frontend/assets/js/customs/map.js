@@ -378,11 +378,11 @@ const onMarkerMoveEnd = async _ => {
       },
     ],
     pollutionRatio: {
-      Construction: num -= Math.round(Math.random() * 30),
-      Factory: num -= Math.round(Math.random() * 25),
-      Restaurant: num -= Math.round(Math.random() * 25),
-      Transportation: num -= Math.round(Math.random() * 15),
-      Other: num -= Math.round(Math.random() * 5),
+      Construction: 40,
+      Factory: 20,
+      Restaurant: 10,
+      Transportation: 25,
+      Other: 5,
     },
     other: {
       note: "還有一部份污染推斷是來至其他線上，請參考空氣網的大氣流動模擬圖"

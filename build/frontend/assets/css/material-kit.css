@@ -16862,4 +16862,9 @@ button {
   left: 0%;
   z-index: 2000; }
 
+.pin {
+  position: absolute;
+  top: 0;
+  left: 40%; }
+
 /*# sourceMappingURL=build/frontend/material-kit.css.map */

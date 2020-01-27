@@ -862,3 +862,19 @@ button {
     left: 0%;
     z-index: 2000;
   }
+
+  .pin{
+    position: absolute;
+    top: 0;
+    left: 40%;
+      &-circle{
+         
+        //   border-radius: 50%;
+        //   background-color: blue;
+        //   width: 20px;
+        //   height: 20px;
+      }
+      &-bar{
+
+      }
+  }

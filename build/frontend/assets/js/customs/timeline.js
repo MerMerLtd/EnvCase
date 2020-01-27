@@ -70,13 +70,13 @@ const renderProgress = progress => {
 
 const play = () => {
     closeConfigPannel();
-    if (!animationData.length) {
-        playBtnIcon.classList.add('fa-play');
-        playBtnIcon.classList.remove('fa-pause');
-        return;
-    } // --
+    // if (!animationData.length) {
+    //     playBtnIcon.classList.add('fa-play');
+    //     playBtnIcon.classList.remove('fa-pause');
+    //     return;
+    // } // --
 
-    let err;
+    // let err;
     // [err, animationData] = to(makeRequest({
     //     method: 'GET',
     //     url: '',
