@@ -1,38 +1,20 @@
-# MerMer-framework
-MerMer Framework for Front End and Back End
-
-## Install
+# EnvCase Air Map
+## Deploy
 ```shell
-npm i -g mermer
-```
+# Install library
+sudo apt-get update
+sudo apt-get install openssl libtool autoconf automake uuid-dev build-essential gcc g++ software-properties-common unzip make git libcap2-bin -y
+bash <(curl https://raw.githubusercontent.com/Luphia/SIMPLE/master/shell/install-env.sh -kL)
 
-## Initial New Project
-```shell
-mermer init /path/to/your/new/project
-```
+# Clone project
+git clone https://github.com/MerMerLtd/EnvCase
 
-### edit package
-```shell
-vi /path/to/your/new/project/package.json
-```
+# Install pm2
+sudo npm i -g pm2
+sudo ln -s /opt/nodejs/node-v14.13.1-linux-x64/lib/node_modules/pm2/bin/pm2 /usr/local/bin
 
-### edit config
-```shell
-cp /path/to/your/new/project/default.config.toml /path/to/your/new/project/private/config.toml
-vi /path/to/your/new/project/private/config.toml
-```
-```toml
-[api]
-pathname = [
-  "get | /,/version | Static.Utils.readPackageInfo"
-]
-
-# [method] | [path] | [execute function]
-```
-
-## Run Project
-```
-cd /path/to/your/new/project/
+# Install npm library
+cd /etc/production/EnvCase
 npm install
-npm start
 ```
+
