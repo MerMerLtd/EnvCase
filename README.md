@@ -16,5 +16,9 @@ sudo ln -s /opt/nodejs/node-v14.13.1-linux-x64/lib/node_modules/pm2/bin/pm2 /usr
 # Install npm library
 cd /etc/production/EnvCase
 npm install
+
+# switch permission
+sudo chown -R ubuntu /etc/production
+
 ```
 
