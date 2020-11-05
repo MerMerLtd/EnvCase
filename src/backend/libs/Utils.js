@@ -3,7 +3,6 @@ const fs = require('fs');
 const path = require('path');
 const url = require('url');
 
-const level = require('level');
 const mongodb = require('mongodb').MongoClient;
 const toml = require('toml');
 const i18n = require("i18n");
@@ -429,7 +428,7 @@ class Utils {
   static initialLevel({ homeFolder }) {
     const dbPath = path.resolve(homeFolder, 'dataset');
     return this.initialFolder({ homeFolder: dbPath })
-    .then(() => level(dbPath, { valueEncoding: 'json' }));
+    .then(() => Promise.resolve({}));
   }
 
   static initialDB({ database }) {
