@@ -17,7 +17,7 @@ if (window.WebSocket === undefined) {
 }
 
 function onLoad() {
-  let wsUri = `ws://${location.hostname}`;
+  let wsUri = location.protocol == 'http:' ? `ws://${location.hostname}` : `wss://${location.hostname}`;
   websocket = new WebSocket(wsUri);
   websocket.onopen = function (evt) {
     onOpen(evt);
